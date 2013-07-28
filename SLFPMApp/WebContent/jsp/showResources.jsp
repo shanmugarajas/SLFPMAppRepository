@@ -23,7 +23,7 @@
 		<tr bgcolor="lightblue">
 			<th>Id</th>
 			<th>Name</th>			
-			<th>Address</th>	
+			<th>Emp ID</th>	
 			<th>Mobile</th>
 			<th></th>
 		</tr>
@@ -37,7 +37,7 @@
 		    <tr>
 				<td><c:out value="${resource.id}"></c:out></td>
 				<td><c:out value="${resource.name}"></c:out></td>
-				<td><c:out value="${resource.address}"></c:out> </td>
+				<td><c:out value="${resource.empid}"></c:out> </td>
 				<td><c:out value="${resource.mobile}"></c:out></td>
 				<td>
 					&nbsp;<a href="updateResource.do?id=${resource.id}">Edit</a>

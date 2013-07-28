@@ -26,26 +26,26 @@
 					</tr>
 					
 					<tr>
-						<td width="100" align="right">DOB</td>
-						<td><form:input path="dob"/></td>
-						<td align="left"><form:errors path="dob" cssStyle="color:red"></form:errors>  </td>
+						<td width="100" align="right">DOJ SunLife</td>
+						<td><form:input path="dojslf"/></td>
+						<td align="left"><form:errors path="dojslf" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
-						<td width="100" align="right">Gender</td>
+						<td width="100" align="right">Emp Status</td>
 						<td>						
-							<form:select path="gender">
-					            <form:option value="M" label="Male"/>
-					            <form:option value="F" label="Female"/>
+							<form:select path="empstatus">
+					            <form:option value="A" label="Active"/>
+					            <form:option value="I" label="Inactive"/>
 					        </form:select>						
 						</td>
 						<td>
 						</td>						
 					</tr>
 					<tr>
-						<td width="100" align="right">Address</td>
-						<td><form:input path="address"/></td>
+						<td width="100" align="right">Emp ID</td>
+						<td><form:input path="empid"/></td>
 						<td align="left">
-						<form:errors path="address" cssStyle="color:red"></form:errors>  </td>
+						<form:errors path="empid" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
 						<td width="100" align="right">Email</td>

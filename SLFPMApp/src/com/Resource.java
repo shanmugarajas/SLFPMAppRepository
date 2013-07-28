@@ -21,9 +21,9 @@ public class Resource
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column	private String name;
-	@Column private String address; 
-	@Column private String gender; 
-	@Column private Date dob; 
+	@Column private String empid; 
+	@Column private String empstatus; 
+	@Column private Date dojslf; 
 	@Column private String email;
 	@Column private String mobile; 
 	@Column private String phone;
@@ -32,15 +32,15 @@ public class Resource
 	{
 	}
 	
-	public Resource(int id, String name, String address, String gender,
-			Date dob, String email, String mobile, String phone)
+	public Resource(int id, String name, String empid, String empstatus,
+			Date dojslf, String email, String mobile, String phone)
 	{
 		super();
 		this.id = id;
 		this.name = name;
-		this.address = address;
-		this.gender = gender;
-		this.dob = dob;
+		this.empid = empid;
+		this.empstatus = empstatus;
+		this.dojslf = dojslf;
 		this.email = email;
 		this.mobile = mobile;
 		this.phone = phone;
@@ -66,29 +66,29 @@ public class Resource
 	{
 		this.name = name;
 	}
-	public String getAddress()
+	public String getEmpid()
 	{
-		return address;
+		return empid;
 	}
-	public void setAddress(String address)
+	public void setEmpid(String empid)
 	{
-		this.address = address;
+		this.empid = empid;
 	}
-	public String getGender()
+	public String getEmpstatus()
 	{
-		return gender;
+		return empstatus;
 	}
-	public void setGender(String gender)
+	public void setEmpstatus(String empstatus)
 	{
-		this.gender = gender;
+		this.empstatus = empstatus;
 	}
-	public Date getDob()
+	public Date getDojslf()
 	{
-		return dob;
+		return dojslf;
 	}
-	public void setDob(Date dob)
+	public void setDojslf(Date dojslf)
 	{
-		this.dob = dob;
+		this.dojslf = dojslf;
 	}
 	public String getEmail()
 	{
