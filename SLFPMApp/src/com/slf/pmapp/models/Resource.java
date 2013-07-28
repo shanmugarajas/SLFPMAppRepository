@@ -1,4 +1,4 @@
-package com;
+package com.slf.pmapp.models;
 
 import java.util.Date;
 

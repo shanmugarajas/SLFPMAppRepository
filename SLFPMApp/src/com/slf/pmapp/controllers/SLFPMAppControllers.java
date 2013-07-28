@@ -1,4 +1,4 @@
-package com;
+package com.slf.pmapp.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.slf.pmapp.bizrules.BusinessRuleValidator;
+import com.slf.pmapp.models.Resource;
+import com.slf.pmapp.persistance.ResourcesDAO;
 
 
 /**

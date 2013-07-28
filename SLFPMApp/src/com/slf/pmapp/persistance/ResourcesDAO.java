@@ -1,4 +1,4 @@
-package com;
+package com.slf.pmapp.persistance;
 
 import java.util.List;
 
@@ -8,6 +8,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.slf.pmapp.models.Resource;
 
 /**
  * @author Venky
