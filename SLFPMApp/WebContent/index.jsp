@@ -1,3 +1,3 @@
 <%
-response.sendRedirect("viewAllContacts.do");
+response.sendRedirect("viewAllResources.do");
 %>

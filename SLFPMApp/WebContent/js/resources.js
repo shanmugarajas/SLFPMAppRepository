@@ -3,12 +3,12 @@ function go(url)
 	window.location = url;
 }
 
-function newContact()
+function newResource()
 {
-	window.location = "saveContact.do";
+	window.location = "saveResource.do";
 }
 
-function deleteContact(url)
+function deleteResource(url)
 {
 	var isOK = confirm("Are you sure to delete?");
 	if(isOK)

@@ -26,7 +26,7 @@ public class ResourcesDAO
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Resource> searchContacts(String name)
+	public List<Resource> searchResources(String name)
 	{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Resource.class);
 		criteria.add(Restrictions.ilike("name", name+"%"));
@@ -34,20 +34,20 @@ public class ResourcesDAO
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Resource> getAllContacts()
+	public List<Resource> getAllResources()
 	{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Resource.class);
 		return criteria.list();
 	}
 	
-	public int save(Resource contact)
+	public int save(Resource resource)
 	{
-		return (Integer) sessionFactory.getCurrentSession().save(contact);
+		return (Integer) sessionFactory.getCurrentSession().save(resource);
 	}
 	
-	public void update(Resource contact)
+	public void update(Resource resource)
 	{
-		sessionFactory.getCurrentSession().merge(contact);
+		sessionFactory.getCurrentSession().merge(resource);
 	}
 	
 	public void delete(int id)

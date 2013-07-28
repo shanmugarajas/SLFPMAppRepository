@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class SLFPMAppControllers
 {
 	@Autowired
-	private ResourcesDAO contactsDAO;
+	private ResourcesDAO resourcesDAO;
 	
 	@Autowired
 	private BusinessRuleValidator validator;
@@ -47,73 +47,73 @@ public class SLFPMAppControllers
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 		
-	@RequestMapping("/searchContacts")
-	public ModelAndView searchContacts(@RequestParam(required= false, defaultValue="") String name)
+	@RequestMapping("/searchResources")
+	public ModelAndView searchResources(@RequestParam(required= false, defaultValue="") String name)
 	{
 		ModelAndView mav = new ModelAndView("showResources");
-		List<Resource> contacts = contactsDAO.searchContacts(name.trim());
-		mav.addObject("SEARCH_CONTACTS_RESULTS_KEY", contacts);
+		List<Resource> resources = resourcesDAO.searchResources(name.trim());
+		mav.addObject("SEARCH_RESOURCES_RESULTS_KEY", resources);
 		return mav;
 	}
 	
-	@RequestMapping("/viewAllContacts")
-	public ModelAndView getAllContacts()
+	@RequestMapping("/viewAllResources")
+	public ModelAndView getAllResources()
 	{
 		ModelAndView mav = new ModelAndView("showResources");
-		List<Resource> contacts = contactsDAO.getAllContacts();
-		mav.addObject("SEARCH_CONTACTS_RESULTS_KEY", contacts);
+		List<Resource> resources = resourcesDAO.getAllResources();
+		mav.addObject("SEARCH_RESOURCES_RESULTS_KEY", resources);
 		return mav;
 	}
 	
-	@RequestMapping(value="/saveContact", method=RequestMethod.GET)
+	@RequestMapping(value="/saveResource", method=RequestMethod.GET)
 	public ModelAndView newuserForm()
 	{
 		ModelAndView mav = new ModelAndView("newResource");
-		Resource contact = new Resource();
-		mav.getModelMap().put("newResource", contact);
+		Resource resource = new Resource();
+		mav.getModelMap().put("newResource", resource);
 		return mav;
 	}
 	
-	@RequestMapping(value="/saveContact", method=RequestMethod.POST)
-	public String create(@ModelAttribute("newResource")Resource contact, BindingResult result, SessionStatus status)
+	@RequestMapping(value="/saveResource", method=RequestMethod.POST)
+	public String create(@ModelAttribute("newResource")Resource resource, BindingResult result, SessionStatus status)
 	{
-		validator.validate(contact, result);
+		validator.validate(resource, result);
 		if (result.hasErrors()) 
 		{				
 			return "newResource";
 		}
-		contactsDAO.save(contact);
+		resourcesDAO.save(resource);
 		status.setComplete();
-		return "redirect:viewAllContacts.do";
+		return "redirect:viewAllResources.do";
 	}
 	
-	@RequestMapping(value="/updateContact", method=RequestMethod.GET)
+	@RequestMapping(value="/updateResource", method=RequestMethod.GET)
 	public ModelAndView edit(@RequestParam("id")Integer id)
 	{
 		ModelAndView mav = new ModelAndView("editResource");
-		Resource contact = contactsDAO.getById(id);
-		mav.addObject("editResource", contact);
+		Resource resource = resourcesDAO.getById(id);
+		mav.addObject("editResource", resource);
 		return mav;
 	}
 	
-	@RequestMapping(value="/updateContact", method=RequestMethod.POST)
-	public String update(@ModelAttribute("editResource") Resource contact, BindingResult result, SessionStatus status)
+	@RequestMapping(value="/updateResource", method=RequestMethod.POST)
+	public String update(@ModelAttribute("editResource") Resource resource, BindingResult result, SessionStatus status)
 	{
-		validator.validate(contact, result);
+		validator.validate(resource, result);
 		if (result.hasErrors()) {
 			return "editResource";
 		}
-		contactsDAO.update(contact);
+		resourcesDAO.update(resource);
 		status.setComplete();
-		return "redirect:viewAllContacts.do";
+		return "redirect:viewAllResources.do";
 	}
 	
 	
-	@RequestMapping("deleteContact")
+	@RequestMapping("deleteResource")
 	public ModelAndView delete(@RequestParam("id")Integer id)
 	{
-		ModelAndView mav = new ModelAndView("redirect:viewAllContacts.do");
-		contactsDAO.delete(id);
+		ModelAndView mav = new ModelAndView("redirect:viewAllResources.do");
+		resourcesDAO.delete(id);
 		return mav;
 	}
 	

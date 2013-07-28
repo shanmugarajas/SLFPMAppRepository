@@ -13,7 +13,7 @@
 	</tr>
   <tr valign="top" align="center">
     <td align="center">
- 		<form:form action="updateContact.do" method="post" commandName="editResource">
+ 		<form:form action="updateResource.do" method="post" commandName="editResource">
 				<table width="500" style="border-collapse: collapse;" border="0" bordercolor="#006699" cellspacing="2" cellpadding="2">					
 					<tr>
 						<td width="100" align="right">Id</td>
@@ -66,11 +66,11 @@
 					</tr>
 					<tr valign="bottom">
 						<td colspan="3" align="center">
-						<input type="button"  value="Delete" onclick="javascript:deleteContact('deleteContact.do?id=${editContact.id}');">
+						<input type="button"  value="Delete" onclick="javascript:deleteResource('deleteResource.do?id=${editResource.id}');">
 						&nbsp;&nbsp;
 						<input type="submit" name="" value="Save">						
 						&nbsp;&nbsp;
-						<input type="button"  value="Back" onclick="javascript:go('viewAllContacts.do');">
+						<input type="button"  value="Back" onclick="javascript:go('viewAllResources.do');">
 						</td>
 					</tr>
 					

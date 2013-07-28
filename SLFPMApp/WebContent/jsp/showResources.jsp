@@ -8,13 +8,13 @@
 </head>
 <body style="font-family: Arial; font-size:smaller;">
 	<center>
-	<form action="searchContacts.do" method="post">		
+	<form action="searchResources.do" method="post">		
 			<table style="border-collapse: collapse;" border="0" bordercolor="#006699" width="500">
 			<tr>
 				<td>Resource Name</td> 
 				<td><input type="text" name="name"/>
 					&nbsp;&nbsp;<input type="submit" value="Search"/>
-					&nbsp;&nbsp;<input type="button" value="New Contact" onclick="javascript:go('saveContact.do');"/>
+					&nbsp;&nbsp;<input type="button" value="New Resource" onclick="javascript:go('saveResource.do');"/>
 			</td></tr>
 		</table>
 	</form>
@@ -27,21 +27,21 @@
 			<th>Mobile</th>
 			<th></th>
 		</tr>
-		<c:if test="${empty SEARCH_CONTACTS_RESULTS_KEY}">
+		<c:if test="${empty SEARCH_RESOURCES_RESULTS_KEY}">
 		<tr>
 			<td colspan="4">No Results found</td>
 		</tr>
 		</c:if>
-		<c:if test="${! empty SEARCH_CONTACTS_RESULTS_KEY}">
-			<c:forEach var="contact" items="${SEARCH_CONTACTS_RESULTS_KEY}">		
+		<c:if test="${! empty SEARCH_RESOURCES_RESULTS_KEY}">
+			<c:forEach var="resource" items="${SEARCH_RESOURCES_RESULTS_KEY}">		
 		    <tr>
-				<td><c:out value="${contact.id}"></c:out></td>
-				<td><c:out value="${contact.name}"></c:out></td>
-				<td><c:out value="${contact.address}"></c:out> </td>
-				<td><c:out value="${contact.mobile}"></c:out></td>
+				<td><c:out value="${resource.id}"></c:out></td>
+				<td><c:out value="${resource.name}"></c:out></td>
+				<td><c:out value="${resource.address}"></c:out> </td>
+				<td><c:out value="${resource.mobile}"></c:out></td>
 				<td>
-					&nbsp;<a href="updateContact.do?id=${contact.id}">Edit</a>
-					&nbsp;&nbsp;<a href="javascript:deleteContact('deleteContact.do?id=${contact.id}');">Delete</a>
+					&nbsp;<a href="updateResource.do?id=${resource.id}">Edit</a>
+					&nbsp;&nbsp;<a href="javascript:deleteResource('deleteResource.do?id=${resource.id}');">Delete</a>
 				</td>
 			</tr>
 			</c:forEach>

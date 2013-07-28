@@ -5,7 +5,7 @@
 </head>
 <body>
 
-	<p><a href="viewAllContacts.do">List Resources</a> </p>
+	<p><a href="viewAllResources.do">List Resources</a> </p>
 	
 </body>
 </html>

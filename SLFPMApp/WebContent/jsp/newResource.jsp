@@ -13,7 +13,7 @@
 	</tr>
 	<tr valign="top" align="center">
     <td align="center">
- 		<form:form action="saveContact.do" method="post" commandName="newResource">
+ 		<form:form action="saveResource.do" method="post" commandName="newResource">
 	    	
 				<table width="500" style="border-collapse: collapse;" border="0" bordercolor="#006699" cellspacing="2" cellpadding="2">	
 					<tr>
@@ -64,7 +64,7 @@
 						&nbsp;&nbsp;
 						<input type="reset" name="" value="Reset">
 						&nbsp;&nbsp;
-						<input type="button"  value="Back" onclick="javascript:go('viewAllContacts.do');">
+						<input type="button"  value="Back" onclick="javascript:go('viewAllResources.do');">
 						</td>
 					</tr>					
 				</table>			
