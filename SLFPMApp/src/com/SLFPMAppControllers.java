@@ -19,18 +19,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 /**
- * @author Harit
+ * @author Venky
  *
  */
 
 @Controller
-public class ContactsControllers
+public class SLFPMAppControllers
 {
 	@Autowired
-	private ContactsDAO contactsDAO;
+	private ResourcesDAO contactsDAO;
 	
 	@Autowired
-	private ContactFormValidator validator;
+	private BusinessRuleValidator validator;
 	
 	@RequestMapping("/home")
 	public String home()
@@ -51,7 +51,7 @@ public class ContactsControllers
 	public ModelAndView searchContacts(@RequestParam(required= false, defaultValue="") String name)
 	{
 		ModelAndView mav = new ModelAndView("showResources");
-		List<Contact> contacts = contactsDAO.searchContacts(name.trim());
+		List<Resource> contacts = contactsDAO.searchContacts(name.trim());
 		mav.addObject("SEARCH_CONTACTS_RESULTS_KEY", contacts);
 		return mav;
 	}
@@ -60,7 +60,7 @@ public class ContactsControllers
 	public ModelAndView getAllContacts()
 	{
 		ModelAndView mav = new ModelAndView("showResources");
-		List<Contact> contacts = contactsDAO.getAllContacts();
+		List<Resource> contacts = contactsDAO.getAllContacts();
 		mav.addObject("SEARCH_CONTACTS_RESULTS_KEY", contacts);
 		return mav;
 	}
@@ -69,13 +69,13 @@ public class ContactsControllers
 	public ModelAndView newuserForm()
 	{
 		ModelAndView mav = new ModelAndView("newResource");
-		Contact contact = new Contact();
+		Resource contact = new Resource();
 		mav.getModelMap().put("newResource", contact);
 		return mav;
 	}
 	
 	@RequestMapping(value="/saveContact", method=RequestMethod.POST)
-	public String create(@ModelAttribute("newResource")Contact contact, BindingResult result, SessionStatus status)
+	public String create(@ModelAttribute("newResource")Resource contact, BindingResult result, SessionStatus status)
 	{
 		validator.validate(contact, result);
 		if (result.hasErrors()) 
@@ -91,13 +91,13 @@ public class ContactsControllers
 	public ModelAndView edit(@RequestParam("id")Integer id)
 	{
 		ModelAndView mav = new ModelAndView("editResource");
-		Contact contact = contactsDAO.getById(id);
+		Resource contact = contactsDAO.getById(id);
 		mav.addObject("editResource", contact);
 		return mav;
 	}
 	
 	@RequestMapping(value="/updateContact", method=RequestMethod.POST)
-	public String update(@ModelAttribute("editResource") Contact contact, BindingResult result, SessionStatus status)
+	public String update(@ModelAttribute("editResource") Resource contact, BindingResult result, SessionStatus status)
 	{
 		validator.validate(contact, result);
 		if (result.hasErrors()) {

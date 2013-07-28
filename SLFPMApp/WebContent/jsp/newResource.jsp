@@ -9,7 +9,7 @@
 
 <table  bgcolor="lightblue" width="750" height="500" align="center" style="border-collapse: collapse;" border="1" bordercolor="#006699" >
 	<tr>
-		<td align="center"><h3>Edit Resources</h3></td>
+		<td align="center"><h3>Add Resource</h3></td>
 	</tr>
 	<tr valign="top" align="center">
     <td align="center">

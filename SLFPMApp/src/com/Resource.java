@@ -15,7 +15,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 @Entity
 @Table(name="resources")
-public class Contact
+public class Resource
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,11 +28,11 @@ public class Contact
 	@Column private String mobile; 
 	@Column private String phone;
 	
-	public Contact()
+	public Resource()
 	{
 	}
 	
-	public Contact(int id, String name, String address, String gender,
+	public Resource(int id, String name, String address, String gender,
 			Date dob, String email, String mobile, String phone)
 	{
 		super();

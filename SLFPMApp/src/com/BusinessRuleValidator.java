@@ -7,17 +7,17 @@ import org.springframework.validation.Validator;
 
 
 /**
- * @author Harit
+ * @author Venky
  *
  */
-@Component("contactFormValidator")
-public class ContactFormValidator implements Validator
+@Component("BusinessRuleValidator")
+public class BusinessRuleValidator implements Validator
 {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean supports(Class clazz)
 	{
-		return Contact.class.isAssignableFrom(clazz);
+		return Resource.class.isAssignableFrom(clazz);
 	}
 
 	@Override
