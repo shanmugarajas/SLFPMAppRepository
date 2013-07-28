@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><spring:message code="App.Title"></spring:message> </title>
-<script type="text/javascript" src="js/resources.js"></script>
+<script type="text/javascript" src="presentation/resources.js"></script>
 </head>
 <body style="font-family: Arial; font-size:smaller;">
 	<center>
