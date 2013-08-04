@@ -13,9 +13,17 @@ import org.springframework.validation.ValidationUtils;
 
 rule "Name should not be empty"
 when
-  	Resource( name == " " ) 
+  	Resource( name == "aaa" ) 
 then
-	System.out.println("Name should not be empty!" );
+	System.out.println("Name should not be aaa!" );
+	//$errors.addError( $resource, "name", "Name is empty" );
+end
+
+rule "Name should be empty"
+when
+  	Resource( name != "aaa" ) 
+then
+	System.out.println("Name should be aaa!" );
 	//$errors.addError( $resource, "name", "Name is empty" );
 end
 

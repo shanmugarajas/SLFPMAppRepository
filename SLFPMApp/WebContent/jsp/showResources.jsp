@@ -35,7 +35,7 @@
                 &nbsp;&nbsp;
                 <input name="submit" type="submit" value="Search"/>
                 &nbsp;&nbsp;
-                <input name="button" type="button" onclick="javascript:go('saveResource.do');" value="New Resource"/>
+                <input name="button" type="button" onclick="saveResource.do" value="New Resource"/>
               </td>
             </tr>
           </table>
