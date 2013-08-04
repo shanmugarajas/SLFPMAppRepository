@@ -60,6 +60,13 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
+	@RequestMapping("/viewTheHome")
+	public ModelAndView goToHome()
+	{
+		ModelAndView mav = new ModelAndView("home");
+		return mav;
+	}
+	
 	@RequestMapping("/viewAllResources")
 	public ModelAndView getAllResources()
 	{

@@ -1,3 +1,3 @@
 <%
-response.sendRedirect("viewAllResources.do");
+response.sendRedirect("viewTheHome.do");
 %>

@@ -1,5 +1,7 @@
 /Messages.properties
+/Rules.drl
 /applicationContext.xml
 /com
 /config.properties
+/drools-spring-1.0.0.xsd
 /log4j.properties
