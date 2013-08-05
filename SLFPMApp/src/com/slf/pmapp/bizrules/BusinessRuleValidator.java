@@ -28,8 +28,14 @@ public class BusinessRuleValidator implements Validator
 	@Override
 	public void validate(Object model, Errors errors)
 	{
-		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name","required.name", "Name is required.");
-		rulesHandle.validate((Resource) model, errors);
+		//
+		try{
+			rulesHandle.validate((Resource) model, errors);
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+		}
 	}
 
-}
+

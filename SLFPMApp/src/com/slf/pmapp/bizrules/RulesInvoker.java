@@ -11,23 +11,22 @@ import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.springframework.validation.Errors;
 import com.slf.pmapp.models.Resource;
+import org.drools.conf.ConsequenceExceptionHandlerOption;
+import org.drools.runtime.rule.ConsequenceException;
+import org.drools.runtime.rule.ConsequenceExceptionHandler;
 
 /**
  * @author: Venky
  */
 public class RulesInvoker {
 
-    public void validate(Resource model, Errors errors) {
-        try {
+    public void validate(Resource model, Errors errors) throws Exception {
+    
             // load up the knowledge base
             KnowledgeBase kbase = readKnowledgeBase();
             StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
-            ksession.insert(model);
+            ksession.insert(model);      
             ksession.fireAllRules();
-            
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
     }
 
     private static KnowledgeBase readKnowledgeBase() throws Exception {

@@ -4,27 +4,19 @@
 package SlfPmAppRules
 
 import com.slf.pmapp.models.Resource;
-import org.springframework.validation.Errors;
+import com.slf.pmapp.bizrules.SLFErrors;
 import org.springframework.validation.ValidationUtils;
 
 //list any import classes here.
-
+global SLFErrors slferrors 
 //declare any global variables here
+
 
 rule "Name should not be empty"
 when
-  	Resource( name == "aaa" ) 
+  	$r: Resource( name == "")  
 then
-	System.out.println("Name should not be aaa!" );
-	//$errors.addError( $resource, "name", "Name is empty" );
-end
-
-rule "Name should be empty"
-when
-  	Resource( name != "aaa" ) 
-then
-	System.out.println("Name should be aaa!" );
-	//$errors.addError( $resource, "name", "Name is empty" );
+	throw new Exception("EmptyNameField");
 end
 
 
