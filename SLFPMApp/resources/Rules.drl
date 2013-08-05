@@ -4,11 +4,10 @@
 package SlfPmAppRules
 
 import com.slf.pmapp.models.Resource;
-import com.slf.pmapp.bizrules.SLFErrors;
 import org.springframework.validation.ValidationUtils;
 
 //list any import classes here.
-global SLFErrors slferrors 
+ 
 //declare any global variables here
 
 
