@@ -5,6 +5,7 @@
 <!-- DW6 -->
 <head>
 <!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
+<script type="text/javascript" src="js/resources.js"></script>
 <title>Show All Resources</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
@@ -35,7 +36,7 @@
                 &nbsp;&nbsp;
                 <input name="submit" type="submit" value="Search"/>
                 &nbsp;&nbsp;
-                <input name="button" type="button" onclick="saveResource.do" value="New Resource"/>
+                <input name="button" type="button" onclick="javascript:newResource()" value="New Resource"/>
               </td>
             </tr>
           </table>

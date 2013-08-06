@@ -1,5 +1,6 @@
 package com.slf.pmapp.bizrules;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -28,14 +29,11 @@ public class BusinessRuleValidator implements Validator
 	@Override
 	public void validate(Object model, Errors errors)
 	{
-		//
-		try{
+	
+	}
+	
+	public void checkBusinessRules(Object model, Errors errors) throws Exception{
+	
 			rulesHandle.validate((Resource) model, errors);
 		}
-		catch (Exception e){
-			System.out.println(e.getMessage());
-		}
-		}
-	}
-
-
+}

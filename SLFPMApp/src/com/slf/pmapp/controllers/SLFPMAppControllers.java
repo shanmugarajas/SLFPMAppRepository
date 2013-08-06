@@ -88,9 +88,10 @@ public class SLFPMAppControllers
 	@RequestMapping(value="/saveResource", method=RequestMethod.POST)
 	public String create(@ModelAttribute("newResource")Resource resource, BindingResult result, SessionStatus status)
 	{
-		validator.validate(resource, result);
-		if (result.hasErrors()) 
-		{				
+		try{
+			validator.checkBusinessRules(resource, result);
+		}
+		catch(Exception e){
 			return "newResource";
 		}
 		resourcesDAO.save(resource);
@@ -110,8 +111,10 @@ public class SLFPMAppControllers
 	@RequestMapping(value="/updateResource", method=RequestMethod.POST)
 	public String update(@ModelAttribute("editResource") Resource resource, BindingResult result, SessionStatus status)
 	{
-		validator.validate(resource, result);
-		if (result.hasErrors()) {
+		try{
+			validator.checkBusinessRules(resource, result);
+		}
+		catch(Exception e){
 			return "editResource";
 		}
 		resourcesDAO.update(resource);

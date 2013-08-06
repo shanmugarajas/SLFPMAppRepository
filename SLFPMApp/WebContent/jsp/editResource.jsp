@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<script type="text/javascript" src="js/resouces.js"></script>
+	<script type="text/javascript" src="js/resources.js"></script>
 	<title><spring:message code="App.Title"></spring:message> </title>
 </head>
 <body style="font-family: Arial; font-size:smaller;">
