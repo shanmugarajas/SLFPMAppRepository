@@ -29,11 +29,8 @@ public class BusinessRuleValidator implements Validator
 	@Override
 	public void validate(Object model, Errors errors)
 	{
+		rulesHandle.validate((Resource) model, errors);
 	
 	}
 	
-	public void checkBusinessRules(Object model, Errors errors) throws Exception{
-	
-			rulesHandle.validate((Resource) model, errors);
-		}
 }

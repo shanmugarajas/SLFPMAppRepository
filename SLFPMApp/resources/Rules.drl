@@ -4,6 +4,7 @@
 package SlfPmAppRules
 
 import com.slf.pmapp.models.Resource;
+import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
 //list any import classes here.
@@ -14,8 +15,9 @@ import org.springframework.validation.ValidationUtils;
 rule "Name should not be empty"
 when
   	$r: Resource( name == "")  
+  	$e: Errors()
 then
-	throw new Exception("EmptyNameField");
+	$e.rejectValue("name", "err1", "DRL:Name is required");
 end
 
 

@@ -20,13 +20,20 @@ import org.drools.runtime.rule.ConsequenceExceptionHandler;
  */
 public class RulesInvoker {
 
-    public void validate(Resource model, Errors errors) throws Exception {
+    public void validate(Resource model, Errors errors){
     
             // load up the knowledge base
-            KnowledgeBase kbase = readKnowledgeBase();
-            StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
-            ksession.insert(model);      
-            ksession.fireAllRules();
+            KnowledgeBase kbase;
+			try {
+				kbase = readKnowledgeBase();
+				StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
+	            ksession.insert(model);  
+	            ksession.insert(errors); 
+	            ksession.fireAllRules();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}           
     }
 
     private static KnowledgeBase readKnowledgeBase() throws Exception {
