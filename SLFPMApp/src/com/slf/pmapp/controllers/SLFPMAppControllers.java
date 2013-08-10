@@ -3,7 +3,10 @@ package com.slf.pmapp.controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
+import org.apache.commons.collections.Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.slf.pmapp.bizrules.BusinessRuleValidator;
 import com.slf.pmapp.models.Resource;
 import com.slf.pmapp.persistance.ResourcesDAO;
+import com.slf.pmapp.jms.MessageReceiver;
+import com.slf.pmapp.jms.MessageSender;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 /**
@@ -32,7 +40,7 @@ public class SLFPMAppControllers
 {
 	@Autowired
 	private ResourcesDAO resourcesDAO;
-	
+		
 	@Autowired
 	private BusinessRuleValidator validator;
 	
@@ -129,4 +137,18 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
+	@RequestMapping("createReport")
+	public ModelAndView createReport()
+	{
+		ModelAndView mav = new ModelAndView("");
+		
+		ApplicationContext context=new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml"); 
+		
+		MessageSender sender = (MessageSender) context.getBean("messageSender");
+		Map map = new HashMap();
+		map.put("Report", "TracksReport");
+		sender.send(map);
+		
+		return mav;
+	}
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:amq="http://activemq.apache.org/schema/core"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p" 
@@ -12,7 +13,11 @@
 	   		http://www.springframework.org/schema/tx 
 			http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 			http://www.springframework.org/schema/mvc 
-			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+			http://activemq.apache.org/schema/core
+			http://activemq.apache.org/schema/core/activemq-core-5.5.0.xsd
+			http://www.springframework.org/schema/jms
+			http://www.springframework.org/schema/jms/spring-jms.xsd">
 	
 	<context:annotation-config />
 	
@@ -47,7 +52,60 @@
 			p:driverClassName="${jdbc.driverClassName}"
 			p:url="${jdbc.url}"
 			p:username="${jdbc.username}"
-			p:password="${jdbc.password}"/>
+			p:password="${jdbc.password}">
+	</bean>
 	  
+
+<!-- Activemq connection factory -->
+
+<bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory"> 
+    <property name="brokerURL">   
+      <value>tcp://localhost:61616</value>
+    </property>
+</bean>
+ 
+<!-- ConnectionFactory Definition -->
+<bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+<constructor-arg ref="amqConnectionFactory" />
+</bean>
+
+
+  
+<!--  Default Destination Queue Definition-->
+<bean id="defaultDestination" class="org.apache.activemq.command.ActiveMQQueue">
+
+<constructor-arg index="0" value="${jms.queue.name}"/>
+</bean>
+
+<!-- JmsTemplate Definition -->
+<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+
+<property name="connectionFactory" ref="connectionFactory" />
+
+<property name="defaultDestination" ref="defaultDestination" />
+
+</bean>
+<!-- Message Sender Definition -->
+
+<bean id="messageSender" class="com.slf.pmapp.jms.MessageSender">
+
+<constructor-arg index="0" ref="jmsTemplate" />
+
+</bean>
+
+<!-- Message Receiver Definition -->
+
+<bean id="messageReceiver" class="com.slf.pmapp.jms.MessageReceiver">
+</bean>
+ 
+<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+
+	<property name="connectionFactory" ref="connectionFactory" />
+
+	<property name="destinationName" value="${jms.queue.name}" />
+
+	<property name="messageListener" ref="messageReceiver" />
+
+</bean>
 	
 </beans>
