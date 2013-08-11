@@ -40,7 +40,6 @@ import com.slf.pmapp.reports.ExecuteReport;
 @Controller
 public class SLFPMAppControllers
 {
-	private ExecuteReport reportExec = new ExecuteReport();
 	
 	@Autowired
 	private ResourcesDAO resourcesDAO;
@@ -148,12 +147,7 @@ public class SLFPMAppControllers
 		System.out.println("Controller delegating the report");
 		ApplicationContext context=new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml"); 
 		
-		try {
-		reportExec.executeReport();
-		} catch (EngineException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		}
+		
 		MessageSender sender = (MessageSender) context.getBean("messageSender");
 		Map map = new HashMap();
 		map.put("Report", "TracksReport");

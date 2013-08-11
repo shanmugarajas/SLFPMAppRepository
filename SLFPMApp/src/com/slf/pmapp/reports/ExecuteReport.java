@@ -1,5 +1,8 @@
 package com.slf.pmapp.reports;
 
+import java.io.IOException;
+
+import org.drools.io.ResourceFactory;
 import org.eclipse.birt.core.framework.Platform;
 import org.eclipse.birt.report.engine.api.EngineConfig;
 import org.eclipse.birt.report.engine.api.EngineException;
@@ -10,6 +13,7 @@ import org.eclipse.birt.report.engine.api.IReportRunnable;
 import org.eclipse.birt.report.engine.api.IRunAndRenderTask;
 import org.eclipse.birt.report.engine.api.PDFRenderOption;
 import org.eclipse.birt.report.model.elements.olap.Level;
+
 
 public class ExecuteReport {
 	
@@ -37,9 +41,9 @@ try{
 	HTMLRenderOption options = new HTMLRenderOption();		
 	options.setOutputFileName("\\report.html");
 	options.setOutputFormat("html");
-	options.setHtmlRtLFlag(false);
-	options.setEmbeddable(false);
-	options.setImageDirectory("\\");
+	options.setEmbeddable(true);
+	options.setHtmlRtLFlag(false);	
+	//options.setImageDirectory("\\");
 
 //	PDFRenderOption options = new PDFRenderOption();
 //	options.setOutputFileName("test.pdf");
@@ -49,6 +53,15 @@ try{
 	task.run();
 	task.close();
 	engine.destroy();
+	//Program.launch("\\report.html");
+	try {
+		Process p =
+		Runtime.getRuntime().exec("RunDLL32.EXE shell32.dll,ShellExec_RunDLL "	+ "D:\\report.html");
+		}
+		catch( IOException e ){
+		}
+
+
 }catch( Exception ex){
 	ex.printStackTrace();
 }		
