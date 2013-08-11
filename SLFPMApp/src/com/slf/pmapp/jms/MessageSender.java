@@ -15,6 +15,7 @@ this.jmsTemplate = jmsTemplate;
 
 public void send(final Map map) {
 
+System.out.println("JMS sending the message");	
 jmsTemplate.convertAndSend(map);
 
 }

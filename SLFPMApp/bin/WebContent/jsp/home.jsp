@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
 </head>
-<body bgcolor="#0066cc">
+<body bgcolor="#ffffff">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr bgcolor="#99ccff">
 	<td width="17" nowrap="nowrap" ><img src="images/mm_spacer.gif" alt="" width="15" height="1" border="0" /></td>
@@ -83,40 +83,6 @@
 		  <br />		</td>
 		</tr>
 	</table>	</td>
-	<td width="4">&nbsp;</td>
-	<td width="329">&nbsp;</td>
-	</tr>
-
-	<tr bgcolor="#ffffff">
-	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="1" border="0" /></td>
-	</tr>
-
-	<tr>
-	<td colspan="6">&nbsp;</td>
-	</tr>
-
-
-	<tr bgcolor="#003399">
-	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="1" border="0" /></td>
-	</tr>
-
-	<tr>
-	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="2" border="0" /></td>
-	</tr>
-
-	<tr bgcolor="#003399">
-	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="1" border="0" /></td>
-	</tr>
-
-
-	<tr>
-	<td width="17">&nbsp;</td>
-	<td width="165">&nbsp;</td>
-	<td width="50">&nbsp;</td>
-	<td width="545">&nbsp;</td>
-	<td width="4">&nbsp;</td>
-	<td width="329">&nbsp;</td>
-	</tr>
-</table>
+	</table>
 </body>
 </html>

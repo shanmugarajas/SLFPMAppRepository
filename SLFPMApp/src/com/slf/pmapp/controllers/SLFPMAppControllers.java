@@ -141,7 +141,7 @@ public class SLFPMAppControllers
 	public ModelAndView createReport()
 	{
 		
-		
+		System.out.println("Controller delegating the report");
 		ApplicationContext context=new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml"); 
 		
 		MessageSender sender = (MessageSender) context.getBean("messageSender");
