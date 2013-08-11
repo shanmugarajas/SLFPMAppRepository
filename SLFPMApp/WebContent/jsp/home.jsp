@@ -23,7 +23,7 @@
 	<td height="36" colspan="3" id="navigation" nowrap="nowrap" class="navText"><a href="viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <a href="javascript:;">PROJECTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:;">INVOICES</a>&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp; <a href="javascript:;">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="javascript:;">TRAININGS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;">FEEDBACK</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <a href="viewAllResources.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;">FEEDBACK</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 	  <td width="4">&nbsp;</td>
 	<td width="329">&nbsp;</td>
 	</tr>

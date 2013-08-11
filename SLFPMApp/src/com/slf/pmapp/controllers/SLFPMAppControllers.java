@@ -140,7 +140,7 @@ public class SLFPMAppControllers
 	@RequestMapping("createReport")
 	public ModelAndView createReport()
 	{
-		ModelAndView mav = new ModelAndView("");
+		
 		
 		ApplicationContext context=new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml"); 
 		
@@ -148,7 +148,7 @@ public class SLFPMAppControllers
 		Map map = new HashMap();
 		map.put("Report", "TracksReport");
 		sender.send(map);
-		
+		ModelAndView mav = new ModelAndView("redirect:viewAllResources.do");
 		return mav;
 	}
 }

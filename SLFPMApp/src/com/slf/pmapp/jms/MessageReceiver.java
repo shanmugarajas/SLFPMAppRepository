@@ -11,7 +11,7 @@ if (message instanceof MapMessage) {
 
 final MapMessage mapMessage = (MapMessage) message;
 // do something
-
+System.out.println("Received the message to report:");
 }
 
 }
