@@ -5,8 +5,8 @@
 <!-- DW6 -->
 <head>
 <!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
-<script type="text/javascript" src="js/resources.js"></script>
-<title>Show All Resources</title>
+<script type="text/javascript" src="js/allocations.js"></script>
+<title>Show All Allocations</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
 </head>
@@ -20,7 +20,7 @@
   </tr>
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
-    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="viewTheHome.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllAllocations.do">PROJECTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:;">INVOICES</a>&nbsp;&nbsp;
+    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="viewTheHome.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:;">INVOICES</a>&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp; <a href="javascript:;">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;">FEEDBACK</a></td>
     <td>&nbsp;</td>
   </tr>
@@ -28,40 +28,56 @@
     <td width="15" height="230" valign="top"><img src="images/mm_spacer.gif" alt="" width="15" height="1" border="0" /></td>
     <td width="35" valign="top"><img src="images/mm_spacer.gif" alt="" width="35" height="1" border="0" /></td>
     <td width="710" valign="top"><br />
-        <form action="searchResources.do" method="post">
+        <form action="searchAllocations.do" method="post">
           <table style="border-collapse: collapse;" border="0" bordercolor="#006699" width="500">
             <tr>
-              <td>Resource Name</td>
-              <td><input type="text" name="name"/>
+              <td>Allocated Project</td>
+              <td><input type="text" name="ProjectModule"/>
                 &nbsp;&nbsp;
                 <input name="submit" type="submit" value="Search"/>
                 &nbsp;&nbsp;
-                <input name="button" type="button" onclick="javascript:newResource()" value="New Resource"/>
+                <input name="button" type="button" onclick="javascript:newAllocation()" value="New Allocation"/>
               </td>
             </tr>
           </table>
         </form>
       <table style="border-collapse: collapse;" border="1" bordercolor="#006699" width="500">
           <tr bgcolor="lightblue">
-            <th>Id</th>
-            <th>Name</th>
-            <th>Emp ID</th>
-            <th>Mobile</th>
+            <th>ID</th>
+            <th>ResourceID</th>
+            <th>TrackID</th>
+            <th>ACF2ID</th>
+            <th>VPNToken</th>
+            <th>BillingStatus</th>
+            <th>ProjStartDate</th>
+            <th>ProjEndDate</th>
+            <th>PercentAllocation</th>
+            <th>ProjectModule</th>
+            <th>SunLifeLead</th>
+            <th>Role</th>
             <th></th>
           </tr>
-          <c:if test="${empty SEARCH_RESOURCES_RESULTS_KEY}">
+          <c:if test="${empty SEARCH_ALLOCATIONS_RESULTS_KEY}">
             <tr>
               <td colspan="4">No Results found</td>
             </tr>
           </c:if>
-          <c:if test="${! empty SEARCH_RESOURCES_RESULTS_KEY}">
-            <c:forEach var="resource" items="${SEARCH_RESOURCES_RESULTS_KEY}">
+          <c:if test="${! empty SEARCH_ALLOCATIONS_RESULTS_KEY}">
+            <c:forEach var="allocation" items="${SEARCH_ALLOCATIONS_RESULTS_KEY}">
               <tr>
-                <td><c:out value="${resource.id}"></c:out></td>
-                <td><c:out value="${resource.name}"></c:out></td>
-                <td><c:out value="${resource.empid}"></c:out></td>
-                <td><c:out value="${resource.mobile}"></c:out></td>
-                <td>&nbsp;<a href="updateResource.do?id=${resource.id}">Edit</a> &nbsp;&nbsp;<a href="javascript:deleteResource('deleteResource.do?id=${resource.id}');">Delete</a> </td>
+                <td><c:out value="${allocation.id}"></c:out></td>
+				<td><c:out value="${allocation.resource.name}"></c:out></td>
+				<td><c:out value="${allocation.trackId}"></c:out></td>
+				<td><c:out value="${allocation.ACF2ID}"></c:out></td>
+				<td><c:out value="${allocation.VPNToken}"></c:out></td>
+				<td><c:out value="${allocation.billingStatus}"></c:out></td>
+				<td><c:out value="${allocation.projStartDate}"></c:out></td>
+				<td><c:out value="${allocation.projEndDate}"></c:out></td>
+				<td><c:out value="${allocation.percentAllocation}"></c:out></td>
+				<td><c:out value="${allocation.projectModule}"></c:out></td>
+				<td><c:out value="${allocation.sunLifeLead}"></c:out></td>
+				<td><c:out value="${allocation.role}"></c:out></td>
+				<td>&nbsp;<a href="updateAllocation.do?id=${allocation.id}">Edit</a> &nbsp;&nbsp;<a href="javascript:deleteAllocation('deleteAllocation.do?id=${allocation.id}');">Delete</a> </td>
               </tr>
             </c:forEach>
           </c:if>

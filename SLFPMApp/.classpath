@@ -87,7 +87,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/SLFPMAppSupportLibs/cglib-nodep-2.2.jar">
+	<classpathentry kind="lib" path="D:/SLFPMAppSupportLibs/cglib-nodep-2.2.jar" sourcepath="C:/Users/venkatesanr/.m2/repository/cglib/cglib-nodep/2.2/cglib-nodep-2.2-sources.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

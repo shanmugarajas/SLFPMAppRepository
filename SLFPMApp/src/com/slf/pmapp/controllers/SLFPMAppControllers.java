@@ -22,7 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.slf.pmapp.bizrules.BusinessRuleValidator;
 import com.slf.pmapp.models.Resource;
+import com.slf.pmapp.models.Allocation;
 import com.slf.pmapp.persistance.ResourcesDAO;
+import com.slf.pmapp.persistance.AllocationsDAO;
 import com.slf.pmapp.jms.MessageReceiver;
 import com.slf.pmapp.jms.MessageSender;
 
@@ -43,7 +45,8 @@ public class SLFPMAppControllers
 	
 	@Autowired
 	private ResourcesDAO resourcesDAO;
-		
+	@Autowired
+	private AllocationsDAO allocationsDAO;	
 	@Autowired
 	private BusinessRuleValidator validator;
 	
@@ -71,6 +74,15 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
+	@RequestMapping("/searchAllocations")
+	public ModelAndView searchAllocations(@RequestParam(required= false, defaultValue="") String ProjectModule)
+	{
+		ModelAndView mav = new ModelAndView("showAllocations");
+		List<Allocation> allocations = allocationsDAO.searchAllocations(ProjectModule.trim());
+		mav.addObject("SEARCH_ALLOCATIONS_RESULTS_KEY", allocations);
+		return mav;
+	}
+	
 	@RequestMapping("/viewTheHome")
 	public ModelAndView goToHome()
 	{
@@ -84,6 +96,15 @@ public class SLFPMAppControllers
 		ModelAndView mav = new ModelAndView("showResources");
 		List<Resource> resources = resourcesDAO.getAllResources();
 		mav.addObject("SEARCH_RESOURCES_RESULTS_KEY", resources);
+		return mav;
+	}
+	
+	@RequestMapping("/viewAllAllocations")
+	public ModelAndView getAllAllocations()
+	{
+		ModelAndView mav = new ModelAndView("showAllocations");
+		List<Allocation> allocations = allocationsDAO.getAllAllocations();
+		mav.addObject("SEARCH_ALLOCATIONS_RESULTS_KEY", allocations);
 		return mav;
 	}
 	
@@ -146,8 +167,6 @@ public class SLFPMAppControllers
 		
 		System.out.println("Controller delegating the report");
 		ApplicationContext context=new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml"); 
-		
-		
 		MessageSender sender = (MessageSender) context.getBean("messageSender");
 		Map map = new HashMap();
 		map.put("Report", "TracksReport");
