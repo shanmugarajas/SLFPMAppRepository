@@ -7,6 +7,8 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.slf.pmapp.models.Resource;
+import com.slf.pmapp.models.Track;
+import com.slf.pmapp.models.Allocation;
 import com.slf.pmapp.bizrules.RulesInvoker;
 
 
@@ -29,8 +31,12 @@ public class BusinessRuleValidator implements Validator
 	@Override
 	public void validate(Object model, Errors errors)
 	{
-		rulesHandle.validate((Resource) model, errors);
-	
+		if (model.toString() == "Resource")
+			rulesHandle.validate((Resource) model, errors);
+		else if (model.toString() == "Track")
+			rulesHandle.validate((Track) model, errors);
+		else
+			rulesHandle.validate((Allocation) model, errors);
 	}
 	
 }

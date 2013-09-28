@@ -22,8 +22,11 @@ public class Allocation
 	@ManyToOne
     @JoinColumn(name="ResourceID")
 	private Resource resource;
+	@ManyToOne
+    @JoinColumn(name="TrackID")
+	private Track track;
 	@Column	private int resourceID;
-	@Column private int TrackID; 
+	@Column private int trackID; 
 	@Column private String ACF2ID; 
 	@Column private String VPNToken;
 	@Column private String BillingStatus; 
@@ -41,7 +44,7 @@ public class Allocation
 	public Allocation(int id,
 			int resourceID,
 			Resource resource,
-			int TrackID,
+			int trackID,
 			String ACF2ID, 
 			String VPNToken,
 			String BillingStatus, 
@@ -56,7 +59,7 @@ public class Allocation
 		this.id = id;
 		this.resourceID = resourceID;
 		this.resource = resource;
-		this.TrackID = TrackID;
+		this.trackID = trackID;
 		this.ACF2ID = ACF2ID;
 		this.VPNToken = VPNToken;
 		this.BillingStatus = BillingStatus;
@@ -90,6 +93,14 @@ public class Allocation
         this.resource = resource;
     }
 
+    public Track getTrack() {
+        return track;
+    }
+	
+    public void setTrack(Track track) {
+        this.track = track;
+    }
+    
     public int getResourceID()
 	{
 		return resourceID;
@@ -99,13 +110,13 @@ public class Allocation
 		this.resourceID = resourceID;
 	}
 	
-	public int gettrackId()
+	public int getTrackId()
 	{
-		return TrackID;
+		return trackID;
 	}
-	public void settrackId(int TrackID)
+	public void setTrackId(int trackID)
 	{
-		this.TrackID = TrackID;
+		this.trackID = trackID;
 	}
 	
 	public String getACF2ID()

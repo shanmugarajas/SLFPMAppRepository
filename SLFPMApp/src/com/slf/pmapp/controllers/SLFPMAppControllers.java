@@ -23,8 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.slf.pmapp.bizrules.BusinessRuleValidator;
 import com.slf.pmapp.models.Resource;
 import com.slf.pmapp.models.Allocation;
+import com.slf.pmapp.models.Track;
 import com.slf.pmapp.persistance.ResourcesDAO;
 import com.slf.pmapp.persistance.AllocationsDAO;
+import com.slf.pmapp.persistance.TracksDAO;
 import com.slf.pmapp.jms.MessageReceiver;
 import com.slf.pmapp.jms.MessageSender;
 
@@ -46,7 +48,9 @@ public class SLFPMAppControllers
 	@Autowired
 	private ResourcesDAO resourcesDAO;
 	@Autowired
-	private AllocationsDAO allocationsDAO;	
+	private AllocationsDAO allocationsDAO;
+	@Autowired
+	private TracksDAO tracksDAO;
 	@Autowired
 	private BusinessRuleValidator validator;
 	
@@ -90,21 +94,43 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping("/viewAllResources")
-	public ModelAndView getAllResources()
-	{
-		ModelAndView mav = new ModelAndView("showResources");
-		List<Resource> resources = resourcesDAO.getAllResources();
-		mav.addObject("SEARCH_RESOURCES_RESULTS_KEY", resources);
-		return mav;
-	}
-	
 	@RequestMapping("/viewAllAllocations")
 	public ModelAndView getAllAllocations()
 	{
 		ModelAndView mav = new ModelAndView("showAllocations");
 		List<Allocation> allocations = allocationsDAO.getAllAllocations();
 		mav.addObject("SEARCH_ALLOCATIONS_RESULTS_KEY", allocations);
+		return mav;
+	}
+	
+	@RequestMapping(value="/updateAllocation", method=RequestMethod.GET)
+	public ModelAndView editAllocation(@RequestParam("id")Integer id)
+	{
+		ModelAndView mav = new ModelAndView("editAllocation");
+		Allocation allocation = allocationsDAO.getById(id);
+		mav.addObject("editAllocation", allocation);
+		return mav;
+	}
+	
+	@RequestMapping(value="/updateAllocation", method=RequestMethod.POST)
+	public String updateAllocation(@ModelAttribute("editAllocation") Allocation allocation, BindingResult result, SessionStatus status)
+	{
+		validator.validate(allocation, result);
+		if (result.hasErrors()){
+			return "editAllocation";
+		}
+		allocationsDAO.update(allocation);
+		status.setComplete();
+		return "redirect:viewAllAllocations.do";
+	}
+	
+	
+	@RequestMapping("/viewAllResources")
+	public ModelAndView getAllResources()
+	{
+		ModelAndView mav = new ModelAndView("showResources");
+		List<Resource> resources = resourcesDAO.getAllResources();
+		mav.addObject("SEARCH_RESOURCES_RESULTS_KEY", resources);
 		return mav;
 	}
 	
@@ -172,6 +198,78 @@ public class SLFPMAppControllers
 		map.put("Report", "TracksReport");
 		sender.send(map);
 		ModelAndView mav = new ModelAndView("redirect:viewAllResources.do");
+		return mav;
+	}
+	
+	
+	@RequestMapping("/viewAllTracks")
+	public ModelAndView getAllTracks()
+	{
+		ModelAndView mav = new ModelAndView("showTracks");
+		List<Track> tracks = tracksDAO.getAllTracks();
+		mav.addObject("SEARCH_TRACKS_RESULTS_KEY", tracks);
+		return mav;
+	}
+	
+	@RequestMapping(value="/saveTrack", method=RequestMethod.GET)
+	public ModelAndView newtrackForm()
+	{
+		ModelAndView mav = new ModelAndView("newTrack");
+		Track track = new Track();
+		mav.getModelMap().put("newTrack", track);
+		return mav;
+	}
+	
+	@RequestMapping(value="/saveTrack", method=RequestMethod.POST)
+	public String createTrack(@ModelAttribute("newTrack")Track track, BindingResult result, SessionStatus status)
+	{
+		
+		validator.validate(track, result);
+		
+		if (result.hasErrors()){
+			return "newTrack";
+		}
+		tracksDAO.save(track);
+		status.setComplete();
+		return "redirect:viewAllTracks.do";
+	}
+	
+	@RequestMapping(value="/updateTrack", method=RequestMethod.GET)
+	public ModelAndView editTrack(@RequestParam("id")Integer id)
+	{
+		ModelAndView mav = new ModelAndView("editTrack");
+		Track track = tracksDAO.getById(id);
+		mav.addObject("editTrack", track);
+		return mav;
+	}
+	
+	@RequestMapping(value="/updateTrack", method=RequestMethod.POST)
+	public String updateTrack(@ModelAttribute("editTrack") Track track, BindingResult result, SessionStatus status)
+	{
+		validator.validate(track, result);
+		if (result.hasErrors()){
+			return "editTrack";
+		}
+		tracksDAO.update(track);
+		status.setComplete();
+		return "redirect:viewAllTracks.do";
+	}
+	
+	
+	@RequestMapping("deleteTrack")
+	public ModelAndView deleteTrack(@RequestParam("id")Integer id)
+	{
+		ModelAndView mav = new ModelAndView("redirect:viewAllTracks.do");
+		tracksDAO.delete(id);
+		return mav;
+	}
+	
+	@RequestMapping("/searchTracks")
+	public ModelAndView searchTracks(@RequestParam(required= false, defaultValue="") String name)
+	{
+		ModelAndView mav = new ModelAndView("showTracks");
+		List<Track> tracks = tracksDAO.searchTracks(name.trim());
+		mav.addObject("SEARCH_TRACKS_RESULTS_KEY", tracks);
 		return mav;
 	}
 }

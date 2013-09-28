@@ -4,6 +4,8 @@
 package SlfPmAppRules
 
 import com.slf.pmapp.models.Resource;
+import com.slf.pmapp.models.Track;
+import com.slf.pmapp.models.Allocation;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
@@ -12,12 +14,20 @@ import org.springframework.validation.ValidationUtils;
 //declare any global variables here
 
 
-rule "Name should not be empty"
+rule "Resource Name should not be empty"
 when
   	$r: Resource( name == "")  
   	$e: Errors()
 then
 	$e.rejectValue("name", "err1", "DRL:Name is required");
+end
+
+rule "Track Name should not be empty"
+when
+  	$t: Track( name == "")  
+  	$e: Errors()
+then
+	$e.rejectValue("name", "err2", "DRL:Name is required");
 end
 
 

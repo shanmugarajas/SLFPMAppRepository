@@ -20,7 +20,7 @@
   </tr>
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
-    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="viewTheHome.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:;">INVOICES</a>&nbsp;&nbsp;
+    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="viewTheHome.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp; <a href="javascript:;">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;">FEEDBACK</a></td>
     <td>&nbsp;</td>
   </tr>
@@ -44,8 +44,8 @@
       <table style="border-collapse: collapse;" border="1" bordercolor="#006699" width="500">
           <tr bgcolor="lightblue">
             <th>ID</th>
-            <th>ResourceID</th>
-            <th>TrackID</th>
+            <th>Resource</th>
+            <th>Track</th>
             <th>ACF2ID</th>
             <th>VPNToken</th>
             <th>BillingStatus</th>
@@ -67,7 +67,7 @@
               <tr>
                 <td><c:out value="${allocation.id}"></c:out></td>
 				<td><c:out value="${allocation.resource.name}"></c:out></td>
-				<td><c:out value="${allocation.trackId}"></c:out></td>
+				<td><c:out value="${allocation.track.name}"></c:out></td>
 				<td><c:out value="${allocation.ACF2ID}"></c:out></td>
 				<td><c:out value="${allocation.VPNToken}"></c:out></td>
 				<td><c:out value="${allocation.billingStatus}"></c:out></td>
