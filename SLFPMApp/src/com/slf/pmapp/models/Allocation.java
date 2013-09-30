@@ -44,6 +44,7 @@ public class Allocation
 	public Allocation(int id,
 			int resourceID,
 			Resource resource,
+			Track track,
 			int trackID,
 			String ACF2ID, 
 			String VPNToken,
@@ -59,6 +60,7 @@ public class Allocation
 		this.id = id;
 		this.resourceID = resourceID;
 		this.resource = resource;
+		this.track = track;
 		this.trackID = trackID;
 		this.ACF2ID = ACF2ID;
 		this.VPNToken = VPNToken;

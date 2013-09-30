@@ -42,7 +42,7 @@
           </table>
         </form>
       <table style="border-collapse: collapse;" border="1" bordercolor="#006699" width="500">
-          <tr bgcolor="#FFE6C1">
+          <tr bgcolor="E0E0D1">
             <th>Id</th>
             <th>Name</th>
             <th>Product</th>

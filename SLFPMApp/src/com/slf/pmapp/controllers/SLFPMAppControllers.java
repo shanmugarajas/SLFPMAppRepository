@@ -99,7 +99,7 @@ public class SLFPMAppControllers
 	public ModelAndView getAllAllocations(@RequestParam(required= false, defaultValue="0")int start, @RequestParam(required= false, defaultValue="10")int limit)
 	{
 		ModelAndView mav = new ModelAndView("showAllocations");
-		List<Allocation> allocations = allocationsDAO.getAllAllocations(start, limit);
+		List<Allocation> allocations = allocationsDAO.getAllAllocations();
 		mav.addObject("SEARCH_ALLOCATIONS_RESULTS_KEY", allocations);
 		return mav;
 	}
@@ -271,6 +271,42 @@ public class SLFPMAppControllers
 		ModelAndView mav = new ModelAndView("showTracks");
 		List<Track> tracks = tracksDAO.searchTracks(name.trim());
 		mav.addObject("SEARCH_TRACKS_RESULTS_KEY", tracks);
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/saveAllocation", method=RequestMethod.GET)
+	public ModelAndView newallocationForm()
+	{
+		ModelAndView mav = new ModelAndView("newAllocation");
+		Allocation allocation = new Allocation();
+		List<Track> tracks = tracksDAO.getAllTracks();
+		mav.addObject("DROPDOWN_TRACKS_RESULTS_KEY", tracks);
+		List<Resource> resources = resourcesDAO.getAllResources();
+		mav.addObject("DROPDOWN_RESOURCES_RESULTS_KEY", resources);
+		mav.getModelMap().put("newAllocation", allocation);
+		return mav;
+	}
+	
+	@RequestMapping(value="/saveAllocation", method=RequestMethod.POST)
+	public String createAllocation(@ModelAttribute("newAllocation")Allocation allocation, BindingResult result, SessionStatus status)
+	{
+		
+		validator.validate(allocation, result);
+		
+		if (result.hasErrors()){
+			return "newAllocation";
+		}
+		allocationsDAO.save(allocation);
+		status.setComplete();
+		return "redirect:viewAllAllocations.do";
+	}
+	
+	@RequestMapping("deleteAllocation")
+	public ModelAndView deleteAllocation(@RequestParam("id")Integer id)
+	{
+		ModelAndView mav = new ModelAndView("redirect:viewAllAllocations.do");
+		allocationsDAO.delete(id);
 		return mav;
 	}
 }

@@ -42,7 +42,7 @@
           </table>
         </form>
       <table style="border-collapse: collapse;" border="1" bordercolor="#006699" width="500">
-          <tr bgcolor="#FFE6C1">
+          <tr bgcolor="E0E0D1">
             <th>ID</th>
             <th>Resource</th>
             <th>Track</th>
@@ -108,14 +108,7 @@
 	</tr>
 
 
-	<tr>
-	<td width="17">&nbsp;</td>
-	<td width="165">&nbsp;</td>
-	<td width="50">&nbsp;</td>
-	<td width="545">&nbsp;</td>
-	<td width="4">&nbsp;</td>
-	<td width="329">&nbsp;</td>
-	</tr>
+	
 </table>
 </body>
 </html>
