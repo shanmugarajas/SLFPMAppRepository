@@ -15,7 +15,7 @@
   <tr bgcolor="#99ccff">
     <td width="15" nowrap="nowrap">&nbsp;</td>
     <td width="745" height="60" colspan="2" class="logo" nowrap="nowrap"><br />
-      SUN LIFE Project ManagementApplication<span class="tagline">| Ebix Software Inc. </span></td>
+      Ebix iPM <span class="tagline"> | Ebix Software Inc. </span></td>
     <td width="100%">&nbsp;</td>
   </tr>
   <tr bgcolor="#0066cc">
@@ -26,7 +26,7 @@
   </tr>
   <tr bgcolor="#ffffff">
     <td width="15" height="230" valign="top"><img src="images/mm_spacer.gif" alt="" width="15" height="1" border="0" /></td>
-    <td width="35" valign="top"><img src="images/mm_spacer.gif" alt="" width="35" height="1" border="0" /></td>
+    
     <td width="710" valign="top"><br />
        <form action="searchAllocations.do" method="post">
           <table style="border-collapse: collapse;" border="0" bordercolor="#006699" width="500">
@@ -42,7 +42,7 @@
           </table>
         </form>
       <table style="border-collapse: collapse;" border="1" bordercolor="#006699" width="500">
-          <tr bgcolor="lightblue">
+          <tr bgcolor="#FFE6C1">
             <th>ID</th>
             <th>Resource</th>
             <th>Track</th>

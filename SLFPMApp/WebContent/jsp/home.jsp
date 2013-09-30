@@ -6,7 +6,7 @@
 <head>
 <!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
 <script type="text/javascript" src="js/resources.js"></script>
-<title>Show All Resources</title>
+<title>Home</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
 </head>
@@ -15,7 +15,7 @@
   <tr bgcolor="#99ccff">
     <td width="15" nowrap="nowrap">&nbsp;</td>
     <td width="745" height="60" colspan="2" class="logo" nowrap="nowrap"><br />
-      SUN LIFE Project ManagementApplication<span class="tagline">| Ebix Software Inc. </span></td>
+      Ebix iPM <span class="tagline"> | Ebix Software Inc. </span></td>
     <td width="100%">&nbsp;</td>
   </tr>
   <tr bgcolor="#0066cc">
@@ -70,15 +70,17 @@
 				</table> 
 			</td>
 			<td width="15" nowrap="nowrap">&nbsp;</td>
-			<td class="pageHeader" nowrap="nowrap" style=" width : 600px;">
-				<br />
+			<td nowrap="nowrap" style=" width : 600px;">
 				<p style="color:Black;font-size: large;font-family: 'Calibri';">
-				Introduction
+				<b>Introduction</b>
 				</p>
 				
 				<p style="color:Black;FONT-FAMILY: 'Calibri'; FONT-SIZE: medium;">
 					Ebix executes multiple support tracks for Sun Life in Coimbatore and Hyderabad.			
-					QPS (Quoting and Processing System) development track and Quality Testing are two of those support tracks. Others include QPS related system/software development and maintenance activities.
+					QPS (Quoting and Processing System) development track and Quality Testing are two of those support tracks. 
+					<br/>
+					Others include QPS related system/software development and maintenance activities.
+					<br/>
 					This application provides below management support for all the Offshore Sun Life activities at Ebix, India.	
 				</p>
 					<ol>
