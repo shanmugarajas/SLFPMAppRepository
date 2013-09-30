@@ -1,3 +1,12 @@
+<%@include file="taglib_includes.jsp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- DW6 -->
+<head>
+<!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
+<script type="text/javascript" src="js/resources.js"></script>
+<title>Edit Track</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
 </head>
@@ -24,6 +33,7 @@
   <tr valign="top" align="left">
     <td align="left">
  		<form:form action="updateTrack.do" method="post" commandName="editTrack">
+ 		
 				<table width="500" style="border-collapse: collapse;" border="0" bordercolor="#006699" cellspacing="2" cellpadding="2">					
 					<tr>
 						<td width="100" align="right">Id</td>

@@ -27,16 +27,16 @@ public class BusinessRuleValidator implements Validator
 	{
 		return Resource.class.isAssignableFrom(clazz);
 	}
-
-	@Override
+@Override
 	public void validate(Object model, Errors errors)
-	{
-		if (model.toString() == "Resource")
+	{	
+		 if (model.toString() == "Resource")
 			rulesHandle.validate((Resource) model, errors);
 		else if (model.toString() == "Track")
 			rulesHandle.validate((Track) model, errors);
 		else
 			rulesHandle.validate((Allocation) model, errors);
+		
 	}
 	
 }

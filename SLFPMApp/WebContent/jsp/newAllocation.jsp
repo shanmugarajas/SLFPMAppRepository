@@ -64,12 +64,102 @@
 					</tr>
 					
 					<tr>
+						<td width="100" align="right">ACF2 ID</td>
+						<td width="150">
+						<form:input path="ACF2ID"/></td>
+						<td align="left">
+						<form:errors path="ACF2ID" cssStyle="color:red"></form:errors> 
+						</td>
+					</tr>
+					
+					<tr>
+						<td width="100" align="right">VPN Token</td>
+						<td width="150">
+						<form:input path="VPNToken"/></td>
+						<td align="left">
+						<form:errors path="VPNToken" cssStyle="color:red"></form:errors> 
+						</td>
+					</tr>
+					
+					<tr>
+						<td width="100" align="right">VPN Token</td>
+						<td width="150">
+						<form:input path="VPNExpiry"/></td>
+						<td align="left">
+						<form:errors path="VPNExpiry" cssStyle="color:red"></form:errors> 
+						</td>
+					</tr>
+					
+					<tr>
+						<td width="100" align="right">Billing Status</td>
+						<td width="150">
+						<form:input path="BillingStatus"/></td>
+						<td align="left">
+						<form:errors path="BillingStatus" cssStyle="color:red"></form:errors> 
+						</td>
+					</tr>
+					
+					<tr>
+						<td width="100" align="right">Project Start Date</td>
+						<td width="150">
+						<form:input path="ProjStartDate"/></td>
+						<td align="left">
+						<form:errors path="ProjStartDate" cssStyle="color:red"></form:errors> 
+						</td>
+					</tr>
+					
+					<tr>
+						<td width="100" align="right">Project End Date</td>
+						<td width="150">
+						<form:input path="ProjEndDate"/></td>
+						<td align="left">
+						<form:errors path="ProjEndDate" cssStyle="color:red"></form:errors> 
+						</td>
+					</tr>
+					
+					<tr>
+						<td width="100" align="right">Percent Allocation</td>
+						<td width="150">
+						<form:input path="PercentAllocation"/></td>
+						<td align="left">
+						<form:errors path="PercentAllocation" cssStyle="color:red"></form:errors> 
+						</td>
+					</tr>
+					
+					<tr>
+						<td width="100" align="right">Project Module</td>
+						<td width="150">
+						<form:input path="ProjectModule"/></td>
+						<td align="left">
+						<form:errors path="ProjectModule" cssStyle="color:red"></form:errors> 
+						</td>
+					</tr>
+					
+					<tr>
+						<td width="100" align="right">SunLife Lead</td>
+						<td width="150">
+						<form:input path="SunLifeLead"/></td>
+						<td align="left">
+						<form:errors path="SunLifeLead" cssStyle="color:red"></form:errors> 
+						</td>
+					</tr>
+					
+					<tr>
+						<td width="100" align="right">Role</td>
+						<td width="150">
+						<form:input path="Role"/></td>
+						<td align="left">
+						<form:errors path="Role" cssStyle="color:red"></form:errors> 
+						</td>
+					</tr>
+					
+					<tr>
 						<td colspan="3" align="center">
 						<input type="submit" name="" value="Save">
 						&nbsp;&nbsp;
 						<input type="reset" name="" value="Reset">
 						&nbsp;&nbsp;
-						<input type="button"  value="Back" onclick="javascript:go('viewAllResources.do');">
+						<input type="button"  value="Back" onclick="javascript:go('viewAllAllocations.do');">
 						</td>
 					</tr>					
 				</table>			

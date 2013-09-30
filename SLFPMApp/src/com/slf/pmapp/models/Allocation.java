@@ -3,12 +3,6 @@ package com.slf.pmapp.models;
 import java.util.Date;
 
 import javax.persistence.*;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
@@ -29,6 +23,7 @@ public class Allocation
 	@Column private int trackID; 
 	@Column private String ACF2ID; 
 	@Column private String VPNToken;
+	@Column private Date VPNExpiry;
 	@Column private String BillingStatus; 
 	@Column private Date ProjStartDate;
 	@Column private Date ProjEndDate;
@@ -48,6 +43,7 @@ public class Allocation
 			int trackID,
 			String ACF2ID, 
 			String VPNToken,
+			Date VPNExpiry,
 			String BillingStatus, 
 			Date ProjStartDate,
 			Date ProjEndDate,
@@ -64,6 +60,7 @@ public class Allocation
 		this.trackID = trackID;
 		this.ACF2ID = ACF2ID;
 		this.VPNToken = VPNToken;
+		this.VPNExpiry = VPNExpiry;
 		this.BillingStatus = BillingStatus;
 		this.ProjStartDate = ProjStartDate;
 		this.ProjEndDate = ProjEndDate;
@@ -75,7 +72,8 @@ public class Allocation
 	@Override
 	public String toString()
 	{
-		return ToStringBuilder.reflectionToString(this);
+		//return ToStringBuilder.reflectionToString(this);
+		return "Allocation";
 	}
 	public int getId()
 	{
@@ -137,6 +135,15 @@ public class Allocation
 	public void setVPNToken(String VPNToken)
 	{
 		this.VPNToken = VPNToken;
+	}
+	
+	public Date getVPNExpiry()
+	{
+		return VPNExpiry;
+	}
+	public void setVPNExpiry(Date VPNExpiry)
+	{
+		this.VPNExpiry = VPNExpiry;
 	}
 	
 	public String getbillingStatus()
