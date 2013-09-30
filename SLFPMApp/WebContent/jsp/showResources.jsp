@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
 </head>
-<body bgcolor="#0066cc">
+<body bgcolor="#FFFFFF">
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr bgcolor="#99ccff">
     <td width="15" nowrap="nowrap">&nbsp;</td>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -94,11 +95,11 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping("/viewAllAllocations")
-	public ModelAndView getAllAllocations()
+	@RequestMapping(value="/viewAllAllocations")
+	public ModelAndView getAllAllocations(@RequestParam(required= false, defaultValue="0")int start, @RequestParam(required= false, defaultValue="10")int limit)
 	{
 		ModelAndView mav = new ModelAndView("showAllocations");
-		List<Allocation> allocations = allocationsDAO.getAllAllocations();
+		List<Allocation> allocations = allocationsDAO.getAllAllocations(start, limit);
 		mav.addObject("SEARCH_ALLOCATIONS_RESULTS_KEY", allocations);
 		return mav;
 	}

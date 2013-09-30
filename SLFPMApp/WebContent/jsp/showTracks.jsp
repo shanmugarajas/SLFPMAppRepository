@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
 </head>
-<body bgcolor="#0066cc">
+<body bgcolor="#FFFFFF">
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr bgcolor="#99ccff">
     <td width="15" nowrap="nowrap">&nbsp;</td>
@@ -20,7 +20,7 @@
   </tr>
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
-    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="viewTheHome.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;">RESOURCES</a>&nbsp;&nbsp;
+    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="viewTheHome.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp; <a href="viewAllAllocations.do">ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:;">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;">FEEDBACK</a></td>
     <td>&nbsp;</td>
   </tr>

@@ -37,10 +37,11 @@ public class AllocationsDAO
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Allocation> getAllAllocations()
+	public List<Allocation> getAllAllocations(int start, int limit)
 	{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Allocation.class);
-		
+		criteria.setFirstResult(start);
+		criteria.setMaxResults(limit);
 		return criteria.list();
 	}
 	

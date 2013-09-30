@@ -5,12 +5,12 @@
 <!-- DW6 -->
 <head>
 <!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
-<script type="text/javascript" src="js/allocations.js"></script>
-<title>Show All Allocations</title>
+<script type="text/javascript" src="js/resources.js"></script>
+<title>Allocations view</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
 </head>
-<body bgcolor="#0066cc">
+<body bgcolor="#FFFFFF">
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr bgcolor="#99ccff">
     <td width="15" nowrap="nowrap">&nbsp;</td>
@@ -28,7 +28,7 @@
     <td width="15" height="230" valign="top"><img src="images/mm_spacer.gif" alt="" width="15" height="1" border="0" /></td>
     <td width="35" valign="top"><img src="images/mm_spacer.gif" alt="" width="35" height="1" border="0" /></td>
     <td width="710" valign="top"><br />
-        <form action="searchAllocations.do" method="post">
+       <form action="searchAllocations.do" method="post">
           <table style="border-collapse: collapse;" border="0" bordercolor="#006699" width="500">
             <tr>
               <td>Allocated Project</td>
@@ -64,7 +64,8 @@
           </c:if>
           <c:if test="${! empty SEARCH_ALLOCATIONS_RESULTS_KEY}">
             <c:forEach var="allocation" items="${SEARCH_ALLOCATIONS_RESULTS_KEY}">
-              <tr>
+            <tr>
+                
                 <td><c:out value="${allocation.id}"></c:out></td>
 				<td><c:out value="${allocation.resource.name}"></c:out></td>
 				<td><c:out value="${allocation.track.name}"></c:out></td>
@@ -77,12 +78,14 @@
 				<td><c:out value="${allocation.projectModule}"></c:out></td>
 				<td><c:out value="${allocation.sunLifeLead}"></c:out></td>
 				<td><c:out value="${allocation.role}"></c:out></td>
-				<td>&nbsp;<a href="updateAllocation.do?id=${allocation.id}">Edit</a> &nbsp;&nbsp;<a href="javascript:deleteAllocation('deleteAllocation.do?id=${allocation.id}');">Delete</a> </td>
+				<td>&nbsp;<a href="updateAllocation.do?id=${allocation.id}">Edit</a> &nbsp;&nbsp;<a href="javascript:deleteAllocation('deleteAllocation.do?id=${allocation.id}');">Delete</a> </td>				
               </tr>
             </c:forEach>
           </c:if>
       </table></td>
-    <td>&nbsp;</td>
+      
+
+  <td>&nbsp;</td>
   	<tr bgcolor="#ffffff">
 	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="1" border="0" /></td>
 	</tr>
