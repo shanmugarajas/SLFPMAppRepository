@@ -44,72 +44,72 @@
 					<tr>
 						<td width="100" align="right">Name</td>
 						<td>
-						<form:input path="resource.name" readonly="true"/></td>
+						<form:input path="resourceid" readonly="true"/></td>
 						<td align="left">
-						<form:errors path="resource.name" cssStyle="color:red"></form:errors> 
+						<form:errors path="resourceid" cssStyle="color:red"></form:errors> 
 						</td>
 					</tr>
 					
 					<tr>
 						<td width="100" align="right">Track Name</td>
-						<td><form:input path="track.name" readonly="true"/></td>
-						<td align="left"><form:errors path="track.name" cssStyle="color:red"></form:errors>  </td>
+						<td><form:input path="trackid" readonly="true"/></td>
+						<td align="left"><form:errors path="trackid" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
 						<td width="100" align="right">ACF2ID</td>
-						<td><form:input path="ACF2ID"/></td>
-						<td align="left"><form:errors path="ACF2ID" cssStyle="color:red"></form:errors>  </td>						
+						<td><form:input path="acf2id"/></td>
+						<td align="left"><form:errors path="acf2id" cssStyle="color:red"></form:errors>  </td>						
 						</td>
 						<td>
 						</td>						
 					</tr>
 					<tr>
 						<td width="100" align="right">VPN Token</td>
-						<td><form:input path="VPNToken"/></td>
+						<td><form:input path="vpntoken"/></td>
 						<td align="left">
-						<form:errors path="VPNToken" cssStyle="color:red"></form:errors>  </td>
+						<form:errors path="vpntoken" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
 						<td width="100" align="right">Billing Status</td>
-						<td><form:input path="BillingStatus"/></td>
+						<td><form:input path="billingstatus"/></td>
 						<td align="left">
-						<form:errors path="BillingStatus" cssStyle="color:red"></form:errors>  </td>
+						<form:errors path="billingstatus" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
 						<td width="100" align="right">Project Start Date</td>
-						<td><form:input path="ProjStartDate"/></td>
+						<td><form:input path="projstartdate"/></td>
 						<td align="left">
-						<form:errors path="ProjStartDate" cssStyle="color:red"></form:errors>  </td>
+						<form:errors path="projstartdate" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
 						<td width="100" align="right">Project End Date</td>
-						<td><form:input path="ProjEndDate"/></td>
+						<td><form:input path="projenddate"/></td>
 						<td align="left">
-						<form:errors path="ProjEndDate" cssStyle="color:red"></form:errors>  </td>
+						<form:errors path="projenddate" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
 						<td width="100" align="right">Percent Allocation</td>
-						<td><form:input path="PercentAllocation"/></td>
+						<td><form:input path="percentallocation"/></td>
 						<td align="left">
-						<form:errors path="PercentAllocation" cssStyle="color:red"></form:errors>  </td>
+						<form:errors path="percentallocation" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
 						<td width="100" align="right">Project Module</td>
-						<td><form:input path="ProjectModule"/></td>
+						<td><form:input path="projectmodule"/></td>
 						<td align="left">
-						<form:errors path="ProjectModule" cssStyle="color:red"></form:errors>  </td>
+						<form:errors path="projectmodule" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
 						<td width="100" align="right">SunLife Lead</td>
-						<td><form:input path="SunLifeLead"/></td>
+						<td><form:input path="sunlifelead"/></td>
 						<td align="left">
-						<form:errors path="SunLifeLead" cssStyle="color:red"></form:errors>  </td>
+						<form:errors path="sunlifelead" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
 						<td width="100" align="right">Role</td>
-						<td><form:input path="Role"/></td>
+						<td><form:input path="role"/></td>
 						<td align="left">
-						<form:errors path="Role" cssStyle="color:red"></form:errors>  </td>
+						<form:errors path="role" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr valign="bottom">
 						<td colspan="3" align="center">

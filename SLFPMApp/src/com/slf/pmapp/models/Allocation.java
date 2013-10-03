@@ -13,61 +13,51 @@ public class Allocation
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@ManyToOne
-    @JoinColumn(name="ResourceID")
-	private Resource resource;
-	@ManyToOne
-    @JoinColumn(name="TrackID")
-	private Track track;
-	@Column	private int resourceID;
-	@Column private int trackID; 
-	@Column private String ACF2ID; 
-	@Column private String VPNToken;
-	@Column private Date VPNExpiry;
-	@Column private String BillingStatus; 
-	@Column private Date ProjStartDate;
-	@Column private Date ProjEndDate;
-	@Column private int PercentAllocation; 
-	@Column private String ProjectModule; 
-	@Column private String SunLifeLead; 
-	@Column private String Role; 
+	@Column	private int resourceid;
+	@Column private int trackid; 
+	@Column private String acf2id; 
+	@Column private String vpntoken;
+	@Column private Date vpnexpiry;
+	@Column private String billingstatus; 
+	@Column private Date projstartdate;
+	@Column private Date projenddate;
+	@Column private int percentallocation; 
+	@Column private String projectmodule; 
+	@Column private String sunlifelead; 
+	@Column private String role; 
 	
 	public Allocation()
 	{
 	}
 	
 	public Allocation(int id,
-			int resourceID,
-			Resource resource,
-			Track track,
-			int trackID,
-			String ACF2ID, 
-			String VPNToken,
-			Date VPNExpiry,
-			String BillingStatus, 
-			Date ProjStartDate,
-			Date ProjEndDate,
-			int PercentAllocation, 
-			String ProjectModule,
-			String SunLifeLead,
-			String Role)
+			int resourceid,
+			int trackid,
+			String acf2id, 
+			String vpntoken,
+			Date vpnexpiry,
+			String billingstatus, 
+			Date projstartdate,
+			Date projenddate,
+			int percentallocation, 
+			String projectmodule,
+			String sunlifelead,
+			String role)
 	{
 		super();
 		this.id = id;
-		this.resourceID = resourceID;
-		this.resource = resource;
-		this.track = track;
-		this.trackID = trackID;
-		this.ACF2ID = ACF2ID;
-		this.VPNToken = VPNToken;
-		this.VPNExpiry = VPNExpiry;
-		this.BillingStatus = BillingStatus;
-		this.ProjStartDate = ProjStartDate;
-		this.ProjEndDate = ProjEndDate;
-		this.PercentAllocation = PercentAllocation;
-		this.ProjectModule = ProjectModule;
-		this.SunLifeLead = SunLifeLead;
-		this.Role = Role;
+		this.resourceid = resourceid;
+		this.trackid = trackid;
+		this.acf2id = acf2id;
+		this.vpntoken = vpntoken;
+		this.vpnexpiry = vpnexpiry;
+		this.billingstatus = billingstatus;
+		this.projstartdate = projstartdate;
+		this.projenddate = projenddate;
+		this.percentallocation = percentallocation;
+		this.projectmodule = projectmodule;
+		this.sunlifelead = sunlifelead;
+		this.role = role;
 	}
 	@Override
 	public String toString()
@@ -83,129 +73,112 @@ public class Allocation
 	{
 		this.id = id;
 	}
-	
-	
-    public Resource getResource() {
-        return resource;
-    }
-	
-    public void setResource(Resource resource) {
-        this.resource = resource;
-    }
-
-    public Track getTrack() {
-        return track;
-    }
-	
-    public void setTrack(Track track) {
-        this.track = track;
-    }
-    
-    public int getResourceID()
+	 
+    public int getResourceid()
 	{
-		return resourceID;
+		return resourceid;
 	}
-	public void setResourceID(int resourceID)
+	public void setResourceid(int resourceid)
 	{
-		this.resourceID = resourceID;
+		this.resourceid = resourceid;
 	}
 	
-	public int getTrackId()
+	public int getTrackid()
 	{
-		return trackID;
+		return trackid;
 	}
-	public void setTrackId(int trackID)
+	public void setTrackid(int trackid)
 	{
-		this.trackID = trackID;
-	}
-	
-	public String getACF2ID()
-	{
-		return ACF2ID;
-	}
-	public void setACF2ID(String ACF2ID)
-	{
-		this.ACF2ID = ACF2ID;
+		this.trackid = trackid;
 	}
 	
-	public String getVPNToken()
+	public String getAcf2id()
 	{
-		return VPNToken;
+		return acf2id;
 	}
-	public void setVPNToken(String VPNToken)
+	public void setAcf2id(String acf2id)
 	{
-		this.VPNToken = VPNToken;
-	}
-	
-	public Date getVPNExpiry()
-	{
-		return VPNExpiry;
-	}
-	public void setVPNExpiry(Date VPNExpiry)
-	{
-		this.VPNExpiry = VPNExpiry;
+		this.acf2id = acf2id;
 	}
 	
-	public String getbillingStatus()
+	public String getVpntoken()
 	{
-		return BillingStatus;
+		return vpntoken;
 	}
-	public void setbillingStatus(String BillingStatus)
+	public void setVpntoken(String vpntoken)
 	{
-		this.BillingStatus = BillingStatus;
-	}
-	
-	public Date getprojStartDate()
-	{
-		return ProjStartDate;
-	}
-	public void setprojStartDate(Date ProjStartDate)
-	{
-		this.ProjStartDate = ProjStartDate;
+		this.vpntoken = vpntoken;
 	}
 	
-	public Date getprojEndDate()
+	public Date getVpnexpiry()
 	{
-		return ProjEndDate;
+		return vpnexpiry;
 	}
-	public void setprojEndDate(Date ProjEndDate)
+	public void setVpnexpiry(Date vpnexpiry)
 	{
-		this.ProjEndDate = ProjEndDate;
-	}
-	
-	public int getpercentAllocation()
-	{
-		return PercentAllocation;
-	}
-	public void setpercentAllocation(int PercentAllocation)
-	{
-		this.PercentAllocation = PercentAllocation;
+		this.vpnexpiry = vpnexpiry;
 	}
 	
-	public String getprojectModule()
+	public String getBillingstatus()
 	{
-		return ProjectModule;
+		return billingstatus;
 	}
-	public void setprojectModule(String ProjectModule)
+	public void setBillingstatus(String billingstatus)
 	{
-		this.ProjectModule = ProjectModule;
-	}
-	
-	public String getsunLifeLead()
-	{
-		return SunLifeLead;
-	}
-	public void setsunLifeLead(String SunLifeLead)
-	{
-		this.SunLifeLead = SunLifeLead;
+		this.billingstatus = billingstatus;
 	}
 	
-	public String getrole()
+	public Date getProjstartdate()
 	{
-		return Role;
+		return projstartdate;
 	}
-	public void setrole(String Role)
+	public void setProjstartdate(Date projstartdate)
 	{
-		this.Role = Role;
+		this.projstartdate = projstartdate;
+	}
+	
+	public Date getProjenddate()
+	{
+		return projenddate;
+	}
+	public void setProjenddate(Date projenddate)
+	{
+		this.projenddate = projenddate;
+	}
+	
+	public int getPercentallocation()
+	{
+		return percentallocation;
+	}
+	public void setPercentallocation(int percentallocation)
+	{
+		this.percentallocation = percentallocation;
+	}
+	
+	public String getProjectmodule()
+	{
+		return projectmodule;
+	}
+	public void setProjectmodule(String projectmodule)
+	{
+		this.projectmodule = projectmodule;
+	}
+	
+	public String getSunlifelead()
+	{
+		return sunlifelead;
+	}
+	public void setSunlifelead(String sunlifelead)
+	{
+		this.sunlifelead = sunlifelead;
+	}
+	
+	public String getRole()
+	{
+		return role;
+	}
+	public void setRole(String role)
+	{
+		this.role = role;
 	}
 }

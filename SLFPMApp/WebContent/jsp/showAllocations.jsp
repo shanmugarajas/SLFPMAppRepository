@@ -67,16 +67,16 @@
             <tr>
                 
                 <td><c:out value="${allocation.id}"></c:out></td>
-				<td><c:out value="${allocation.resource.name}"></c:out></td>
-				<td><c:out value="${allocation.track.name}"></c:out></td>
-				<td><c:out value="${allocation.ACF2ID}"></c:out></td>
-				<td><c:out value="${allocation.VPNToken}"></c:out></td>
-				<td><c:out value="${allocation.billingStatus}"></c:out></td>
-				<td><c:out value="${allocation.projStartDate}"></c:out></td>
-				<td><c:out value="${allocation.projEndDate}"></c:out></td>
-				<td><c:out value="${allocation.percentAllocation}"></c:out></td>
-				<td><c:out value="${allocation.projectModule}"></c:out></td>
-				<td><c:out value="${allocation.sunLifeLead}"></c:out></td>
+				<td><c:out value="${allocation.resourceid}"></c:out></td>
+				<td><c:out value="${allocation.trackid}"></c:out></td>
+				<td><c:out value="${allocation.acf2id}"></c:out></td>
+				<td><c:out value="${allocation.vpntoken}"></c:out></td>
+				<td><c:out value="${allocation.billingstatus}"></c:out></td>
+				<td><c:out value="${allocation.projstartdate}"></c:out></td>
+				<td><c:out value="${allocation.projenddate}"></c:out></td>
+				<td><c:out value="${allocation.percentallocation}"></c:out></td>
+				<td><c:out value="${allocation.projectmodule}"></c:out></td>
+				<td><c:out value="${allocation.sunlifelead}"></c:out></td>
 				<td><c:out value="${allocation.role}"></c:out></td>
 				<td>&nbsp;<a href="updateAllocation.do?id=${allocation.id}">Edit</a> &nbsp;&nbsp;<a href="javascript:deleteAllocation('deleteAllocation.do?id=${allocation.id}');">Delete</a> </td>				
               </tr>
