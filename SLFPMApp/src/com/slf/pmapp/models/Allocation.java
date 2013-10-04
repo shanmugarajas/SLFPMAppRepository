@@ -13,6 +13,10 @@ public class Allocation
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	private Resource resource;
+	
 	@Column	private int resourceid;
 	@Column private int trackid; 
 	@Column private String acf2id; 
@@ -180,5 +184,15 @@ public class Allocation
 	public void setRole(String role)
 	{
 		this.role = role;
+	}
+	
+	public Resource getResource()
+	{
+		return resource;
+	}
+	
+	public void setResource(Resource resource)
+	{
+		this.resource = resource;
 	}
 }
