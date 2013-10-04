@@ -38,10 +38,10 @@
 					<tr>
 						<td width="100" align="right">Resource Name</td>
 						<td width="150">
-							<select name="mapResData">
+							<select name="resourceid">
 							<c:if test="${! empty DROPDOWN_RESOURCES_RESULTS_KEY}">
             					<c:forEach var="resource" items="${DROPDOWN_RESOURCES_RESULTS_KEY}">
-							         <option value="${resource.id}">${resource.name}</option>
+							         <option value="${resource.id}">${resource.id}</option>
 							    </c:forEach>
 							    </c:if>
 							</select>
@@ -52,10 +52,10 @@
 					<tr>
 						<td width="100" align="right">Track Name</td>
 						<td>
-						<select name="mapTrkData">
+						<select name="trackid">
 							<c:if test="${! empty DROPDOWN_TRACKS_RESULTS_KEY}">
             					<c:forEach var="track" items="${DROPDOWN_TRACKS_RESULTS_KEY}">
-							         <option value="${track.id}">${track.name}</option>
+							         <option value="${track.id}">${track.id}</option>
 							    </c:forEach>
 							    </c:if>
 							</select>

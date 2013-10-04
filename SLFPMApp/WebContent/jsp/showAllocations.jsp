@@ -67,7 +67,7 @@
             <tr>
                 
                 <td><c:out value="${allocation.id}"></c:out></td>
-				<td><c:out value="${allocation.resourceid}"></c:out></td>
+				<td><c:out value="${allocation.resource.name}"></c:out></td>
 				<td><c:out value="${allocation.trackid}"></c:out></td>
 				<td><c:out value="${allocation.acf2id}"></c:out></td>
 				<td><c:out value="${allocation.vpntoken}"></c:out></td>

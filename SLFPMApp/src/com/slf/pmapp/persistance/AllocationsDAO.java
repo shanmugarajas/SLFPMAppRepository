@@ -29,10 +29,10 @@ public class AllocationsDAO
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Allocation> searchAllocations(String ProjectModule)
+	public List<Allocation> searchAllocations(String projectmodule)
 	{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Allocation.class);
-		criteria.add(Restrictions.ilike("ProjectModule", ProjectModule+"%"));
+		criteria.add(Restrictions.ilike("projectmodule", projectmodule+"%"));
 		return criteria.list();
 	}
 	
