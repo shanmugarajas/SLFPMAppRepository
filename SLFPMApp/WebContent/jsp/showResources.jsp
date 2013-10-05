@@ -9,6 +9,23 @@
 <title>Resources View</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
+<%
+int totalPages=0;
+int pageNumber=0;
+String nextPage = "";
+String prevPage = "";
+
+if(request.getParameter("page") != null) {
+session.setAttribute("page", request.getParameter("page"));
+pageNumber = Integer.parseInt(request.getParameter("page"));
+} else {
+session.setAttribute("page", "1");
+}
+nextPage = (pageNumber +1) + "";
+prevPage = (pageNumber -1) + "";
+String myUrl = "viewAllAllocations.do?page=" + nextPage;
+pageContext.setAttribute("myUrl", myUrl);
+%>
 </head>
 <body bgcolor="#FFFFFF">
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -29,8 +46,8 @@
     
     <td width="710" valign="top" halign="left"><br />
         <form action="searchResources.do" method="post">
-          <table style="border-collapse: collapse;" border="0" bordercolor="#006699" width="500">
-            <tr>
+          <table style="border-collapse: collapse;" border="0" bordercolor="#006699" width="710">
+            <tr width="710">
               <td>Resource Name</td>
               <td><input type="text" name="name"/>
                 &nbsp;&nbsp;
@@ -38,6 +55,42 @@
                 &nbsp;&nbsp;
                 <input name="button" type="button" onclick="javascript:newResource()" value="New Resource"/>
               </td>
+              <td colspan="1"></td>
+				<td colspan="2">
+					<%
+					pageNumber = Integer.parseInt(session.getAttribute("page").toString());
+					System.out.println("Current page number: " + pageNumber);
+					if (pageNumber > 1)
+					{
+					prevPage = (pageNumber -1) + "";
+					myUrl = "viewAllResources.do?page=" + prevPage;
+					pageContext.setAttribute("myUrl", myUrl);
+					%>
+					<a href="${pageScope.myUrl}">Prev Page</a>
+					<%
+					}
+					%>	
+					
+				</td>
+				<td colspan = "1">Page <%=Integer.parseInt(session.getAttribute("page").toString())%> of ${NUM_PAGES}</td>
+				<td colspan="2">
+					<c:set var="numPages" value="${NUM_PAGES}"></c:set>
+					<%
+					pageNumber = Integer.parseInt(session.getAttribute("page").toString());
+					totalPages = Integer.parseInt(pageContext.getAttribute("numPages").toString());
+					System.out.println("Total pages: " + totalPages);
+					if (pageNumber < totalPages)
+					{
+					pageNumber = Integer.parseInt(session.getAttribute("page").toString());
+					nextPage = (pageNumber +1) + "";
+					myUrl = "viewAllResources.do?page=" + nextPage;
+					pageContext.setAttribute("myUrl", myUrl);
+					%>
+					<a href="${pageScope.myUrl}">Next Page</a>
+					<%
+					}
+					%>
+				</td>
             </tr>
           </table>
         </form>

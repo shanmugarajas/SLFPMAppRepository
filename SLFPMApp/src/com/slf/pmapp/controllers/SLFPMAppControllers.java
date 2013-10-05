@@ -96,10 +96,13 @@ public class SLFPMAppControllers
 	}
 	
 	@RequestMapping(value="/viewAllAllocations")
-	public ModelAndView getAllAllocations(@RequestParam(required= false, defaultValue="0")int start, @RequestParam(required= false, defaultValue="10")int limit)
+	public ModelAndView getAllAllocations(@RequestParam(required= true, defaultValue="1")int page, @RequestParam(required= false, defaultValue="3")int pageSize)
 	{
 		ModelAndView mav = new ModelAndView("showAllocations");
-		List<Allocation> allocations = allocationsDAO.getAllAllocations();
+		List<Allocation> allocationRecords = allocationsDAO.getAllAllocations();
+		mav.addObject("LIST_SIZE", allocationRecords.size());
+		mav.addObject("NUM_PAGES", allocationRecords.size()/pageSize);
+		List<Allocation> allocations = allocationsDAO.getAllAllocations(page);
 		mav.addObject("SEARCH_ALLOCATIONS_RESULTS_KEY", allocations);
 		return mav;
 	}
@@ -127,10 +130,13 @@ public class SLFPMAppControllers
 	
 	
 	@RequestMapping("/viewAllResources")
-	public ModelAndView getAllResources()
+	public ModelAndView getAllResources(@RequestParam(required= true, defaultValue="1")int page, @RequestParam(required= false, defaultValue="10")int pageSize)
 	{
 		ModelAndView mav = new ModelAndView("showResources");
-		List<Resource> resources = resourcesDAO.getAllResources();
+		List<Resource> resourceRecords = resourcesDAO.getAllResources();
+		mav.addObject("LIST_SIZE", resourceRecords.size());
+		mav.addObject("NUM_PAGES", resourceRecords.size()/pageSize);
+		List<Resource> resources = resourcesDAO.getAllResources(page);
 		mav.addObject("SEARCH_RESOURCES_RESULTS_KEY", resources);
 		return mav;
 	}

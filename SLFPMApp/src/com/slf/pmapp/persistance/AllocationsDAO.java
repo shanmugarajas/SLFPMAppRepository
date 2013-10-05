@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,8 @@ public class AllocationsDAO
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	private static int pageSize = 3;
+	
 	public Allocation getById(int id)
 	{
 		return (Allocation) sessionFactory.getCurrentSession().get(Allocation.class, id);
@@ -40,8 +43,19 @@ public class AllocationsDAO
 	public List<Allocation> getAllAllocations()
 	{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Allocation.class);
-		//criteria.setFirstResult(start);
-		//criteria.setMaxResults(limit);
+		return criteria.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Allocation> getAllAllocations(int page)
+	{
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Allocation.class);
+		if (page == 1)
+			criteria.setFirstResult(page);
+		else
+			criteria.setFirstResult(page*pageSize + 1);
+		criteria.setMaxResults(pageSize);
+		//criteria.addOrder(Order.asc("resourceid"));
 		return criteria.list();
 	}
 	

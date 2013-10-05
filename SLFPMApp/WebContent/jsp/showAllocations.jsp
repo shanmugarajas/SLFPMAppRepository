@@ -9,6 +9,24 @@
 <title>Allocations view</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
+
+<%
+int totalPages=0;
+int pageNumber=0;
+String nextPage = "";
+String prevPage = "";
+
+if(request.getParameter("page") != null) {
+session.setAttribute("page", request.getParameter("page"));
+pageNumber = Integer.parseInt(request.getParameter("page"));
+} else {
+session.setAttribute("page", "1");
+}
+nextPage = (pageNumber +1) + "";
+prevPage = (pageNumber -1) + "";
+String myUrl = "viewAllAllocations.do?page=" + nextPage;
+pageContext.setAttribute("myUrl", myUrl);
+%>
 </head>
 <body bgcolor="#FFFFFF">
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -29,8 +47,8 @@
     
     <td width="710" valign="top"><br />
        <form action="searchAllocations.do" method="post">
-          <table style="border-collapse: collapse;" border="0" bordercolor="#006699" width="500">
-            <tr>
+          <table style="border-collapse: collapse;" border="0" bordercolor="#006699" width="710">
+            <tr width="710">
               <td>Allocated Project</td>
               <td><input type="text" name="ProjectModule"/>
                 &nbsp;&nbsp;
@@ -38,9 +56,47 @@
                 &nbsp;&nbsp;
                 <input name="button" type="button" onclick="javascript:newAllocation()" value="New Allocation"/>
               </td>
+               <td colspan="1"></td>
+				<td colspan="2">
+					<%
+					pageNumber = Integer.parseInt(session.getAttribute("page").toString());
+					System.out.println("Current page number: " + pageNumber);
+					if (pageNumber > 1)
+					{
+					prevPage = (pageNumber -1) + "";
+					myUrl = "viewAllAllocations.do?page=" + prevPage;
+					pageContext.setAttribute("myUrl", myUrl);
+					%>
+					<a href="${pageScope.myUrl}">Prev Page</a>
+					<%
+					}
+					%>	
+					
+				</td>
+				<td colspan = "1">Page <%=Integer.parseInt(session.getAttribute("page").toString())%> of ${NUM_PAGES}</td>
+				<td colspan="2">
+					<c:set var="numPages" value="${NUM_PAGES}"></c:set>
+					<%
+					pageNumber = Integer.parseInt(session.getAttribute("page").toString());
+					totalPages = Integer.parseInt(pageContext.getAttribute("numPages").toString());
+					System.out.println("Total pages: " + totalPages);
+					if (pageNumber < totalPages)
+					{
+					pageNumber = Integer.parseInt(session.getAttribute("page").toString());
+					nextPage = (pageNumber +1) + "";
+					myUrl = "viewAllAllocations.do?page=" + nextPage;
+					pageContext.setAttribute("myUrl", myUrl);
+					%>
+					<a href="${pageScope.myUrl}">Next Page</a>
+					<%
+					}
+					%>
+				</td>
+              
             </tr>
           </table>
         </form>
+     
       <table style="border-collapse: collapse;" border="1" bordercolor="#006699" width="500">
           <tr bgcolor="E0E0D1">
             <th>ID</th>
@@ -68,7 +124,7 @@
                 
                 <td><c:out value="${allocation.id}"></c:out></td>
 				<td><c:out value="${allocation.resource.name}"></c:out></td>
-				<td><c:out value="${allocation.trackid}"></c:out></td>
+				<td><c:out value="${allocation.track.name}"></c:out></td>
 				<td><c:out value="${allocation.acf2id}"></c:out></td>
 				<td><c:out value="${allocation.vpntoken}"></c:out></td>
 				<td><c:out value="${allocation.billingstatus}"></c:out></td>
@@ -80,10 +136,9 @@
 				<td><c:out value="${allocation.role}"></c:out></td>
 				<td>&nbsp;<a href="updateAllocation.do?id=${allocation.id}">Edit</a> &nbsp;&nbsp;<a href="javascript:deleteAllocation('deleteAllocation.do?id=${allocation.id}');">Delete</a> </td>				
               </tr>
-            </c:forEach>
+            </c:forEach>		
           </c:if>
       </table></td>
-      
 
   <td>&nbsp;</td>
   	<tr bgcolor="#ffffff">

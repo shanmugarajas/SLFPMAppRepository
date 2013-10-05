@@ -13,9 +13,13 @@ public class Allocation
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "resourceid", nullable = false, insertable = false, updatable = false)
 	private Resource resource;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "trackid", nullable = false, insertable = false, updatable = false)
+	private Track track;
 	
 	@Column	private int resourceid;
 	@Column private int trackid; 
@@ -195,4 +199,15 @@ public class Allocation
 	{
 		this.resource = resource;
 	}
+	
+	public Track getTrack()
+	{
+		return track;
+	}
+	
+	public void setTrack(Track track)
+	{
+		this.track = track;
+	}
+	
 }
