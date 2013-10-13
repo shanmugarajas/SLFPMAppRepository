@@ -21,7 +21,7 @@
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
     <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllAllocations.do">ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; <a href="javascript:;">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;">FEEDBACK</a></td>
+      &nbsp;&nbsp;&nbsp; <a href="javascript:;">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<c:url value='j_spring_security_logout'/>">Click here to logout</a></td>
     <td>&nbsp;</td>
   </tr>
 	<tr bgcolor="#ffffff">
@@ -39,29 +39,7 @@
 					<tr>
 						<td width="9">&nbsp;</td>
 						<td width="168" class="smallText" id="padding">
-							<form id="form1" name="form1" method="post" action="">
-								<label>UserID<br />
-								</label>
-			  
-								<input type="text" name="textfield" />
-							</form>
-							<form id="form2" name="form2" method="post" action="">
-								<label>
-									<div align="left">Password<br />
-										<input type="text" name="textfield2" />
-									</div>
-								</label>
-							</form>
-			  
-							<form id="form3" name="form3" method="post" action="">
-								<label></label>
-								<div align="center">
-									<input name="Login" type="submit" id="Login" value="Login" />
-								</div>
-							</form>
-							<br />
-								&nbsp;
-							<br />		
+									
 						</td>
 						<td width="10">
 							&nbsp;

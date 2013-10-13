@@ -1,3 +1,3 @@
 <%
-response.sendRedirect("viewTheHome.do");
+response.sendRedirect("login.do");
 %>

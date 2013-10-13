@@ -55,10 +55,10 @@ public class SLFPMAppControllers
 	@Autowired
 	private BusinessRuleValidator validator;
 	
-	@RequestMapping("/home")
-	public String home()
+	@RequestMapping("/login")
+	public String login()
 	{
-		return "home";
+		return "login";
 	}
 	
 	
