@@ -70,7 +70,16 @@ public class ResourcesDAO
 		//criteria.addOrder(Order.asc("resourceid"));
 		return criteria.list();
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public List<Resource> getMyResources(String userName)
+	{
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Resource.class);
+		System.out.println("User name:" + userName.toString().trim());
+		criteria.add(Restrictions.ilike("email", userName.toString().trim()+"%"));
+		return criteria.list();
+	}
+
 	public int save(Resource resource)
 	{
 		return (Integer) sessionFactory.getCurrentSession().save(resource);

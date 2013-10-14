@@ -1,14 +1,20 @@
 package com.slf.pmapp.controllers;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.collections.Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -147,6 +153,20 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
+	@RequestMapping("/viewMyResources")
+	public ModelAndView getMyResources(HttpServletRequest request)
+	{
+		ModelAndView mav = new ModelAndView("showMyResources");
+		String userName = "not logged in"; 
+	    Principal principal = request.getUserPrincipal();
+	    if (principal != null) {
+	        userName = principal.getName();
+	    } 
+		List<Resource> resources = resourcesDAO.getMyResources(userName.trim());
+		mav.addObject("SEARCH_RESOURCES_RESULTS_KEY", resources);
+		return mav;
+	}
+	
 	@RequestMapping(value="/saveResource", method=RequestMethod.GET)
 	public ModelAndView newuserForm()
 	{
@@ -188,7 +208,16 @@ public class SLFPMAppControllers
 		}
 		resourcesDAO.update(resource);
 		status.setComplete();
-		return "redirect:viewAllResources.do";
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) auth.getPrincipal();
+		String userRole = userDetails.getAuthorities().toString().trim();
+		System.out.println("User Role: " + userRole);
+		
+		if (userRole.contains("ROLE_ADMIN"))
+			return "redirect:viewAllResources.do";
+		else
+			return "redirect:viewMyResources.do";
 	}
 	
 	

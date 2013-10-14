@@ -85,11 +85,18 @@
 					</tr>
 					<tr valign="bottom">
 						<td colspan="3" align="center">
+						<security:authorize ifAnyGranted="ROLE_ADMIN">
 						<input type="button"  value="Delete" onclick="javascript:deleteResource('deleteResource.do?id=${editResource.id}');">
+						</security:authorize>
 						&nbsp;&nbsp;
 						<input type="submit" name="" value="Save">						
-						&nbsp;&nbsp;
+						<security:authorize ifAnyGranted="ROLE_ADMIN">
 						<input type="button"  value="Back" onclick="javascript:go('viewAllResources.do');">
+						</security:authorize>
+						&nbsp;&nbsp;
+						<security:authorize ifAnyGranted="ROLE_USER">
+						<input type="button"  value="Back" onclick="javascript:go('viewMyResources.do');">
+						</security:authorize>
 						</td>
 					</tr>
 					
