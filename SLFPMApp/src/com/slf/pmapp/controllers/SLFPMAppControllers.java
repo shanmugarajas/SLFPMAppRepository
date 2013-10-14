@@ -119,6 +119,20 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
+	@RequestMapping("/viewMyAllocations")
+	public ModelAndView getMyAllocations(HttpServletRequest request)
+	{
+		ModelAndView mav = new ModelAndView("showMyAllocations");
+		String userName = "not logged in"; 
+	    Principal principal = request.getUserPrincipal();
+	    if (principal != null) {
+	        userName = principal.getName();
+	    } 
+		List<Allocation> allocations = allocationsDAO.getMyAllocations(userName.trim());
+		mav.addObject("SEARCH_ALLOCATIONS_RESULTS_KEY", allocations);
+		return mav;
+	}
+	
 	@RequestMapping(value="/updateAllocation", method=RequestMethod.GET)
 	public ModelAndView editAllocation(@RequestParam("id")Integer id)
 	{
@@ -135,9 +149,18 @@ public class SLFPMAppControllers
 		if (result.hasErrors()){
 			return "editAllocation";
 		}
+		
 		allocationsDAO.update(allocation);
 		status.setComplete();
-		return "redirect:viewAllAllocations.do";
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) auth.getPrincipal();
+		String userRole = userDetails.getAuthorities().toString().trim();
+		System.out.println("User Role: " + userRole);
+		
+		if (userRole.contains("ROLE_ADMIN"))
+			return "redirect:viewAllAllocations.do";
+		else
+			return "redirect:viewMyAllocations.do";
 	}
 	
 	

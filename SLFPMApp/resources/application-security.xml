@@ -22,8 +22,8 @@
 		<intercept-url pattern="/searchResources.do" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/searchAllocations.do" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/searchTracks.do" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/updateAllocation.do" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/saveAllocation.do" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/updateAllocation.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"  />
+		<intercept-url pattern="/saveAllocation.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"  />
 		<intercept-url pattern="/deleteAllocation.do" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/updateTrack.do" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/saveTrack.do" access="hasRole('ROLE_ADMIN')" />
@@ -32,6 +32,7 @@
 		<intercept-url pattern="/saveResource.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
 		<intercept-url pattern="/deleteResource.do" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/viewMyResources.do" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/viewMyAllocations.do" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/createReport.do" access="hasRole('ROLE_ADMIN')" />
 		<form-login login-page="/login.do" default-target-url="/viewTheHome.do" authentication-failure-url="/login.do" />
 		<logout logout-success-url="/login.do" />

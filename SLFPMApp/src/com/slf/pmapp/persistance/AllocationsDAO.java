@@ -5,13 +5,17 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Subqueries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.slf.pmapp.models.Allocation;
+import com.slf.pmapp.models.Resource;
 
 /**
  * @author Venky
@@ -56,6 +60,22 @@ public class AllocationsDAO
 	public List<Allocation> getAllAllocations()
 	{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Allocation.class);
+		return criteria.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Allocation> getMyAllocations(String userName)
+	{
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Allocation.class);
+		DetachedCriteria subquery = DetachedCriteria.forClass(Resource.class);
+		subquery.add(Restrictions.ilike("email", userName.toString().trim()+"%"));
+		subquery.setProjection(Projections.property("id"));
+		criteria.add(
+		            Restrictions.or(
+		                    Restrictions.isNull("resourceid"),
+		                    Subqueries.propertyIn("resourceid", subquery)
+		                    )
+		            );
 		return criteria.list();
 	}
 	
