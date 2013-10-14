@@ -23,8 +23,8 @@
 	
 	<context:component-scan base-package="com.slf.pmapp" />
 	
-	<mvc:annotation-driven /> 
-	
+	<mvc:annotation-driven/>
+		
 	<context:property-placeholder location="classpath:config.properties" />
 	
     <bean 	id="messageSource" 
@@ -56,6 +56,10 @@
 	</bean>
 	  
 
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="cacheSeconds" value="0" />
+    </bean>
+    
 <!-- Activemq connection factory -->
 
 <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory"> 

@@ -8,6 +8,9 @@
 <script type="text/javascript" src="js/resources.js"></script>
 <title>Home</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Sun, 13 Oct 2013 00:00:00 GMT">
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
 </head>
 <body bgcolor="#FFFFFF">
