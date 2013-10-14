@@ -40,6 +40,19 @@ public class AllocationsDAO
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Allocation> searchAllocations(String projectmodule, int page)
+	{
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Allocation.class);
+		criteria.add(Restrictions.ilike("projectmodule", projectmodule+"%"));
+		if (page == 1)
+			criteria.setFirstResult(page);
+		else
+			criteria.setFirstResult(page*pageSize + 1);
+		criteria.setMaxResults(pageSize);
+		return criteria.list();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Allocation> getAllAllocations()
 	{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Allocation.class);

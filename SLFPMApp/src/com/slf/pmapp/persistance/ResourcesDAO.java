@@ -39,6 +39,19 @@ public class ResourcesDAO
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Resource> searchResources(String name, int page)
+	{
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Resource.class);
+		criteria.add(Restrictions.ilike("name", name+"%"));
+		if (page == 1)
+			criteria.setFirstResult(page);
+		else
+			criteria.setFirstResult(page*pageSize + 1);
+		criteria.setMaxResults(pageSize);
+		return criteria.list();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Resource> getAllResources()
 	{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Resource.class);
