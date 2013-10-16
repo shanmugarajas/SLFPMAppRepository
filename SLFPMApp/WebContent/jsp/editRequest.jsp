@@ -5,7 +5,7 @@
 <head>
 <!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
 <script type="text/javascript" src="js/resources.js"></script>
-<title>Allocations Edit</title>
+<title>Request Edit</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
 </head>
@@ -19,8 +19,8 @@
   </tr>
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
-    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="viewTheHome.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;">FEEDBACK</a></td>
+   <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="viewTheHome.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllAllocations.do">ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<c:url value='j_spring_security_logout'/>">Click here to logout</a></td>
     <td>&nbsp;</td>
   </tr>
   <tr/>
@@ -28,11 +28,11 @@
 
 <table  bgcolor="#FFFFFF" width="750" height="500" align="left" style="border-collapse: collapse;" border="1" bordercolor="#FFFFFF" >
 	<tr>
-		<td align="left" style="FONT-SIZE: medium; FONT-FAMILY: 'Calibri';">Edit Allocation</td>
+		<td align="left" style="FONT-SIZE: medium; FONT-FAMILY: 'Calibri';">Edit Request</td>
 	</tr>
   <tr valign="top" align="left">
     <td align="left">
- 		<form:form action="updateAllocation.do" method="post" commandName="editAllocation">
+ 		<form:form action="updateRequest.do" method="post" commandName="editRequest">
 				<table width="500" style="border-collapse: collapse;" border="0" bordercolor="#006699" cellspacing="2" cellpadding="2">					
 					<tr>
 						<td width="100" align="right">Id</td>
@@ -42,50 +42,32 @@
 						<form:errors path="id" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
-						<td width="100" align="right">Name</td>
+						<td width="100" align="right">RequestID</td>
 						<td>
-						<form:input path="resourceid" readonly="true"/></td>
+						<form:input path="requestid" readonly="true"/></td>
 						<td align="left">
-						<form:errors path="resourceid" cssStyle="color:red"></form:errors> 
+						<form:errors path="requestid" cssStyle="color:red"></form:errors> 
 						</td>
 					</tr>
 					
 					<tr>
-						<td width="100" align="right">Track Name</td>
-						<td><form:input path="trackid" readonly="true"/></td>
+						<td width="100" align="right">Request Date</td>
+						<td><form:input path="requestdate" readonly="true"/></td>
 						<td align="left"><form:errors path="trackid" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
-						<td width="100" align="right">ACF2ID</td>
-						<td><form:input path="acf2id"/></td>
-						<td align="left"><form:errors path="acf2id" cssStyle="color:red"></form:errors>  </td>						
+						<td width="100" align="right">Role</td>
+						<td><form:input path="role"/></td>
+						<td align="left"><form:errors path="role" cssStyle="color:red"></form:errors>  </td>						
 						</td>
 						<td>
 						</td>						
 					</tr>
 					<tr>
-						<td width="100" align="right">VPN Token</td>
-						<td><form:input path="vpntoken"/></td>
+						<td width="100" align="right">Track</td>
+						<td><form:input path="track"/></td>
 						<td align="left">
-						<form:errors path="vpntoken" cssStyle="color:red"></form:errors>  </td>
-					</tr>
-					<tr>
-						<td width="100" align="right">Billing Status</td>
-						<td><form:input path="billingstatus"/></td>
-						<td align="left">
-						<form:errors path="billingstatus" cssStyle="color:red"></form:errors>  </td>
-					</tr>
-					<tr>
-						<td width="100" align="right">Project Start Date</td>
-						<td><form:input path="projstartdate"/></td>
-						<td align="left">
-						<form:errors path="projstartdate" cssStyle="color:red"></form:errors>  </td>
-					</tr>
-					<tr>
-						<td width="100" align="right">Project End Date</td>
-						<td><form:input path="projenddate"/></td>
-						<td align="left">
-						<form:errors path="projenddate" cssStyle="color:red"></form:errors>  </td>
+						<form:errors path="track" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
 						<td width="100" align="right">Percent Allocation</td>
@@ -100,31 +82,29 @@
 						<form:errors path="projectmodule" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
+						<td width="100" align="right">Expected Closure Date</td>
+						<td><form:input path="expectedclosuredate"/></td>
+						<td align="left">
+						<form:errors path="expectedclosuredate" cssStyle="color:red"></form:errors>  </td>
+					</tr>
+					<tr>
 						<td width="100" align="right">SunLife Lead</td>
 						<td><form:input path="sunlifelead"/></td>
 						<td align="left">
 						<form:errors path="sunlifelead" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
-						<td width="100" align="right">Role</td>
-						<td><form:input path="role"/></td>
+						<td width="100" align="right">Status</td>
+						<td><form:input path="status"/></td>
 						<td align="left">
-						<form:errors path="role" cssStyle="color:red"></form:errors>  </td>
+						<form:errors path="status" cssStyle="color:red"></form:errors>  </td>
 					</tr>
+					
 					<tr valign="bottom">
 						<td colspan="3" align="center">
-						<security:authorize ifAnyGranted="ROLE_ADMIN">
-						<input type="button"  value="Delete" onclick="javascript:deleteResource('deleteResource.do?id=${editResource.id}');">
-						</security:authorize>
-						&nbsp;&nbsp;
 						<input type="submit" name="" value="Save">						
 						&nbsp;&nbsp;
-						<security:authorize ifAnyGranted="ROLE_ADMIN">
-						<input type="button"  value="Back" onclick="javascript:go('viewAllAllocations.do');">
-						</security:authorize>
-						<security:authorize ifAnyGranted="ROLE_USER">
-						<input type="button"  value="Back" onclick="javascript:go('viewMyAllocations.do');">
-						</security:authorize>
+						<input type="button"  value="Back" onclick="javascript:go('viewAllRequests.do');">
 						</td>
 					</tr>
 					

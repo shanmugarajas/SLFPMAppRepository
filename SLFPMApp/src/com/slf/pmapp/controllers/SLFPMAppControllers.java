@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.collections.Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.Authentication;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,17 +29,15 @@ import com.slf.pmapp.bizrules.BusinessRuleValidator;
 import com.slf.pmapp.models.Resource;
 import com.slf.pmapp.models.Allocation;
 import com.slf.pmapp.models.Track;
+import com.slf.pmapp.models.Request;
+import com.slf.pmapp.persistance.RequestsDAO;
 import com.slf.pmapp.persistance.ResourcesDAO;
 import com.slf.pmapp.persistance.AllocationsDAO;
 import com.slf.pmapp.persistance.TracksDAO;
-import com.slf.pmapp.jms.MessageReceiver;
 import com.slf.pmapp.jms.MessageSender;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import org.eclipse.birt.report.engine.api.EngineException;
-import com.slf.pmapp.reports.ExecuteReport;
 
 /**
  * @author Venky
@@ -58,6 +54,8 @@ public class SLFPMAppControllers
 	private AllocationsDAO allocationsDAO;
 	@Autowired
 	private TracksDAO tracksDAO;
+	@Autowired
+	private RequestsDAO requestsDAO;
 	@Autowired
 	private BusinessRuleValidator validator;
 	
@@ -371,6 +369,70 @@ public class SLFPMAppControllers
 	{
 		ModelAndView mav = new ModelAndView("redirect:viewAllAllocations.do");
 		allocationsDAO.delete(id);
+		return mav;
+	}
+	
+//Requests controlling
+	
+	@RequestMapping("/viewAllRequests")
+	public ModelAndView getAllRequests()
+	{
+		ModelAndView mav = new ModelAndView("showRequests");
+		List<Request> requests = requestsDAO.getAllRequests();
+		mav.addObject("SEARCH_REQUESTS_RESULTS_KEY", requests);
+		return mav;
+	}
+	
+	@RequestMapping(value="/saveRequest", method=RequestMethod.GET)
+	public ModelAndView newrquestForm()
+	{
+		ModelAndView mav = new ModelAndView("newRequest");
+		Request request = new Request();
+		mav.getModelMap().put("newRequest", request);
+		return mav;
+	}
+	
+	@RequestMapping(value="/saveRequest", method=RequestMethod.POST)
+	public String createRequest(@ModelAttribute("newRequest")Request request, BindingResult result, SessionStatus status)
+	{
+		
+		validator.validate(request, result);
+		
+		if (result.hasErrors()){
+			return "newRequest";
+		}
+		requestsDAO.save(request);
+		status.setComplete();
+		return "redirect:viewAllRequests.do";
+	}
+	
+	@RequestMapping(value="/updateRequest", method=RequestMethod.GET)
+	public ModelAndView editRequest(@RequestParam("id")Integer id)
+	{
+		ModelAndView mav = new ModelAndView("editRequest");
+		Request request = requestsDAO.getById(id);
+		mav.addObject("editRequest", request);
+		return mav;
+	}
+	
+	@RequestMapping(value="/updateRequest", method=RequestMethod.POST)
+	public String updateRequest(@ModelAttribute("editRequest") Request request, BindingResult result, SessionStatus status)
+	{
+		validator.validate(request, result);
+		if (result.hasErrors()){
+			return "editRequest";
+		}
+		requestsDAO.update(request);
+		status.setComplete();
+		return "redirect:viewAllRequests.do";
+	}
+		
+	@RequestMapping("/searchRequests")
+	public ModelAndView searchRequests(@RequestParam(required= false, defaultValue="") String name)
+	{
+		ModelAndView mav = new ModelAndView("showRequests");
+		List<Request> requests = requestsDAO.searchRequests(name.trim());
+		mav.addObject("SEARCH_REQUESTS_RESULTS_KEY", requests);
 		return mav;
 	}
 }

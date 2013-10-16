@@ -8,6 +8,11 @@ function newResource()
 	window.location = "saveResource.do";
 }
 
+function newRequest()
+{
+	window.location = "saveRequest.do";
+}
+
 function newAllocation()
 {
 	window.location = "saveAllocation.do";
