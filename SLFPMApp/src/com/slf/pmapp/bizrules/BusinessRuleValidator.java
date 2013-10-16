@@ -9,6 +9,7 @@ import org.springframework.validation.Validator;
 import com.slf.pmapp.models.Resource;
 import com.slf.pmapp.models.Track;
 import com.slf.pmapp.models.Allocation;
+import com.slf.pmapp.models.Request;
 import com.slf.pmapp.bizrules.RulesInvoker;
 
 
@@ -34,9 +35,11 @@ public class BusinessRuleValidator implements Validator
 			rulesHandle.validate((Resource) model, errors);
 		else if (model.toString() == "Track")
 			rulesHandle.validate((Track) model, errors);
-		else
+		else if (model.toString() == "Allocation")
 			rulesHandle.validate((Allocation) model, errors);
-		
+		else if (model.toString() == "Request")
+			rulesHandle.validate((Request) model, errors);
+			
 	}
 	
 }

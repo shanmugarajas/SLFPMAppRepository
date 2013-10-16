@@ -12,40 +12,38 @@
 
 	<http pattern="/images/**" security="none" />
     <http pattern="/css/**" security="none" />
-   
 	<http auto-config="true"  use-expressions="true">
 		<intercept-url pattern="/login.do" access="permitAll" />
-		<intercept-url pattern="/viewTheHome.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_ONSITEPM')" />
-		<intercept-url pattern="/viewAllAllocations.do" access="hasRole('ROLE_ADMIN', 'ROLE_ONSITEPM')" />
-		<intercept-url pattern="/viewAllResources.do" access="hasRole('ROLE_ADMIN', 'ROLE_ONSITEPM')" />
-		<intercept-url pattern="/viewAllTracks.do" access="hasRole('ROLE_ADMIN', 'ROLE_ONSITEPM')" />
-		<intercept-url pattern="/searchResources.do" access="hasRole('ROLE_ADMIN', 'ROLE_ONSITEPM')" />
-		<intercept-url pattern="/searchAllocations.do" access="hasRole('ROLE_ADMIN', 'ROLE_ONSITEPM')" />
-		<intercept-url pattern="/searchTracks.do" access="hasRole('ROLE_ADMIN', 'ROLE_ONSITEPM')" />
-		<intercept-url pattern="/updateAllocation.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"  />
-		<intercept-url pattern="/saveAllocation.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"  />
+		<intercept-url pattern="/viewTheHome.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/viewAllAllocations.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/viewAllResources.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/viewAllTracks.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/searchResources.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/searchAllocations.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/searchTracks.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/updateAllocation.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_OFFSHOREPM')"  />
+		<intercept-url pattern="/saveAllocation.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_OFFSHOREPM')"  />
 		<intercept-url pattern="/deleteAllocation.do" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/updateTrack.do" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/saveTrack.do" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/updateTrack.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/saveTrack.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_OFFSHOREPM')" />
 		<intercept-url pattern="/deleteTrack.do" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/updateResource.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
-		<intercept-url pattern="/saveResource.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
+		<intercept-url pattern="/updateResource.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_OFFSHOREPM','ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/saveResource.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_OFFSHOREPM','ROLE_OFFSHOREPM')" />
 		<intercept-url pattern="/deleteResource.do" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/viewMyResources.do" access="hasRole('ROLE_USER', 'ROLE_ONSITEPM')" />
-		<intercept-url pattern="/viewMyAllocations.do" access="hasRole('ROLE_USER', 'ROLE_ONSITEPM')" />
-		<intercept-url pattern="/createReport.do" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/viewAllRequests.do" access="hasRole('ROLE_ADMIN', 'ROLE_ONSITEPM')" />
+		<intercept-url pattern="/viewMyResources.do" access="hasAnyRole('ROLE_USER', 'ROLE_ONSITEPM','ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/viewMyAllocations.do" access="hasAnyRole('ROLE_USER', 'ROLE_ONSITEPM','ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/createReport.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
+		<intercept-url pattern="/viewAllRequests.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
 		<intercept-url pattern="/updateRequest.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM')"  />
 		<intercept-url pattern="/saveRequest.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM')"  />
 		<form-login login-page="/login.do" default-target-url="/viewTheHome.do" authentication-failure-url="/login.do" />
 		<logout logout-success-url="/login.do" />
 	</http>
-
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider>
 			<user-service>
 				<user name="admin" password="admin" authorities="ROLE_ADMIN" />
-				<user name="venkatesan.rajagopal" password="password" authorities="ROLE_USER" />
+				<user name="venkatesan.rajagopal" password="password" authorities="ROLE_OFFSHOREPM" />
 				<user name="vivek.pankaraj" password="password" authorities="ROLE_USER" />
 				<user name="muthu.alagappan" password="password" authorities="ROLE_ONSITEPM" />
 				<user name="prasanta.jena" password="password" authorities="ROLE_USER" />
