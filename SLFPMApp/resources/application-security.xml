@@ -12,7 +12,7 @@
 
 	<http pattern="/images/**" security="none" />
     <http pattern="/css/**" security="none" />
-	<http auto-config="true"  use-expressions="true">
+	<http auto-config="true"  use-expressions="true" access-denied-page="/viewTheHome.do">
 		<intercept-url pattern="/login.do" access="permitAll" />
 		<intercept-url pattern="/viewTheHome.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
 		<intercept-url pattern="/viewAllAllocations.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
