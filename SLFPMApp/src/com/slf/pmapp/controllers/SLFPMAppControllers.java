@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.mail.MailException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,6 +37,7 @@ import com.slf.pmapp.persistance.ResourcesDAO;
 import com.slf.pmapp.persistance.AllocationsDAO;
 import com.slf.pmapp.persistance.TracksDAO;
 import com.slf.pmapp.jms.MessageSender;
+import com.slf.pmapp.email.AlertMail;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -403,6 +406,18 @@ public class SLFPMAppControllers
 		}
 		requestsDAO.save(request);
 		status.setComplete();
+		
+		ApplicationContext xmlBeanFactory = new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml");
+	    AlertMail mailsender = (AlertMail) xmlBeanFactory.getBean("AlertMail");
+	    try {
+			mailsender.sendMail();
+		} catch (MailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "redirect:viewAllRequests.do";
 	}
 	
@@ -412,6 +427,19 @@ public class SLFPMAppControllers
 		ModelAndView mav = new ModelAndView("editRequest");
 		Request request = requestsDAO.getById(id);
 		mav.addObject("editRequest", request);
+		
+		ApplicationContext xmlBeanFactory = new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml");
+	    AlertMail mailsender = (AlertMail) xmlBeanFactory.getBean("AlertMail");
+	    try {
+			mailsender.sendMail();
+		} catch (MailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
 		return mav;
 	}
 	
