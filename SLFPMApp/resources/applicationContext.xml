@@ -114,9 +114,9 @@
 
 <bean id="mailsender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="smtp.gmail.com"/>
-    <property name="port" value="25"/>
-    <property name="username" value="${emailid}"/>       
-    <property name="password" value="${password}"/>
+    <property name="port" value="587"/>
+    <property name="username" value="venkatesan.rajagopal"/>       
+    <property name="password" value="boilergrade"/>
 
     <property name="javaMailProperties">
         <props>
@@ -132,4 +132,18 @@
 <bean id="AlertMail" class="com.slf.pmapp.email.AlertMail">
     <property name="mailsender" ref="mailsender"/>
 </bean>	
+
+<bean id="velocityEngine"
+    class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+    <property name="velocityProperties">
+       <value>
+        resource.loader=class
+        class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+       </value>
+    </property>
+</bean>
+
+<bean id="templateEmailer" class="com.slf.pmapp.email.TemplateEmailer">
+    <property name="velocityEngine" ref="velocityEngine" />
+</bean>
 </beans>

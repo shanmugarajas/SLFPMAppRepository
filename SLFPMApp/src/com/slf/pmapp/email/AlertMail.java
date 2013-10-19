@@ -1,11 +1,19 @@
 package com.slf.pmapp.email;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public class AlertMail {
 	private JavaMailSender mailsender;
@@ -20,19 +28,29 @@ public class AlertMail {
 	}
 	
     public MimeMessage getMailMessage() throws MessagingException {
-        final MimeMessage mimeMessage = this.mailsender.createMimeMessage();
+    	final MimeMessage mimeMessage = this.mailsender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false);
-        helper.setFrom("iPM-RequestAlert@gmail.com");
-        helper.setTo("venkatesan.rajagopal@ebix.com");
+        helper.setFrom("venkatesan.rajagopal@gmail.com");
+        helper.setTo("venkatesan.rajagopal@gmail.com");
         helper.setCc("venkatesan.rajagopal@gmail.com");
         helper.setSubject("Request raised in iPM for your attention");
-        helper.setText("A request has been raised in iPM. It could either be assigned to you or could be a notification." +
-        		"Please login to your iPM account and check. Thank you." +
-        		"This is a system generated email, please don't reply to this.",true);
-        return mimeMessage;
+
+        ApplicationContext xmlBeanFactory = new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml");
+		
+		TemplateEmailer templateEmailer = (TemplateEmailer) xmlBeanFactory.getBean("templateEmailer");
+	    final Map<String, Object> paramMap = new HashMap<String, Object>();
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) auth.getPrincipal();
+		String userRole = userDetails.getAuthorities().toString().trim();
+		
+	    paramMap.put("user", userRole);
+	    System.out.println(templateEmailer.getMessage("requestAlertTemplate.vm", paramMap));
+	    helper.setText(templateEmailer.getMessage("requestAlertTemplate.vm", paramMap),true);
+
+	    return mimeMessage;
     }
     
     public void sendMail() throws MailException, MessagingException {
-        mailsender.send(getMailMessage());
+    	        mailsender.send(getMailMessage());
     }
 }

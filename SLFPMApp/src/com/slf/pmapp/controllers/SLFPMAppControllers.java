@@ -38,6 +38,7 @@ import com.slf.pmapp.persistance.AllocationsDAO;
 import com.slf.pmapp.persistance.TracksDAO;
 import com.slf.pmapp.jms.MessageSender;
 import com.slf.pmapp.email.AlertMail;
+import com.slf.pmapp.email.TemplateEmailer;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -408,6 +409,7 @@ public class SLFPMAppControllers
 		status.setComplete();
 		
 		ApplicationContext xmlBeanFactory = new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml");
+		    
 	    AlertMail mailsender = (AlertMail) xmlBeanFactory.getBean("AlertMail");
 	    try {
 			mailsender.sendMail();
@@ -427,19 +429,6 @@ public class SLFPMAppControllers
 		ModelAndView mav = new ModelAndView("editRequest");
 		Request request = requestsDAO.getById(id);
 		mav.addObject("editRequest", request);
-		
-		ApplicationContext xmlBeanFactory = new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml");
-	    AlertMail mailsender = (AlertMail) xmlBeanFactory.getBean("AlertMail");
-	    try {
-			mailsender.sendMail();
-		} catch (MailException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    
 		return mav;
 	}
 	
@@ -451,8 +440,21 @@ public class SLFPMAppControllers
 			return "editRequest";
 		}
 		requestsDAO.update(request);
+		
 		status.setComplete();
-		return "redirect:viewAllRequests.do";
+		ApplicationContext xmlBeanFactory = new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml");
+	    AlertMail mailsender = (AlertMail) xmlBeanFactory.getBean("AlertMail");
+	    try {
+			mailsender.sendMail();
+		} catch (MailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	    return "redirect:viewAllRequests.do";
 	}
 		
 	@RequestMapping("/searchRequests")
