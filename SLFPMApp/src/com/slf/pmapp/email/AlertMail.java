@@ -1,6 +1,7 @@
 package com.slf.pmapp.email;
 
 import java.io.StringWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ public class AlertMail {
 		this.mailsender = mailsender;
 	}
 	
-    public MimeMessage getMailMessage() throws MessagingException {
+    public MimeMessage getMailMessage(String id, Date date) throws MessagingException {
     	final MimeMessage mimeMessage = this.mailsender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false);
         helper.setFrom("venkatesan.rajagopal@gmail.com");
@@ -42,15 +43,22 @@ public class AlertMail {
 	    final Map<String, Object> paramMap = new HashMap<String, Object>();
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) auth.getPrincipal();
-		String userRole = userDetails.getAuthorities().toString().trim();
+		String userRole = userDetails.getUsername().trim();
+		
+		String newline = "\n";
 		
 	    paramMap.put("user", userRole);
+	    paramMap.put("requestid", id);
+	    paramMap.put("requestdate", date);
+	    paramMap.put("newline", newline);
+	    
 	    System.out.println(templateEmailer.getMessage("requestAlertTemplate.vm", paramMap));
-	    mimeMessage.setContent(templateEmailer.getMessage("requestAlertTemplate.vm", paramMap), "text/html; charset=utf-8");
+	    mimeMessage.setText(templateEmailer.getMessage("requestAlertTemplate.vm", paramMap));
+	    
 	    return mimeMessage;
     }
     
-    public void sendMail() throws MailException, MessagingException {
-    	        mailsender.send(getMailMessage());
+    public void sendMail(String id, Date date) throws MailException, MessagingException {
+    	        mailsender.send(getMailMessage(id, date));
     }
 }

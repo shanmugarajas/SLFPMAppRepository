@@ -1,16 +1,9 @@
-<html>
-<head></head>
-<body>
-<p>
-Dear <bold> ${user} </bold>
-</br>
-A request has been raised in iPM. It could either be assigned to you or could be a notification. Please login to your iPM account and check. 
-</br>
+Dear ${user}:
+${newline}
+A request has been raised in iPM on ${requestdate}. Id of the request is ${requestid}. It could either be assigned to you or could be a notification. Please login to your iPM account and check. 
+${newline}
 This is a system generated email, please don't reply to this.
-</br>
+${newline}
 Thanks,
-</br>
+${newline}
 iPM Admin Team
-</p>
-</body>
-</html>

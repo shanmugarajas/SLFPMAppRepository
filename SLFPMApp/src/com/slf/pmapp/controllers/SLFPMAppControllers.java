@@ -412,7 +412,7 @@ public class SLFPMAppControllers
 		    
 	    AlertMail mailsender = (AlertMail) xmlBeanFactory.getBean("AlertMail");
 	    try {
-			mailsender.sendMail();
+			mailsender.sendMail(request.getRequestid(), request.getRequestdate());
 		} catch (MailException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -445,7 +445,7 @@ public class SLFPMAppControllers
 		ApplicationContext xmlBeanFactory = new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml");
 	    AlertMail mailsender = (AlertMail) xmlBeanFactory.getBean("AlertMail");
 	    try {
-			mailsender.sendMail();
+			mailsender.sendMail(request.getRequestid(), request.getRequestdate());
 		} catch (MailException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
