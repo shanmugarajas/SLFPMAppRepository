@@ -45,7 +45,8 @@ public class AlertMail {
 		
 	    paramMap.put("user", userRole);
 	    System.out.println(templateEmailer.getMessage("requestAlertTemplate.vm", paramMap));
-	    helper.setText(templateEmailer.getMessage("requestAlertTemplate.vm", paramMap),true);
+	    //helper.setText(templateEmailer.getMessage("requestAlertTemplate.vm", paramMap),true);
+	    helper.setText(templateEmailer.getTemplate("requestAlertTemplate.vm", paramMap).toString(),templateEmailer.getTemplate("requestAlertTemplate.vm", paramMap).toString());
 
 	    return mimeMessage;
     }
