@@ -1,5 +1,6 @@
 package com.slf.pmapp.email;
 
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,9 +46,7 @@ public class AlertMail {
 		
 	    paramMap.put("user", userRole);
 	    System.out.println(templateEmailer.getMessage("requestAlertTemplate.vm", paramMap));
-	    //helper.setText(templateEmailer.getMessage("requestAlertTemplate.vm", paramMap),true);
-	    helper.setText(templateEmailer.getTemplate("requestAlertTemplate.vm", paramMap).toString(),templateEmailer.getTemplate("requestAlertTemplate.vm", paramMap).toString());
-
+	    mimeMessage.setContent(templateEmailer.getMessage("requestAlertTemplate.vm", paramMap), "text/html; charset=utf-8");
 	    return mimeMessage;
     }
     
