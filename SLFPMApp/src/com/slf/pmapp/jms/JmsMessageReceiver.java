@@ -8,7 +8,7 @@ import org.eclipse.birt.report.engine.api.EngineException;
 
 import com.slf.pmapp.reports.ExecuteReport;
  
-public class MessageReceiver implements MessageListener {
+public class JmsMessageReceiver implements MessageListener {
 	
 	private ExecuteReport reportExec = new ExecuteReport();
  

@@ -3,11 +3,11 @@ package com.slf.pmapp.jms;
 import java.util.Map;
 import org.springframework.jms.core.JmsTemplate;
 
-public class MessageSender {
+public class JmsMessageSender {
 
 private final JmsTemplate jmsTemplate;
 
-public MessageSender(final JmsTemplate jmsTemplate) {
+public JmsMessageSender(final JmsTemplate jmsTemplate) {
 
 this.jmsTemplate = jmsTemplate;
 

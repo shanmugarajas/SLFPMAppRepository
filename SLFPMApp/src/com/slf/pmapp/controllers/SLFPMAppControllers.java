@@ -36,7 +36,7 @@ import com.slf.pmapp.persistance.RequestsDAO;
 import com.slf.pmapp.persistance.ResourcesDAO;
 import com.slf.pmapp.persistance.AllocationsDAO;
 import com.slf.pmapp.persistance.TracksDAO;
-import com.slf.pmapp.jms.MessageSender;
+import com.slf.pmapp.jms.JmsMessageSender;
 import com.slf.pmapp.email.AlertMail;
 import com.slf.pmapp.email.TemplateEmailer;
 
@@ -260,7 +260,7 @@ public class SLFPMAppControllers
 		
 		System.out.println("Controller delegating the report");
 		ApplicationContext context=new ClassPathXmlApplicationContext("classpath*:/applicationContext.xml"); 
-		MessageSender sender = (MessageSender) context.getBean("messageSender");
+		JmsMessageSender sender = (JmsMessageSender) context.getBean("jmsMessageSender");
 		Map map = new HashMap();
 		map.put("Report", "TracksReport");
 		sender.send(map);

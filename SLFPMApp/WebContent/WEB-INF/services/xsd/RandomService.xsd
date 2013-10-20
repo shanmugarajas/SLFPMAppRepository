@@ -1,0 +1,32 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified" 
+    xmlns:random="http://ws.com/Service/xsd/random-schema"
+    targetNamespace="http://ws.com/Service/xsd/random-schema">
+
+    <xs:element name="GetRandomRequest">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="name" type="xs:string" maxOccurs="1"
+                    minOccurs="1" />
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetRandomResponse">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="value" type="xs:int" maxOccurs="1"
+                    minOccurs="1" />
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GetRandomFault">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="faultMessage" type="xs:string"
+                    maxOccurs="1" minOccurs="1" />
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

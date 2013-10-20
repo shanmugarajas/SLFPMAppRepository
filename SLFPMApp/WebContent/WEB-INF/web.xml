@@ -22,7 +22,33 @@
     <servlet-name>dispatcher</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  <listener>
+  
+  <servlet>
+    <servlet-name>spring-ws</servlet-name>
+    <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+    <init-param> 
+        <param-name>transformWsdlLocations</param-name>
+        <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+</servlet>
+
+<servlet-mapping> <!-- For the End Points -->
+    <servlet-name>spring-ws</servlet-name>
+    <url-pattern>/Service/*</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping> <!-- for the wsdl -->
+    <servlet-name>spring-ws</servlet-name>
+    <url-pattern>*.wsdl</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping> <!-- For the xsd -->
+    <servlet-name>spring-ws</servlet-name>
+    <url-pattern>*.xsd</url-pattern>
+</servlet-mapping>
+
+ <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   <context-param>

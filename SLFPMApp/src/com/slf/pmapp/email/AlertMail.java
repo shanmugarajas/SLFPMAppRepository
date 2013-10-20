@@ -33,6 +33,7 @@ public class AlertMail {
     	final MimeMessage mimeMessage = this.mailsender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false);
         helper.setFrom("venkatesan.rajagopal@gmail.com");
+        helper.setTo("venkatesan.rajagopal@ebix.com");
         helper.setTo("venkatesan.rajagopal@gmail.com");
         helper.setCc("venkatesan.rajagopal@gmail.com");
         helper.setSubject("Request raised in iPM for your attention");

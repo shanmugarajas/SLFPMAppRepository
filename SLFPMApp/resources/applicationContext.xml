@@ -69,14 +69,14 @@
 </bean>
  
 <!-- ConnectionFactory Definition -->
-<bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+<bean id="jmsConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
 <constructor-arg ref="amqConnectionFactory" />
 </bean>
 
 
   
 <!--  Default Destination Queue Definition-->
-<bean id="defaultDestination" class="org.apache.activemq.command.ActiveMQQueue">
+<bean id="defaultJmsDestination" class="org.apache.activemq.command.ActiveMQQueue">
 
 <constructor-arg index="0" value="${jms.queue.name}"/>
 </bean>
@@ -84,14 +84,14 @@
 <!-- JmsTemplate Definition -->
 <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
 
-<property name="connectionFactory" ref="connectionFactory" />
+<property name="connectionFactory" ref="jmsConnectionFactory" />
 
-<property name="defaultDestination" ref="defaultDestination" />
+<property name="defaultDestination" ref="defaultJmsDestination" />
 
 </bean>
 <!-- Message Sender Definition -->
 
-<bean id="messageSender" class="com.slf.pmapp.jms.MessageSender">
+<bean id="jmsMessageSender" class="com.slf.pmapp.jms.JmsMessageSender">
 
 <constructor-arg index="0" ref="jmsTemplate" />
 
@@ -99,16 +99,16 @@
 
 <!-- Message Receiver Definition -->
 
-<bean id="messageReceiver" class="com.slf.pmapp.jms.MessageReceiver">
+<bean id="jmsMessageReceiver" class="com.slf.pmapp.jms.JmsMessageReceiver">
 </bean>
  
 <bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
 
-	<property name="connectionFactory" ref="connectionFactory" />
+	<property name="connectionFactory" ref="jmsConnectionFactory" />
 
 	<property name="destinationName" value="${jms.queue.name}" />
 
-	<property name="messageListener" ref="messageReceiver" />
+	<property name="messageListener" ref="jmsMessageReceiver" />
 
 </bean>
 
@@ -146,4 +146,7 @@
 <bean id="templateEmailer" class="com.slf.pmapp.email.TemplateEmailer">
     <property name="velocityEngine" ref="velocityEngine" />
 </bean>
+
+
+
 </beans>
