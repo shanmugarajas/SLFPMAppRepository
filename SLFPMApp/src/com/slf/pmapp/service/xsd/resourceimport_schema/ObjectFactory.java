@@ -30,6 +30,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetResourceImportRequest }
+     * 
+     */
+    public GetResourceImportRequest createGetResourceImportRequest() {
+        return new GetResourceImportRequest();
+    }
+
+    /**
      * Create an instance of {@link GetResourceImportFault }
      * 
      */
@@ -43,14 +51,6 @@ public class ObjectFactory {
      */
     public GetResourceImportResponse createGetResourceImportResponse() {
         return new GetResourceImportResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetResourceImportRequest }
-     * 
-     */
-    public GetResourceImportRequest createGetResourceImportRequest() {
-        return new GetResourceImportRequest();
     }
 
 }

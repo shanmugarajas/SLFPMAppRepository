@@ -3,6 +3,11 @@ package com.slf.pmapp.service;
 import java.util.Date;
 import java.util.Locale;
 
+import java.util.GregorianCalendar;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
 import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
 import org.springframework.format.datetime.DateFormatter;
@@ -27,8 +32,27 @@ public class ResourceImportOperationsEndPoint{
    public GetResourceImportResponse handleRequest(
          @RequestPayload final GetResourceImportRequest activateServiceRequest)
          throws Exception {
+    	String time = new DateFormatter().print(new Date(),Locale.ENGLISH);
         GetResourceImportResponse getResourceImportResponse = new GetResourceImportResponse();
-        getResourceImportResponse.setValue(100);
+        String name = activateServiceRequest.getName();
+        String empid = activateServiceRequest.getEmpid();
+        String empstatus = activateServiceRequest.getEmpstatus();
+        Date dojslf =  activateServiceRequest.getDojslf().toGregorianCalendar().getTime();
+        String email = activateServiceRequest.getEmail();
+        int mobile = activateServiceRequest.getMobile();
+        int phone = activateServiceRequest.getPhone();
+        
+        System.out.println("Imported resource name: " + name );
+        System.out.println("Imported resource empid: " + empid );
+        System.out.println("Imported resource empstatus: " + empstatus );
+        System.out.println("Imported resource dojlsf: " + dojslf.toString() );
+        System.out.println("Imported resource email: " + email );
+        System.out.println("Imported resource mobile: " + mobile );
+        System.out.println("Imported resource phone: " + phone );
+
+        getResourceImportResponse.setValue(1);
+        getResourceImportResponse.setResponse("Successfully imported the resource");
+
         return getResourceImportResponse;
     }
   

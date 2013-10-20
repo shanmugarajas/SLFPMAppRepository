@@ -39,7 +39,7 @@
         <soap:binding style="document"
             transport="http://schemas.xmlsoap.org/soap/http" />
         <wsdl:operation name="resourceimport">
-            <soap:operation soapAction="/Service/resoruceimport" />
+            <soap:operation soapAction="/Service/resourceimport" />
             <wsdl:input name="GetResourceImportRequest">
                 <soap:body use="literal" />
             </wsdl:input>

@@ -35,7 +35,7 @@ public interface ResourceImportServiceOperationsPortType {
      *     returns com.slf.pmapp.service.xsd.resourceimport_schema.GetResourceImportResponse
      * @throws GetResourceImportFault
      */
-    @WebMethod(action = "/Service/resoruceimport")
+    @WebMethod(action = "/Service/resourceimport")
     @WebResult(name = "GetResourceImportResponse", targetNamespace = "http://slf.com/pmapp/service/xsd/resourceimport-schema", partName = "GetResourceImportResponse")
     public GetResourceImportResponse resourceimport(
         @WebParam(name = "GetResourceImportRequest", targetNamespace = "http://slf.com/pmapp/service/xsd/resourceimport-schema", partName = "GetResourceImportRequest")
