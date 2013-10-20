@@ -147,6 +147,4 @@
     <property name="velocityEngine" ref="velocityEngine" />
 </bean>
 
-
-
 </beans>

@@ -1,8 +1,9 @@
 
-package com.ws.service.xsd.random_schema;
+package com.slf.pmapp.service.xsd.resourceimport_schema;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -17,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;all>
- *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/all>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,25 +31,34 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
 
 })
-@XmlRootElement(name = "GetRandomResponse")
-public class GetRandomResponse {
+@XmlRootElement(name = "GetResourceImportRequest")
+public class GetResourceImportRequest {
 
-    protected int value;
+    @XmlElement(required = true)
+    protected String name;
 
     /**
-     * Gets the value of the value property.
+     * Gets the value of the name property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getValue() {
-        return value;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Sets the value of the value property.
+     * Sets the value of the name property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setValue(int value) {
-        this.value = value;
+    public void setName(String value) {
+        this.name = value;
     }
 
 }

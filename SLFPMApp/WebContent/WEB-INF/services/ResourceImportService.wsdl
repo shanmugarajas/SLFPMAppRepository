@@ -1,0 +1,61 @@
+<?xml version="1.0"  encoding = "UTF-8" ?>
+<wsdl:definitions xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:resourceimport="http://slf.com/pmapp/service/xsd/resourceimport-schema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://slf.com/pmapp/service/resourceimportws-ns"
+    targetNamespace="http://slf.com/pmapp/service/resourceimportws-ns">
+    
+    <wsdl:types>
+        <xs:schema>
+            <xs:import namespace="http://slf.com/pmapp/service/xsd/resourceimport-schema"
+                schemaLocation="xsd/ResourceImportSchema.xsd" />
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="GetResourceImportRequest">
+        <wsdl:part element="resourceimport:GetResourceImportRequest" name="GetResourceImportRequest" />
+    </wsdl:message>
+    <wsdl:message name="GetResourceImportResponse">
+        <wsdl:part element="resourceimport:GetResourceImportResponse"
+            name="GetResourceImportResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetResourceImportFault">
+        <wsdl:part element="resourceimport:GetResourceImportFault" name="GetResourceImportFault" />
+    </wsdl:message>
+
+    <wsdl:portType name="ResourceImportServiceOperationsPortType">
+        <wsdl:operation name="resourceimport">
+            <wsdl:documentation>Imports Resource Information into iPM
+            </wsdl:documentation>
+            <wsdl:input message="tns:GetResourceImportRequest" name="GetResourceImportRequest" />
+            <wsdl:output message="tns:GetResourceImportResponse" name="GetResourceImportResponse" />
+            <wsdl:fault message="tns:GetResourceImportFault" name="GetResourceImportFault" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ResourceImportServiceOperationsPortTypeSoap"
+        type="tns:ResourceImportServiceOperationsPortType">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="resourceimport">
+            <soap:operation soapAction="/Service/resoruceimport" />
+            <wsdl:input name="GetResourceImportRequest">
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output name="GetResourceImportResponse">
+                <soap:body use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="GetResourceImportFault">
+                <soap:fault use="literal" name="GetResourceImportFault" />
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="ResourceImportServiceOperationsPortTypeSoap">
+        <wsdl:port binding="tns:ResourceImportServiceOperationsPortTypeSoap"
+            name="ResourceImportServiceOperationsPortTypeSoap">
+            <soap:address location="/Service/ws-operations" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

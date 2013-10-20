@@ -11,12 +11,12 @@
 
   <sws:annotation-driven/>
 
-	<bean id="SampleService" class="org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition">
-	   <constructor-arg value="/WEB-INF/services/SampleService.wsdl"/>
+	<bean id="ResourceImportService" class="org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition">
+	   <constructor-arg value="/WEB-INF/services/ResourceImportService.wsdl"/>
 	</bean>
 
-	<bean id="RandomService" class="org.springframework.xml.xsd.SimpleXsdSchema">
-	    <property name="xsd" value="/WEB-INF/services/xsd/RandomService.xsd" />
+	<bean id="ResourceImportSchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+	    <property name="xsd" value="/WEB-INF/services/xsd/ResourceImportSchema.xsd" />
 	</bean>
 
 </beans>

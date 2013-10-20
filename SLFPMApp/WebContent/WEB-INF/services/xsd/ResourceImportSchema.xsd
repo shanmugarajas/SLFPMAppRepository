@@ -1,9 +1,9 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     elementFormDefault="qualified" 
-    xmlns:random="http://ws.com/Service/xsd/random-schema"
-    targetNamespace="http://ws.com/Service/xsd/random-schema">
+    xmlns:resourceimport="http://slf.com/pmapp/service/xsd/resourceimport-schema"
+    targetNamespace="http://slf.com/pmapp/service/xsd/resourceimport-schema">
 
-    <xs:element name="GetRandomRequest">
+    <xs:element name="GetResourceImportRequest">
         <xs:complexType>
             <xs:all>
                 <xs:element name="name" type="xs:string" maxOccurs="1"
@@ -12,7 +12,7 @@
         </xs:complexType>
     </xs:element>
     
-    <xs:element name="GetRandomResponse">
+    <xs:element name="GetResourceImportResponse">
         <xs:complexType>
             <xs:all>
                 <xs:element name="value" type="xs:int" maxOccurs="1"
@@ -21,7 +21,7 @@
         </xs:complexType>
     </xs:element>
     
-    <xs:element name="GetRandomFault">
+    <xs:element name="GetResourceImportFault">
         <xs:complexType>
             <xs:all>
                 <xs:element name="faultMessage" type="xs:string"

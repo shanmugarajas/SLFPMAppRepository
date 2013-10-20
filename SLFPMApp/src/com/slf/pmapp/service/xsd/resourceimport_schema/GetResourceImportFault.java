@@ -1,5 +1,5 @@
 
-package com.ws.service.xsd.random_schema;
+package com.slf.pmapp.service.xsd.resourceimport_schema;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;all>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="faultMessage" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/all>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,34 +31,34 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
 
 })
-@XmlRootElement(name = "GetRandomRequest")
-public class GetRandomRequest {
+@XmlRootElement(name = "GetResourceImportFault")
+public class GetResourceImportFault {
 
     @XmlElement(required = true)
-    protected String name;
+    protected String faultMessage;
 
     /**
-     * Gets the value of the name property.
+     * Gets the value of the faultMessage property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getName() {
-        return name;
+    public String getFaultMessage() {
+        return faultMessage;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the faultMessage property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setFaultMessage(String value) {
+        this.faultMessage = value;
     }
 
 }
