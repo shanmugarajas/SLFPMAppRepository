@@ -10,6 +10,7 @@ import java.util.HashMap;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
+//import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.mail.MailException;
@@ -36,6 +37,7 @@ import com.slf.pmapp.persistance.RequestsDAO;
 import com.slf.pmapp.persistance.ResourcesDAO;
 import com.slf.pmapp.persistance.AllocationsDAO;
 import com.slf.pmapp.persistance.TracksDAO;
+import com.slf.pmapp.service.RIService;
 import com.slf.pmapp.jms.JmsMessageSender;
 import com.slf.pmapp.email.AlertMail;
 import com.slf.pmapp.email.TemplateEmailer;
@@ -63,6 +65,9 @@ public class SLFPMAppControllers
 	@Autowired
 	private BusinessRuleValidator validator;
 	
+	 @javax.annotation.Resource(name="riService")
+	 private RIService riService;
+	 
 	@RequestMapping("/login")
 	public String login()
 	{

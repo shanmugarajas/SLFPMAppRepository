@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import java.util.GregorianCalendar;
+
+import javax.annotation.Resource;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -27,6 +29,9 @@ public class ResourceImportOperationsEndPoint{
     private static final Logger logger = Logger.getLogger(ResourceImportOperationsEndPoint.class);
     private static final String NAMESPACE_URI = "http://slf.com/pmapp/service/xsd/resourceimport-schema";
  
+    @Resource(name="riService")
+    private RIService riService;
+    
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetResourceImportRequest")
     @ResponsePayload
    public GetResourceImportResponse handleRequest(
@@ -41,6 +46,8 @@ public class ResourceImportOperationsEndPoint{
         String email = activateServiceRequest.getEmail();
         int mobile = activateServiceRequest.getMobile();
         int phone = activateServiceRequest.getPhone();
+        
+        //riService.ImportResource(activateServiceRequest);
         
         System.out.println("Imported resource name: " + name );
         System.out.println("Imported resource empid: " + empid );
