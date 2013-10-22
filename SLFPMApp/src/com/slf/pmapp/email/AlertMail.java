@@ -45,7 +45,6 @@ public class AlertMail {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) auth.getPrincipal();
 		String userRole = userDetails.getUsername().trim();
-		
 		String newline = "\n";
 		
 	    paramMap.put("user", userRole);

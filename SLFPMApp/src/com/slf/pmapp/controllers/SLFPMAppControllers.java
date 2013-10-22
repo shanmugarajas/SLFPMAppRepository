@@ -38,6 +38,7 @@ import com.slf.pmapp.persistance.ResourcesDAO;
 import com.slf.pmapp.persistance.AllocationsDAO;
 import com.slf.pmapp.persistance.TracksDAO;
 import com.slf.pmapp.service.RIService;
+import com.slf.pmapp.service.xsd.resourceimport_schema.GetResourceImportRequest;
 import com.slf.pmapp.jms.JmsMessageSender;
 import com.slf.pmapp.email.AlertMail;
 import com.slf.pmapp.email.TemplateEmailer;
@@ -64,10 +65,9 @@ public class SLFPMAppControllers
 	private RequestsDAO requestsDAO;
 	@Autowired
 	private BusinessRuleValidator validator;
+	@Autowired
+	private RIService riservice;
 	
-	 @javax.annotation.Resource(name="riService")
-	 private RIService riService;
-	 
 	@RequestMapping("/login")
 	public String login()
 	{
@@ -173,7 +173,7 @@ public class SLFPMAppControllers
 	
 	@RequestMapping("/viewAllResources")
 	public ModelAndView getAllResources(@RequestParam(required= true, defaultValue="1")int page, @RequestParam(required= false, defaultValue="10")int pageSize)
-	{
+	{	
 		ModelAndView mav = new ModelAndView("showResources");
 		List<Resource> resourceRecords = resourcesDAO.getAllResources();
 		mav.addObject("LIST_SIZE", resourceRecords.size());

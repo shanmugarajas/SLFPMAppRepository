@@ -80,6 +80,7 @@ public class ResourcesDAO
 		return criteria.list();
 	}
 
+	@Transactional
 	public int save(Resource resource)
 	{
 		return (Integer) sessionFactory.getCurrentSession().save(resource);

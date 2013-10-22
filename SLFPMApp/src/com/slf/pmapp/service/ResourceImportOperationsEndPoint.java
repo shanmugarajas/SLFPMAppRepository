@@ -29,8 +29,8 @@ public class ResourceImportOperationsEndPoint{
     private static final Logger logger = Logger.getLogger(ResourceImportOperationsEndPoint.class);
     private static final String NAMESPACE_URI = "http://slf.com/pmapp/service/xsd/resourceimport-schema";
  
-    @Resource(name="riService")
-    private RIService riService;
+    @javax.annotation.Resource(name="riservice")
+    private RIService riservice;
     
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetResourceImportRequest")
     @ResponsePayload
@@ -42,17 +42,18 @@ public class ResourceImportOperationsEndPoint{
         String name = activateServiceRequest.getName();
         String empid = activateServiceRequest.getEmpid();
         String empstatus = activateServiceRequest.getEmpstatus();
-        Date dojslf =  activateServiceRequest.getDojslf().toGregorianCalendar().getTime();
+        //Date dojslf =  activateServiceRequest.getDojslf().toGregorianCalendar().getTime();
         String email = activateServiceRequest.getEmail();
         int mobile = activateServiceRequest.getMobile();
         int phone = activateServiceRequest.getPhone();
         
-        //riService.ImportResource(activateServiceRequest);
+        riservice.ImportService(activateServiceRequest);
+        
         
         System.out.println("Imported resource name: " + name );
         System.out.println("Imported resource empid: " + empid );
         System.out.println("Imported resource empstatus: " + empstatus );
-        System.out.println("Imported resource dojlsf: " + dojslf.toString() );
+       // System.out.println("Imported resource dojlsf: " + dojslf.toString() );
         System.out.println("Imported resource email: " + email );
         System.out.println("Imported resource mobile: " + mobile );
         System.out.println("Imported resource phone: " + phone );
