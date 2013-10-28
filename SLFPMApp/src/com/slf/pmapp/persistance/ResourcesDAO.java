@@ -3,6 +3,7 @@ package com.slf.pmapp.persistance;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,14 +62,18 @@ public class ResourcesDAO
 	@SuppressWarnings("unchecked")
 	public List<Resource> getAllResources(int page)
 	{
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Resource.class);
+		Query query = sessionFactory.getCurrentSession().createQuery("from Resource order by id asc");
+		System.out.println("Number of Resource records retrieved:" + query.list().size());
+		//return criteria.list();
+				
+		//Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Resource.class);
 		if (page == 1)
-			criteria.setFirstResult(page);
+			query.setFirstResult(page);
 		else
-			criteria.setFirstResult(page*pageSize + 1);
-		criteria.setMaxResults(pageSize);
+			query.setFirstResult(page*pageSize + 1);
+		query.setMaxResults(pageSize);
 		//criteria.addOrder(Order.asc("resourceid"));
-		return criteria.list();
+		return query.list();
 	}
 
 	@SuppressWarnings("unchecked")

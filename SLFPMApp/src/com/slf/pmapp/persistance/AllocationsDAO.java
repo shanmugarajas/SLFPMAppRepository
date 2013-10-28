@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
@@ -28,7 +29,7 @@ public class AllocationsDAO
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	private static int pageSize = 3;
+	private static int pageSize = 10;
 	
 	public Allocation getById(int id)
 	{
@@ -59,8 +60,12 @@ public class AllocationsDAO
 	@SuppressWarnings("unchecked")
 	public List<Allocation> getAllAllocations()
 	{
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Allocation.class);
-		return criteria.list();
+		
+		//Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Allocation.class);
+		Query query = sessionFactory.getCurrentSession().createQuery("from Allocation order by id asc");
+		System.out.println("Number of Allocation records retrieved:" + query.list().size());
+		//return criteria.list();
+		return query.list();
 	}
 	
 	@SuppressWarnings("unchecked")

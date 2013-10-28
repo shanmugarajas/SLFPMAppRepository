@@ -115,7 +115,7 @@ public class SLFPMAppControllers
 	}
 	
 	@RequestMapping(value="/viewAllAllocations")
-	public ModelAndView getAllAllocations(@RequestParam(required= true, defaultValue="1")int page, @RequestParam(required= false, defaultValue="3")int pageSize)
+	public ModelAndView getAllAllocations(@RequestParam(required= true, defaultValue="1")int page, @RequestParam(required= false, defaultValue="10")int pageSize)
 	{
 		ModelAndView mav = new ModelAndView("showAllocations");
 		List<Allocation> allocationRecords = allocationsDAO.getAllAllocations();

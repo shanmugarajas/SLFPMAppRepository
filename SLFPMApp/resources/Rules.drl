@@ -19,7 +19,7 @@ when
   	$r: Resource( name == "")  
   	$e: Errors()
 then
-	$e.rejectValue("name", "err1", "DRL:Name is required");
+	$e.rejectValue("name", "err1", "DRL:Ensure Name is input");
 end
 
 rule "Track Name should not be empty"
