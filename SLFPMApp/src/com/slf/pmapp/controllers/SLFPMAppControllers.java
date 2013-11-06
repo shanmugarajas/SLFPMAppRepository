@@ -273,6 +273,14 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
+	@RequestMapping("showReports")
+	public ModelAndView showReports()
+	{
+		
+		ModelAndView mav = new ModelAndView("showReports");
+		return mav;
+	}
+	
 	
 	@RequestMapping("/viewAllTracks")
 	public ModelAndView getAllTracks()

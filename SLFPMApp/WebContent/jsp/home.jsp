@@ -11,15 +11,27 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Sun, 13 Oct 2013 00:00:00 GMT">
-<link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
+<script src="js/jquery-1.9.1.js"></script>
+ <script src="js/jquery-ui-1.10.3.custom.js"></script>
+ <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+ <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
+ <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css" type="text/css" />
+  <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.min.css" type="text/css" />
 <%
 String userName = request.getUserPrincipal().getName();
 session.setAttribute("user", userName);
 System.out.println("User 1:" + userName);
 System.out.println("User 2:" + session.getAttribute("user"));
 %>
+<script>
+$(function() {
+    $( "#tabs" ).tabs();
+  });
+</script>
 </head>
 <body bgcolor="#FFFFFF">
+
+
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr bgcolor="#99ccff">
     <td width="15" nowrap="nowrap">&nbsp;</td>
@@ -30,8 +42,10 @@ System.out.println("User 2:" + session.getAttribute("user"));
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
     <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_OFFSHOREPM, ROLE_ONSITEPM"> <a href="viewAllResources.do"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="viewMyResources.do"> </security:authorize>RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_OFFSHOREPM, ROLE_ONSITEPM"> <a href="viewAllAllocations.do"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="viewMyAllocations.do"> </security:authorize>ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="<c:url value='j_spring_security_logout'/>">Click here to logout</a></td>
+      &nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="showReports.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="<c:url value='j_spring_security_logout'/>">Click here to logout</a></td>
     <td>&nbsp;</td>
+  </tr>
+  <tr>
   </tr>
 	<tr bgcolor="#ffffff">
 		<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="1" border="0" />

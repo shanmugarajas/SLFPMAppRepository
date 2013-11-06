@@ -19,7 +19,8 @@ $(function()
 {
 	$("#datepicker").datepicker({dateFormat: 'dd-mm-yy'});
 });
-  </script>
+</script>
+
 </head>
 <body bgcolor="#FFFFFF">
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
