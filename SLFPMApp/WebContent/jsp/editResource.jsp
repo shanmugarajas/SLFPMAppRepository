@@ -8,7 +8,18 @@
 <script type="text/javascript" src="js/resources.js"></script>
 <title>Resources View</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
+<script src="js/jquery-1.9.1.js"></script>
+ <script src="js/jquery-ui-1.10.3.custom.js"></script>
+ <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+ <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
+ <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css" type="text/css" />
+  <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.min.css" type="text/css" />
+<script>
+$(function()
+{
+	$("#datepicker").datepicker({dateFormat: 'dd-mm-yy'});
+});
+  </script>
 </head>
 <body bgcolor="#FFFFFF">
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -52,7 +63,7 @@
 					
 					<tr>
 						<td width="100" align="right">Date of Joining SLF</td>
-						<td><form:input path="dojslf"/></td>
+						<td><form:input path="dojslf" id="datepicker"/></td>
 						<td align="left"><form:errors path="dojslf" cssStyle="color:red"></form:errors>  </td>
 					</tr>
 					<tr>
