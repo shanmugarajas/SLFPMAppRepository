@@ -12,7 +12,7 @@
 
 	<http pattern="/images/**" security="none" />
     <http pattern="/css/**" security="none" />
-	<http auto-config="true"  use-expressions="true" access-denied-page="/viewTheHome.do">
+	<http auto-config="true"  use-expressions="true" access-denied-page="/connect/facebook.do">
 		<intercept-url pattern="/login.do" access="permitAll" />
 		<intercept-url pattern="/viewTheHome.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
 		<intercept-url pattern="/viewAllAllocations.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
@@ -36,7 +36,7 @@
 		<intercept-url pattern="/viewAllRequests.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
 		<intercept-url pattern="/updateRequest.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM')"  />
 		<intercept-url pattern="/saveRequest.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM')"  />
-		<form-login login-page="/login.do" default-target-url="/viewTheHome.do" authentication-failure-url="/login.do" />
+		<form-login login-page="/login.do" default-target-url="/connect/facebook.do" authentication-failure-url="/login.do" />
 		<logout logout-success-url="/login.do" />
 	</http>
 	<authentication-manager alias="authenticationManager">

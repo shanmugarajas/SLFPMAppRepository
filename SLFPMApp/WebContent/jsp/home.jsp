@@ -42,7 +42,7 @@ $(function() {
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
     <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_OFFSHOREPM, ROLE_ONSITEPM"> <a href="viewAllResources.do"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="viewMyResources.do"> </security:authorize>RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_OFFSHOREPM, ROLE_ONSITEPM"> <a href="viewAllAllocations.do"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="viewMyAllocations.do"> </security:authorize>ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="showReports.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="<c:url value='j_spring_security_logout'/>">Click here to logout</a></td>
+      &nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="facebook.do">STATUS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="showReports.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="<c:url value='j_spring_security_logout'/>">Click here to logout</a></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -76,8 +76,9 @@ $(function() {
 				<b>Introduction</b>
 				</p>
 				
-				<p style="color:Black;FONT-FAMILY: 'Calibri'; FONT-SIZE: medium;">
-					Ebix executes multiple support tracks for Sun Life in Coimbatore and Hyderabad.			
+				<p nowrap="nowrap" style="color:Black;FONT-FAMILY: 'Calibri'; FONT-SIZE: medium;">
+					Ebix executes multiple support tracks for Sun Life in Coimbatore and Hyderabad.	
+					<br/>		
 					QPS (Quoting and Processing System) development track and Quality Testing are two of those support tracks. 
 					<br/>
 					Others include QPS related system/software development and maintenance activities.
@@ -97,27 +98,6 @@ $(function() {
 	</tr>
 	 	
 </table>
-<table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
-	<tr bgcolor="#003399">
-	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="1" border="0" /></td>
-	</tr>
 
-	<tr>
-	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="2" border="0" /></td>
-	</tr>
-
-	<tr bgcolor="#003399">
-	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="1" border="0" /></td>
-	</tr>
-	
-	<tr>
-	<td width="17">&nbsp;</td>
-	<td width="165">&nbsp;</td>
-	<td width="50">&nbsp;</td>
-	<td width="545">&nbsp;</td>
-	<td width="4">&nbsp;</td>
-	<td width="329">&nbsp;</td>
-	</tr>
-</table>
 </body>
 </html>

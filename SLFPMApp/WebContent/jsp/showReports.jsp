@@ -46,31 +46,6 @@
 	</ul>
   </table>	
   </tr>
-  <tr bgcolor="#ffffff">
-    <td width="15" height="230" valign="top"><img src="images/mm_spacer.gif" alt="" width="15" height="1" border="0" /></td>
-  	<tr bgcolor="#ffffff">
-	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="1" border="0" /></td>
-	</tr>
-	<tr>
-	<td colspan="6">&nbsp;</td>
-	</tr>
-	<tr bgcolor="#003399">
-	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="1" border="0" /></td>
-	</tr>
-	<tr>
-	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="2" border="0" /></td>
-	</tr>
-	<tr bgcolor="#003399">
-	<td colspan="6"><img src="images/mm_spacer.gif" alt="" width="1" height="1" border="0" /></td>
-	</tr>
-	<tr>
-	<td width="17">&nbsp;</td>
-	<td width="165">&nbsp;</td>
-	<td width="50">&nbsp;</td>
-	<td width="545">&nbsp;</td>
-	<td width="4">&nbsp;</td>
-	<td width="329">&nbsp;</td>
-	</tr>
 </table>
 
 </body>
