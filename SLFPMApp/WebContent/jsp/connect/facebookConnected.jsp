@@ -19,7 +19,7 @@
 					You are connected to facebook. Click below to disconnect
 				</p>
 				
-				<form id="disconnect" action="/connect/facebook/"  method="post">
+				<form id="disconnect" action="facebook.do"  method="post">
 					<button type="submit" text="disconnect">Disconnect from Social</button>	
 					<input type="hidden" name="_method" value="delete" />
 				</form>
