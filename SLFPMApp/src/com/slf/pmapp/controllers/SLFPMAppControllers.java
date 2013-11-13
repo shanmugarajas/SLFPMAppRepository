@@ -10,6 +10,8 @@ import java.util.HashMap;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 //import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -17,11 +19,16 @@ import org.springframework.mail.MailException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.connect.ConnectionRepository;
+import org.springframework.social.connect.NotConnectedException;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,11 +46,15 @@ import com.slf.pmapp.persistance.AllocationsDAO;
 import com.slf.pmapp.persistance.TracksDAO;
 import com.slf.pmapp.service.RIService;
 import com.slf.pmapp.service.xsd.resourceimport_schema.GetResourceImportRequest;
+import com.slf.pmapp.social.FbConnectionHelper;
+import com.slf.pmapp.social.FbOperationsHelper;
+import com.slf.pmapp.social.FriendsList;
 import com.slf.pmapp.jms.JmsMessageSender;
 import com.slf.pmapp.email.AlertMail;
 import com.slf.pmapp.email.TemplateEmailer;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -52,6 +63,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 
 @Controller
+@Scope("request")
 public class SLFPMAppControllers
 {
 	
@@ -68,13 +80,24 @@ public class SLFPMAppControllers
 	@Autowired
 	private RIService riservice;
 	
+	private static final Logger logger = LoggerFactory.getLogger(SLFPMAppControllers.class);
+	@Autowired
+	private ConnectionRepository userConnectionRepository;
+	
+	@Autowired
+	private FbConnectionHelper fbConnectionHelper;
+	
+	@Autowired
+	private FbOperationsHelper fbOperationsHelper;
+	
+	
 	@RequestMapping("/login")
 	public String login()
 	{
 		return "login";
 	}
 	
-	
+		
 	@InitBinder
 	public void initBinder(WebDataBinder binder) 
 	{

@@ -1,4 +1,4 @@
-package com.slf.pmapp.social;
+package com.slf.pmapp.controllers;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -21,10 +21,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.slf.pmapp.social.FriendsList;
+import com.slf.pmapp.social.FbConnectionHelper;
+import com.slf.pmapp.social.FbOperationsHelper;
+
 
 @Controller
 @Scope("request")
-@RequestMapping("/facebook")
+@RequestMapping("/fb")
 public class FacebookController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(FacebookController.class);
@@ -38,25 +42,15 @@ public class FacebookController {
 	private FbOperationsHelper fbOperationsHelper;
 	
 	
-	@RequestMapping(value="/profile")
-	public String getProfile(ModelMap model) {
-		try {
-			Facebook facebook = userConnectionRepository.getPrimaryConnection(Facebook.class).getApi();		
-			model.addAttribute("profileLink", facebook.userOperations().getUserProfile().getLink());
-			model.addAttribute("profileInfo", facebook.userOperations().getUserProfile());
-			return "facebook/profile";
-		}  catch (NotConnectedException e) {
-			return "facebook/connect";
-		}
-	}
 
-	/*
 	@RequestMapping(value="/profile/{providerUserId}/{facebookAccessToken}" , method = RequestMethod.GET)
 	public String getProfile(@PathVariable("facebookAccessToken") String facebookAccessToken, 
                              @PathVariable("providerUserId") String providerUserId,
                              Model model) {
 		try {
 			
+			providerUserId = "100007063864816";
+			facebookAccessToken = "CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD";
 			
 			boolean userExistsInRepo = fbConnectionHelper.checkForUserInRepository(providerUserId,userConnectionRepository);
 			if(userExistsInRepo) {	
@@ -67,23 +61,21 @@ public class FacebookController {
 		    Facebook facebook =userConnectionRepository.getConnection(Facebook.class, providerUserId).getApi();  
 			model.addAttribute("profileLink", facebook.userOperations().getUserProfile().getLink());
 			model.addAttribute("profileInfo", facebook.userOperations().getUserProfile());
-			System.out.println("Facebook connection succeeded");
-			return "profile";
+			return "facebook/profile";
 		}  catch (NotConnectedException e) {
-			System.out.println("Facebook connection failed");
-			return "facebookConnect";
+			return "connect/facebookConnect";
 		}
 	}
 	
-	*/
+	
 	
 	@RequestMapping(value="/friends/{providerUserId}/{facebookAccessToken}", method = RequestMethod.GET)
 	public String getFriends(@PathVariable("facebookAccessToken") String facebookAccessToken, 
 			                          @PathVariable("providerUserId") String providerUserId,
 			                          Model model){
 		
-		System.out.println("providerUserId = "+providerUserId);
-		System.out.println("facebookAccessToken = "+facebookAccessToken); 
+		  logger.info("providerUserId = "+providerUserId);
+		  logger.info("facebookAccessToken = "+facebookAccessToken); 
 		  boolean userExistsInRepo = fbConnectionHelper.checkForUserInRepository(providerUserId,userConnectionRepository);
 			if(userExistsInRepo) {	
 				  fbConnectionHelper.updateExistingConnectionInRepository(providerUserId,facebookAccessToken, userConnectionRepository);
@@ -96,7 +88,7 @@ public class FacebookController {
 		  model.addAttribute("friendsListDto",friendsListDto);//// for xml
 		  model.addAttribute("friendsList",friendsListDto.getFriendsList()); //// for jsp
 		  
-		  return "friends";
+		  return "facebook/friends";
 	}
 	
 }

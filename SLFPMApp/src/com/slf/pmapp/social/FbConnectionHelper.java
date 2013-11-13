@@ -40,7 +40,7 @@ public class FbConnectionHelper {
 		System.out.println("getConnectionData -"+providerUserId);
 		try{
 		  Connection<Facebook> existingFacebookConnection = userConnectionRepository.getConnection(Facebook.class, providerUserId);
-		 // ConnectionData existingConnectionData = existingFacebookConnection.createData();
+		  ConnectionData existingConnectionData = existingFacebookConnection.createData();
 		  return true;
 		} catch (Exception ex){
 			System.out.println("Could not find connection info for"+providerUserId);
