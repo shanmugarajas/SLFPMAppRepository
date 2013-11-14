@@ -39,8 +39,8 @@
 		<intercept-url pattern="/viewAllRequests.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM', 'ROLE_OFFSHOREPM')" />
 		<intercept-url pattern="/updateRequest.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM')"  />
 		<intercept-url pattern="/saveRequest.do" access="hasAnyRole('ROLE_ADMIN', 'ROLE_ONSITEPM')"  />
-		<form-login login-page="/login.do" default-target-url="/viewTheHome.do" authentication-failure-url="/login.do" />
-		<logout logout-success-url="/login.do" />
+		<form-login login-page="/login.do" default-target-url="/connect/facebook.do" authentication-failure-url="/login.do" />
+		<logout logout-success-url="/login.do" logout-url="/connect/j_spring_security_logout" />
 	</http>
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider>

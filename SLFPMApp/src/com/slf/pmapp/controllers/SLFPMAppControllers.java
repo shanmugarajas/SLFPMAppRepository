@@ -64,6 +64,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @Controller
 @Scope("request")
+@RequestMapping("/")
 public class SLFPMAppControllers
 {
 	
@@ -130,14 +131,14 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping("/viewTheHome")
+	@RequestMapping(value={"/viewTheHome", "connect/viewTheHome"})
 	public ModelAndView goToHome()
 	{
 		ModelAndView mav = new ModelAndView("home");
 		return mav;
 	}
 	
-	@RequestMapping(value="/viewAllAllocations")
+	@RequestMapping(value={"/viewAllAllocations", "connect/viewAllAllocations"})
 	public ModelAndView getAllAllocations(@RequestParam(required= true, defaultValue="1")int page, @RequestParam(required= false, defaultValue="10")int pageSize)
 	{
 		ModelAndView mav = new ModelAndView("showAllocations");
@@ -149,7 +150,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping("/viewMyAllocations")
+	@RequestMapping(value={"/viewMyAllocations", "connect/viewMyAllocations"})
 	public ModelAndView getMyAllocations(HttpServletRequest request)
 	{
 		ModelAndView mav = new ModelAndView("showMyAllocations");
@@ -163,7 +164,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/updateAllocation", method=RequestMethod.GET)
+	@RequestMapping(value={"/updateAllocation","connect/updateAllocation"}, method=RequestMethod.GET)
 	public ModelAndView editAllocation(@RequestParam("id")Integer id)
 	{
 		ModelAndView mav = new ModelAndView("editAllocation");
@@ -172,7 +173,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/updateAllocation", method=RequestMethod.POST)
+	@RequestMapping(value={"/updateAllocation","connect/updateAllocation"}, method=RequestMethod.POST)
 	public String updateAllocation(@ModelAttribute("editAllocation") Allocation allocation, BindingResult result, SessionStatus status)
 	{
 		validator.validate(allocation, result);
@@ -194,7 +195,7 @@ public class SLFPMAppControllers
 	}
 	
 	
-	@RequestMapping("/viewAllResources")
+	@RequestMapping(value={"/viewAllResources", "connect/viewAllResources"})
 	public ModelAndView getAllResources(@RequestParam(required= true, defaultValue="1")int page, @RequestParam(required= false, defaultValue="10")int pageSize)
 	{	
 		ModelAndView mav = new ModelAndView("showResources");
@@ -206,7 +207,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping("/viewMyResources")
+	@RequestMapping(value={"/viewMyResources", "connect/viewAllResources"})
 	public ModelAndView getMyResources(HttpServletRequest request)
 	{
 		ModelAndView mav = new ModelAndView("showMyResources");
@@ -220,7 +221,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/saveResource", method=RequestMethod.GET)
+	@RequestMapping(value={"/saveResource", "connect/saveResource"}, method=RequestMethod.GET)
 	public ModelAndView newuserForm()
 	{
 		ModelAndView mav = new ModelAndView("newResource");
@@ -229,7 +230,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/saveResource", method=RequestMethod.POST)
+	@RequestMapping(value={"/saveResource", "connect/saveResource"}, method=RequestMethod.POST)
 	public String create(@ModelAttribute("newResource")Resource resource, BindingResult result, SessionStatus status)
 	{
 		
@@ -243,7 +244,7 @@ public class SLFPMAppControllers
 		return "redirect:viewAllResources.do";
 	}
 	
-	@RequestMapping(value="/updateResource", method=RequestMethod.GET)
+	@RequestMapping(value={"/updateResource","connect/updateResource"}, method=RequestMethod.GET)
 	public ModelAndView edit(@RequestParam("id")Integer id)
 	{
 		ModelAndView mav = new ModelAndView("editResource");
@@ -252,7 +253,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/updateResource", method=RequestMethod.POST)
+	@RequestMapping(value={"/updateResource","connect/updateResource"}, method=RequestMethod.POST)
 	public String update(@ModelAttribute("editResource") Resource resource, BindingResult result, SessionStatus status)
 	{
 		validator.validate(resource, result);
@@ -274,7 +275,7 @@ public class SLFPMAppControllers
 	}
 	
 	
-	@RequestMapping("deleteResource")
+	@RequestMapping(value={"deleteResource", "connect/deleteResource"})
 	public ModelAndView delete(@RequestParam("id")Integer id)
 	{
 		ModelAndView mav = new ModelAndView("redirect:viewAllResources.do");
@@ -282,7 +283,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping("createReport")
+	@RequestMapping(value={"createReport","connect/createReport"})
 	public ModelAndView createReport()
 	{
 		
@@ -296,7 +297,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping("showReports")
+	@RequestMapping(value={"showReports","connect/showReports"})
 	public ModelAndView showReports()
 	{
 		
@@ -305,7 +306,7 @@ public class SLFPMAppControllers
 	}
 	
 	
-	@RequestMapping("/viewAllTracks")
+	@RequestMapping(value={"/viewAllTracks","connect/viewAllTracks"})
 	public ModelAndView getAllTracks()
 	{
 		ModelAndView mav = new ModelAndView("showTracks");
@@ -314,7 +315,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/saveTrack", method=RequestMethod.GET)
+	@RequestMapping(value={"/saveTrack","connect/saveTrack"}, method=RequestMethod.GET)
 	public ModelAndView newtrackForm()
 	{
 		ModelAndView mav = new ModelAndView("newTrack");
@@ -323,7 +324,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/saveTrack", method=RequestMethod.POST)
+	@RequestMapping(value={"/saveTrack","connect/saveTrack"}, method=RequestMethod.POST)
 	public String createTrack(@ModelAttribute("newTrack")Track track, BindingResult result, SessionStatus status)
 	{
 		
@@ -337,7 +338,7 @@ public class SLFPMAppControllers
 		return "redirect:viewAllTracks.do";
 	}
 	
-	@RequestMapping(value="/updateTrack", method=RequestMethod.GET)
+	@RequestMapping(value={"/updateTrack","connect/updateTrack"}, method=RequestMethod.GET)
 	public ModelAndView editTrack(@RequestParam("id")Integer id)
 	{
 		ModelAndView mav = new ModelAndView("editTrack");
@@ -346,7 +347,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/updateTrack", method=RequestMethod.POST)
+	@RequestMapping(value={"/updateTrack","connect/updateTrack"}, method=RequestMethod.POST)
 	public String updateTrack(@ModelAttribute("editTrack") Track track, BindingResult result, SessionStatus status)
 	{
 		validator.validate(track, result);
@@ -359,7 +360,7 @@ public class SLFPMAppControllers
 	}
 	
 	
-	@RequestMapping("deleteTrack")
+	@RequestMapping(value={"deleteTrack","connect/deleteTrack"})
 	public ModelAndView deleteTrack(@RequestParam("id")Integer id)
 	{
 		ModelAndView mav = new ModelAndView("redirect:viewAllTracks.do");
@@ -367,7 +368,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping("/searchTracks")
+	@RequestMapping(value={"/searchTracks","connect/searchTracks"})
 	public ModelAndView searchTracks(@RequestParam(required= false, defaultValue="") String name)
 	{
 		ModelAndView mav = new ModelAndView("showTracks");
@@ -377,7 +378,7 @@ public class SLFPMAppControllers
 	}
 	
 	
-	@RequestMapping(value="/saveAllocation", method=RequestMethod.GET)
+	@RequestMapping(value={"/saveAllocation","connect/saveAllocation"}, method=RequestMethod.GET)
 	public ModelAndView newallocationForm()
 	{
 		ModelAndView mav = new ModelAndView("newAllocation");
@@ -390,7 +391,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/saveAllocation", method=RequestMethod.POST)
+	@RequestMapping(value={"/saveAllocation","connect/saveAllocation"}, method=RequestMethod.POST)
 	public String createAllocation(@ModelAttribute("newAllocation")Allocation allocation, BindingResult result, SessionStatus status)
 	{
 		
@@ -404,7 +405,7 @@ public class SLFPMAppControllers
 		return "redirect:viewAllAllocations.do";
 	}
 	
-	@RequestMapping("deleteAllocation")
+	@RequestMapping(value={"deleteAllocation","connect/deleteAllocation"})
 	public ModelAndView deleteAllocation(@RequestParam("id")Integer id)
 	{
 		ModelAndView mav = new ModelAndView("redirect:viewAllAllocations.do");
@@ -414,7 +415,7 @@ public class SLFPMAppControllers
 	
 //Requests controlling
 	
-	@RequestMapping("/viewAllRequests")
+	@RequestMapping(value={"/viewAllRequests","connect/viewAllRequests"})
 	public ModelAndView getAllRequests()
 	{
 		ModelAndView mav = new ModelAndView("showRequests");
@@ -423,7 +424,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/saveRequest", method=RequestMethod.GET)
+	@RequestMapping(value={"/saveRequest","connect/saveRequest"}, method=RequestMethod.GET)
 	public ModelAndView newrquestForm()
 	{
 		ModelAndView mav = new ModelAndView("newRequest");
@@ -432,7 +433,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/saveRequest", method=RequestMethod.POST)
+	@RequestMapping(value={"/saveRequest","connect/saveRequest"}, method=RequestMethod.POST)
 	public String createRequest(@ModelAttribute("newRequest")Request request, BindingResult result, SessionStatus status)
 	{
 		
@@ -459,7 +460,7 @@ public class SLFPMAppControllers
 		return "redirect:viewAllRequests.do";
 	}
 	
-	@RequestMapping(value="/updateRequest", method=RequestMethod.GET)
+	@RequestMapping(value={"/updateRequest","connect/updateRequest"}, method=RequestMethod.GET)
 	public ModelAndView editRequest(@RequestParam("id")Integer id)
 	{
 		ModelAndView mav = new ModelAndView("editRequest");
@@ -468,7 +469,7 @@ public class SLFPMAppControllers
 		return mav;
 	}
 	
-	@RequestMapping(value="/updateRequest", method=RequestMethod.POST)
+	@RequestMapping(value={"/updateRequest","connect/updateRequest"}, method=RequestMethod.POST)
 	public String updateRequest(@ModelAttribute("editRequest") Request request, BindingResult result, SessionStatus status)
 	{
 		validator.validate(request, result);
@@ -493,7 +494,7 @@ public class SLFPMAppControllers
 	    return "redirect:viewAllRequests.do";
 	}
 		
-	@RequestMapping("/searchRequests")
+	@RequestMapping(value={"/searchRequests","connect/searchRequests"})
 	public ModelAndView searchRequests(@RequestParam(required= false, defaultValue="") String name)
 	{
 		ModelAndView mav = new ModelAndView("showRequests");

@@ -19,9 +19,8 @@
     <td width="100%">&nbsp;</td>
   </tr>
   <tr bgcolor="#0066cc">
-    <td width="15" nowrap="nowrap">&nbsp;</td>
-    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllAllocations.do">ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>Login to continue!</a></td>
+    <td width="745" nowrap="nowrap">&nbsp;</td>
+   <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
 	<tr bgcolor="#ffffff">

@@ -28,7 +28,7 @@ import com.slf.pmapp.social.FbOperationsHelper;
 
 @Controller
 @Scope("request")
-@RequestMapping("/connect/fb")
+@RequestMapping("connect/fb")
 public class FacebookController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(FacebookController.class);
