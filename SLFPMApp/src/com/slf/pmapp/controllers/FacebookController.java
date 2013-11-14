@@ -28,7 +28,7 @@ import com.slf.pmapp.social.FbOperationsHelper;
 
 @Controller
 @Scope("request")
-@RequestMapping("/fb")
+@RequestMapping("/connect/fb")
 public class FacebookController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(FacebookController.class);
@@ -48,10 +48,7 @@ public class FacebookController {
                              @PathVariable("providerUserId") String providerUserId,
                              Model model) {
 		try {
-			
-			providerUserId = "100007063864816";
-			facebookAccessToken = "CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD";
-			
+					
 			boolean userExistsInRepo = fbConnectionHelper.checkForUserInRepository(providerUserId,userConnectionRepository);
 			if(userExistsInRepo) {	
 				  fbConnectionHelper.updateExistingConnectionInRepository(providerUserId,facebookAccessToken, userConnectionRepository);
