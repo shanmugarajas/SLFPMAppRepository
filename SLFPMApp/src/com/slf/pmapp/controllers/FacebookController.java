@@ -22,16 +22,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.slf.pmapp.models.IpmFacebookProfile;
+import com.slf.pmapp.persistance.IpmFacebookProfileDAO;
+import com.slf.pmapp.persistance.ResourcesDAO;
 import com.slf.pmapp.social.FriendsList;
 import com.slf.pmapp.social.FbConnectionHelper;
 import com.slf.pmapp.social.FbOperationsHelper;
 
 
 @Controller
-@SessionAttributes({"profileLink"})
+@SessionAttributes({"profileLink", "profileInfo"})
 @Scope("request")
 @RequestMapping("connect/fb")
 public class FacebookController {
+	
+	@Autowired
+	private IpmFacebookProfileDAO ipmfacebookprofileDAO;
+	
+	private IpmFacebookProfile ipmfacebookprofile = new IpmFacebookProfile();
 	
 	private static final Logger logger = LoggerFactory.getLogger(FacebookController.class);
 	@Autowired
@@ -42,8 +50,6 @@ public class FacebookController {
 	
 	@Autowired
 	private FbOperationsHelper fbOperationsHelper;
-	
-	
 
 	@RequestMapping(value="/profile/{providerUserId}/{facebookAccessToken}" , method = RequestMethod.GET)
 	public String getProfile(@PathVariable("facebookAccessToken") String facebookAccessToken, 
@@ -60,6 +66,16 @@ public class FacebookController {
 		    Facebook facebook =userConnectionRepository.getConnection(Facebook.class, providerUserId).getApi();  
 			model.addAttribute("profileLink", facebook.userOperations().getUserProfile().getLink());
 			model.addAttribute("profileInfo", facebook.userOperations().getUserProfile());
+			model.addAttribute("profileInfoname", facebook.userOperations().getUserProfile().getName());
+			model.addAttribute("profileInfoid", facebook.userOperations().getUserProfile().getId());
+			
+			ipmfacebookprofile.setId(facebook.userOperations().getUserProfile().getId());
+			ipmfacebookprofile.setName(facebook.userOperations().getUserProfile().getName());
+			ipmfacebookprofile.setLink(facebook.userOperations().getUserProfile().getLink());
+			ipmfacebookprofile.setImgurl("http://graph.facebook.com/" + facebook.userOperations().getUserProfile().getId() + "/picture");
+			
+			ipmfacebookprofileDAO.save(ipmfacebookprofile);
+			
 			return "connect/facebookConnected";
 		}  catch (NotConnectedException e) {
 			return "connect/facebookConnect";
@@ -83,6 +99,11 @@ public class FacebookController {
 			  }
 		  Facebook facebook =userConnectionRepository.getConnection(Facebook.class, providerUserId).getApi();
 		 
+		  model.addAttribute("profileLink", facebook.userOperations().getUserProfile().getLink());
+		  model.addAttribute("profileInfo", facebook.userOperations().getUserProfile());
+		  model.addAttribute("profileInfoname", facebook.userOperations().getUserProfile().getName());
+		  model.addAttribute("profileInfoid", facebook.userOperations().getUserProfile().getId());
+			
 		  FriendsList friendsListDto = fbOperationsHelper.getFriendNames(facebook);
 		  model.addAttribute("friendsListDto",friendsListDto);//// for xml
 		  model.addAttribute("friendsList",friendsListDto.getFriendsList()); //// for jsp

@@ -21,29 +21,33 @@
 String userName = request.getUserPrincipal().getName();
 session.setAttribute("user", userName);
 
-System.out.println("profileLink: " + session.getAttribute("profileLink"));
-System.out.println("sessionProfileLink: " + session.getAttribute("sessionProfileLink"));
+System.out.println("profileInfoname: " + session.getAttribute("profileInfoname"));
+
 
 if (session.getAttribute("profileInfo") != null)
-	session.setAttribute("sessionProfileInfo", request.getAttribute("profileInfo"));
+	{
+	session.setAttribute("sessionProfileInfoname", request.getAttribute("profileInfoname"));
+	session.setAttribute("sessionProfileInfoid", request.getAttribute("profileInfoid"));
+	System.out.println("sessionProfileInfoname: " + session.getAttribute("sessionProfileInfoname"));
+	}
+
 if (session.getAttribute("profileLink") != null)
 	session.setAttribute("sessionProfileLink", request.getAttribute("profileLink"));
+
+
 %>
 </head>
-<body bgcolor="#FFFFFF" onload="loadProfile()";>
+<body bgcolor="#FFFFFF" onload="loadProfile();">
 <script>
 function loadProfile()
 {
-   $("#profile").submit();   
+   $("#profile").submit(); 
+   $("#friends").submit();
+     
 }
 function loadFriends()
 {
    $("#friends").submit();  
-}
-function loadForms()
-{
-  loadProfile();
-  loadFriends(); 
 }
 </script>
 
@@ -60,112 +64,46 @@ function loadForms()
      &nbsp;&nbsp;&nbsp;&nbsp; <a href="fb/friends/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do">FRIENDS </a> &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="fb/profile/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do">PROFILE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/showReports.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="${pageContext.request.contextPath}/logout.do">Click here to logout</a></td>
     <td>&nbsp;</td>
   </tr>
-  <tr>
-  </tr>
-	<tr bgcolor="#ffffff">
-		
-		</td>
-	</tr>
-	
+
+<% 	String profileInfoid =  (String) session.getAttribute("sessionProfileInfoid");
+	String profileInfoname =  (String) session.getAttribute("sessionProfileInfoname");
+	String profileLink = (String) session.getAttribute("sessionProfileLink");
+%>	
+<tr>
+
+<table border="0" cellspacing="0" cellpadding="0" width="220">
 	<tr>
+		<td width="50">         		
+	  		<c:url var="imgurl" value="http://graph.facebook.com/${profileInfo.id}/picture" />
+	   		<img src="${imgurl}" alt="anotherimage" />
+	    </td>
+		<td width="170" class="smallText">
+			<p style="color:Black;font-size: medium;font-family: 'Calibri';">
+				Hi! ${profileInfoname}</p>
+			<form id="disconnect" action="../../../../../SLFPMApp/connect/facebook.do"  method="post">
+				<button type="submit" text="disconnect">Disconnect</button>	
+				<input type="hidden" name="_method" value="delete" />
+			</form>		
+			<form id="profile" action="../../../../../SLFPMApp/connect/fb/profile/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;></form>		
+			<form id="friends" action="../../../../../SLFPMApp/connect/fb/friends/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;></form>					
+		</td>
 		
-		<table bgcolor="#ffffff" border="0" cellspacing="0" cellpadding="0" width="600">
-			<td width="15" nowrap="nowrap">&nbsp;</td>
-			<td colspan="2" valign="top" bgcolor="#ffffff">
-				
-				
-				
-				<table border="0" cellspacing="0" cellpadding="0" width="180">
-					<tr>
-						<td width="200" class="smallText" id="padding">
-							<p style="color:Black;font-size: large;font-family: 'Calibri';">
-							<b>	Connected to Facebook!</b>
-								<form id="disconnect" action="../../../../../SLFPMApp/connect/facebook.do"  method="post">
-									<button type="submit" text="disconnect">Disconnect</button>	
-									<input type="hidden" name="_method" value="delete" />
-								</form>								
-						</td>
-						
-						<td width="10">
-							&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td width="200" class="smallText" id="padding">
-							<p style="color:Black;font-size: large;font-family: 'Calibri';">
-							<b>	Show Facebook Profile!</b>
-								<form id="profile" action="../../../../../SLFPMApp/connect/fb/profile/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;>
-								
-								</form>					
-						</td>
-					</tr>
-					<tr>
-						<td width="200" class="smallText" id="padding">
-							<p style="color:Black;font-size: large;font-family: 'Calibri';">
-							<b>	List Facebook Friends!</b>
-								<form id="friends" action="../../../../../SLFPMApp/connect/fb/friends/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;>	
-								</form>					
-						</td>
-					</tr>
-				</table> 
-				
-			</td>
-			<td width="15" nowrap="nowrap">&nbsp;</td>
-			<td nowrap="nowrap" style=" width : 600px;">
-				<table colspan=2 align=center border=1>
-	     <th colspan=2>
-	         Profile Details
-	     </th>
-	     <tr>
-	         <td> <b> Pic </b></td>
-	          <td align=center>
-	          <c:url var="imgurl" value="http://graph.facebook.com/${profileInfo.id}/picture" />
-	          <img src="${imgurl}" alt="anotherimage" />
-	        
-	         </td>
-	     </tr>
-	     <tr>
-	        <td> <b> Url </b></td>
-	        <td>${profileLink}</td>
-	     </tr>
-	      <tr>
-	        <td> <b> id </b></td>
-	        <td>${profileInfo.id}</td>
-	     </tr>
-	      <tr>
-	        <td> <b> Name </b></td>
-	        <td>${profileInfo.name}</td>
-	     </tr>
-	
-	</table>	
-			</td>
-			
-			<td width="15" nowrap="nowrap">&nbsp;</td>
-			<td nowrap="nowrap" style=" width : 600px;">
-	<table style="border: 1px solid; width: 50%; text-align:center">
-	<thead style="background:#d3dce3">
-		<tr>
-			<th>Friend Id's</th>	
-		</tr>
-	</thead>
-	<tbody style="background:#ccc">
-	<c:forEach items="${friendsList}" var="friend">
+	    <tr height="15" nowrap="nowrap">&nbsp;</tr>
+		</table>
+	<table border="0" cellspacing="0" cellpadding="0" width="350">
+	    <td width="200">	
+		<tr><b><u>List of Friends</u></b></tr>	
+		<tr height="15" nowrap="nowrap">&nbsp;</tr>
+		<c:forEach items="${friendsList}" var="friend">
 			<tr>
 				<td><c:out value="${friend}" /></td>
 			</tr>
-	</c:forEach>
-		
-	</tbody>
-</table>
-			</td>
-			</tr>
-		</table>	
+		</c:forEach>
+		<td>
 	</tr>
-	 	
-</table>
-
+	</table>
+</tr>	
+	</table> 
 </body>
-
-
 </html>
 
