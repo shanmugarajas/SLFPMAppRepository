@@ -5,31 +5,47 @@
 <!-- DW6 -->
 <head>
 <!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
-<script type="text/javascript" src="js/resources.js"></script>
+
 <title>Home</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Sun, 13 Oct 2013 00:00:00 GMT">
-<script src="../js/jquery-1.9.1.js"></script>
- <script src="../js/jquery-ui-1.10.3.custom.js"></script>
- <script src="../js/jquery-ui-1.10.3.custom.min.js"></script>
- <link rel="stylesheet" href="../css/mm_restaurant1.css" type="text/css" />
- <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.css" type="text/css" />
-  <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.min.css" type="text/css" />
+<script src="../../../../../SLFPMApp/js/jquery-1.9.1.js"></script>
+<script src="../../../../../SLFPMApp/js/resources.js"></script>
+ <script src="../../../../../SLFPMApp/js/jquery-ui-1.10.3.custom.js"></script>
+ <script src="../../../../../SLFPMApp/js/jquery-ui-1.10.3.custom.min.js"></script>
+ <link rel="stylesheet" href="../../../../../SLFPMApp/css/mm_restaurant1.css" type="text/css" />
+ 
 <%
 String userName = request.getUserPrincipal().getName();
 session.setAttribute("user", userName);
-System.out.println("User 1:" + userName);
-System.out.println("User 2:" + session.getAttribute("user"));
+
+System.out.println("profileLink: " + session.getAttribute("profileLink"));
+System.out.println("sessionProfileLink: " + session.getAttribute("sessionProfileLink"));
+
+if (session.getAttribute("profileInfo") != null)
+	session.setAttribute("sessionProfileInfo", request.getAttribute("profileInfo"));
+if (session.getAttribute("profileLink") != null)
+	session.setAttribute("sessionProfileLink", request.getAttribute("profileLink"));
 %>
-<script>
-$(function() {
-    $( "#tabs" ).tabs();
-  });
-</script>
 </head>
-<body bgcolor="#FFFFFF">
+<body bgcolor="#FFFFFF" onload="loadProfile()";>
+<script>
+function loadProfile()
+{
+   $("#profile").submit();   
+}
+function loadFriends()
+{
+   $("#friends").submit();  
+}
+function loadForms()
+{
+  loadProfile();
+  loadFriends(); 
+}
+</script>
 
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr bgcolor="#99ccff">
@@ -40,14 +56,14 @@ $(function() {
   </tr>
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
-    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_OFFSHOREPM, ROLE_ONSITEPM"> <a href="<c:url value='viewAllResources.do'/>"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="<c:url value='viewMyResources.do'/>"> </security:authorize>RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_OFFSHOREPM, ROLE_ONSITEPM"> <a href="viewAllAllocations.do"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="viewMyAllocations.do"> </security:authorize>ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
-     &nbsp;&nbsp;&nbsp;&nbsp; <a href="fb/friends/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do">FRIENDS </a> &nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="fb/profile/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do">PROFILE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="showReports.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="<c:url value='logout.do'/>">Click here to logout</a></td>
+    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_OFFSHOREPM, ROLE_ONSITEPM"> <a href="${pageContext.request.contextPath}/viewAllResources.do"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="${pageContext.request.contextPath}/viewMyResources.do"> </security:authorize>RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_OFFSHOREPM, ROLE_ONSITEPM"> <a href="${pageContext.request.contextPath}/viewAllAllocations.do"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="viewMyAllocations.do"> </security:authorize>ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
+     &nbsp;&nbsp;&nbsp;&nbsp; <a href="fb/friends/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do">FRIENDS </a> &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="fb/profile/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do">PROFILE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/showReports.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="${pageContext.request.contextPath}/logout.do">Click here to logout</a></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
   </tr>
 	<tr bgcolor="#ffffff">
-		<td colspan="6"><img src="../images/mm_spacer.gif" alt="" width="1" height="1" border="0" />
+		
 		</td>
 	</tr>
 	
@@ -57,22 +73,38 @@ $(function() {
 			<td width="15" nowrap="nowrap">&nbsp;</td>
 			<td colspan="2" valign="top" bgcolor="#ffffff">
 				
-				<img src="images/Ebix1.jpg" alt="" width="180" height="131" border="0" />
+				
 				
 				<table border="0" cellspacing="0" cellpadding="0" width="180">
 					<tr>
-						<td width="9">&nbsp;</td>
-						<td width="168" class="smallText" id="padding">
+						<td width="200" class="smallText" id="padding">
 							<p style="color:Black;font-size: large;font-family: 'Calibri';">
 							<b>	Connected to Facebook!</b>
-				
-								<form id="disconnect" action="facebook.do"  method="post">
+								<form id="disconnect" action="../../../../../SLFPMApp/connect/facebook.do"  method="post">
 									<button type="submit" text="disconnect">Disconnect</button>	
 									<input type="hidden" name="_method" value="delete" />
-								</form>		
+								</form>								
 						</td>
+						
 						<td width="10">
 							&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td width="200" class="smallText" id="padding">
+							<p style="color:Black;font-size: large;font-family: 'Calibri';">
+							<b>	Show Facebook Profile!</b>
+								<form id="profile" action="../../../../../SLFPMApp/connect/fb/profile/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;>
+								
+								</form>					
+						</td>
+					</tr>
+					<tr>
+						<td width="200" class="smallText" id="padding">
+							<p style="color:Black;font-size: large;font-family: 'Calibri';">
+							<b>	List Facebook Friends!</b>
+								<form id="friends" action="../../../../../SLFPMApp/connect/fb/friends/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;>	
+								</form>					
 						</td>
 					</tr>
 				</table> 
@@ -80,26 +112,51 @@ $(function() {
 			</td>
 			<td width="15" nowrap="nowrap">&nbsp;</td>
 			<td nowrap="nowrap" style=" width : 600px;">
-				<p style="color:Black;font-size: large;font-family: 'Calibri';">
-				<b>Introduction</b>
-				</p>
-				
-				<p nowrap="nowrap" style="color:Black;FONT-FAMILY: 'Calibri'; FONT-SIZE: medium;">
-					Ebix executes multiple support tracks for Sun Life in Coimbatore and Hyderabad.	
-					<br/>		
-					QPS (Quoting and Processing System) development track and Quality Testing are two of those support tracks. 
-					<br/>
-					Others include QPS related system/software development and maintenance activities.
-					<br/>
-					This application provides below management support for all the Offshore Sun Life activities at Ebix, India.	
-				</p>
-					<ol>
-						<li style="color:Black;FONT-FAMILY: 'Calibri'; FONT-SIZE: small;">Details of Developers/Testers  at both Onsite and Offshore</li>
-						<li style="color:Black;FONT-FAMILY: 'Calibri'; FONT-SIZE: small;">Sun Life sub projects status</li>
-						<li style="color:Black;FONT-FAMILY: 'Calibri'; FONT-SIZE: small;">Invoices development and historical data</li>
-						<li style="color:Black;FONT-FAMILY: 'Calibri'; FONT-SIZE: small;">Planning and tracking of activities to ramp up resources assigned to Sun Life projects </li>
-					</ol>
-				<br />		
+				<table colspan=2 align=center border=1>
+	     <th colspan=2>
+	         Profile Details
+	     </th>
+	     <tr>
+	         <td> <b> Pic </b></td>
+	          <td align=center>
+	          <c:url var="imgurl" value="http://graph.facebook.com/${profileInfo.id}/picture" />
+	          <img src="${imgurl}" alt="anotherimage" />
+	        
+	         </td>
+	     </tr>
+	     <tr>
+	        <td> <b> Url </b></td>
+	        <td>${profileLink}</td>
+	     </tr>
+	      <tr>
+	        <td> <b> id </b></td>
+	        <td>${profileInfo.id}</td>
+	     </tr>
+	      <tr>
+	        <td> <b> Name </b></td>
+	        <td>${profileInfo.name}</td>
+	     </tr>
+	
+	</table>	
+			</td>
+			
+			<td width="15" nowrap="nowrap">&nbsp;</td>
+			<td nowrap="nowrap" style=" width : 600px;">
+	<table style="border: 1px solid; width: 50%; text-align:center">
+	<thead style="background:#d3dce3">
+		<tr>
+			<th>Friend Id's</th>	
+		</tr>
+	</thead>
+	<tbody style="background:#ccc">
+	<c:forEach items="${friendsList}" var="friend">
+			<tr>
+				<td><c:out value="${friend}" /></td>
+			</tr>
+	</c:forEach>
+		
+	</tbody>
+</table>
 			</td>
 			</tr>
 		</table>	
@@ -108,5 +165,7 @@ $(function() {
 </table>
 
 </body>
+
+
 </html>
 

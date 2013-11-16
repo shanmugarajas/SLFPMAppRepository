@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.slf.pmapp.social.FriendsList;
 import com.slf.pmapp.social.FbConnectionHelper;
@@ -27,6 +28,7 @@ import com.slf.pmapp.social.FbOperationsHelper;
 
 
 @Controller
+@SessionAttributes({"profileLink"})
 @Scope("request")
 @RequestMapping("connect/fb")
 public class FacebookController {
@@ -58,7 +60,7 @@ public class FacebookController {
 		    Facebook facebook =userConnectionRepository.getConnection(Facebook.class, providerUserId).getApi();  
 			model.addAttribute("profileLink", facebook.userOperations().getUserProfile().getLink());
 			model.addAttribute("profileInfo", facebook.userOperations().getUserProfile());
-			return "facebook/profile";
+			return "connect/facebookConnected";
 		}  catch (NotConnectedException e) {
 			return "connect/facebookConnect";
 		}
@@ -85,7 +87,7 @@ public class FacebookController {
 		  model.addAttribute("friendsListDto",friendsListDto);//// for xml
 		  model.addAttribute("friendsList",friendsListDto.getFriendsList()); //// for jsp
 		  
-		  return "facebook/friends";
+		  return "connect/facebookConnected";
 	}
 	
 }
