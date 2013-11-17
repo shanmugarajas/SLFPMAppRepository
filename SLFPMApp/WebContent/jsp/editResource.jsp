@@ -5,15 +5,13 @@
 <!-- DW6 -->
 <head>
 <!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
-<script type="text/javascript" src="js/resources.js"></script>
 <title>Resources View</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<script src="js/jquery-1.9.1.js"></script>
- <script src="js/jquery-ui-1.10.3.custom.js"></script>
- <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
- <link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
- <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.css" type="text/css" />
-  <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.min.css" type="text/css" />
+<script src="../../../../../SLFPMApp/js/jquery-1.9.1.js"></script>
+<script src="../../../../../SLFPMApp/js/resources.js"></script>
+ <script src="../../../../../SLFPMApp/js/jquery-ui-1.10.3.custom.js"></script>
+ <script src="../../../../../SLFPMApp/js/jquery-ui-1.10.3.custom.min.js"></script>
+ <link rel="stylesheet" href="../../../../../SLFPMApp/css/mm_restaurant1.css" type="text/css" />
 <script>
 $(function()
 {
@@ -32,8 +30,8 @@ $(function()
   </tr>
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
-    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="connect/facebook.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllAllocations.do">ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;">FEEDBACK</a></td>
+    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="${pageContext.request.contextPath}/connect/facebook.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/viewAllAllocations.do">ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="${pageContext.request.contextPath}/connect/logout.do">Click here to logout</td>
     <td>&nbsp;</td>
   </tr>
  </table>

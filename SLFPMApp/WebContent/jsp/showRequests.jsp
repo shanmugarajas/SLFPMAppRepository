@@ -5,10 +5,13 @@
 <!-- DW6 -->
 <head>
 <!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
-<script type="text/javascript" src="js/resources.js"></script>
 <title>Allocations view</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
+<script src="../../../../../SLFPMApp/js/jquery-1.9.1.js"></script>
+<script src="../../../../../SLFPMApp/js/resources.js"></script>
+<script src="../../../../../SLFPMApp/js/jquery-ui-1.10.3.custom.js"></script>
+<script src="../../../../../SLFPMApp/js/jquery-ui-1.10.3.custom.min.js"></script>
+<link rel="stylesheet" href="../../../../../SLFPMApp/css/mm_restaurant1.css" type="text/css" />
 </head>
 <body bgcolor="#FFFFFF">
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -20,8 +23,8 @@
   </tr>
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
-    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="facebook.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="viewAllAllocations.do">ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<c:url value='j_spring_security_logout'/>">Click here to logout</a></td>
+    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="${pageContext.request.contextPath}/connect/facebook.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/connect/viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/viewAllAllocations.do">ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/connect/j_spring_security_logout">Click here to logout</a></td>
     <td>&nbsp;</td>
   </tr>
   <tr bgcolor="#ffffff">

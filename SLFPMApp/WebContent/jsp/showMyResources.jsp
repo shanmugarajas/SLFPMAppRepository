@@ -5,13 +5,16 @@
 <!-- DW6 -->
 <head>
 <!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
-<script type="text/javascript" src="js/resources.js"></script>
 <title>Resources View</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Sun, 13 Oct 2013 00:00:00 GMT">
-<link rel="stylesheet" href="css/mm_restaurant1.css" type="text/css" />
+<script src="../../../../../SLFPMApp/js/jquery-1.9.1.js"></script>
+<script src="../../../../../SLFPMApp/js/resources.js"></script>
+<script src="../../../../../SLFPMApp/js/jquery-ui-1.10.3.custom.js"></script>
+<script src="../../../../../SLFPMApp/js/jquery-ui-1.10.3.custom.min.js"></script>
+<link rel="stylesheet" href="../../../../../SLFPMApp/css/mm_restaurant1.css" type="text/css" />
 <%
 
 %>
@@ -26,13 +29,13 @@
   </tr>
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
-    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="connect/facebook.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authorize ifAnyGranted="ROLE_ADMIN"> <a href="viewAllAllocations.do"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="viewMyAllocations.do"> </security:authorize>ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<c:url value='j_spring_security_logout'/>">Click here to logout</a></td>
-    <td>&nbsp;</td>
+    
+     <td>&nbsp;</td>
   </tr>
   <tr bgcolor="#ffffff">
     <td width="15" height="230" valign="top"><img src="images/mm_spacer.gif" alt="" width="15" height="1" border="0" /></td>
-    
+    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="${pageContext.request.contextPath}/connect/facebook.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authorize ifAnyGranted="ROLE_ADMIN"> <a href="${pageContext.request.contextPath}/connect/viewAllAllocations.do"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="${pageContext.request.contextPath}/connect/viewMyAllocations.do"> </security:authorize>ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<c:url value='j_spring_security_logout'/>">Click here to logout</a></td>
     <td width="710" valign="top" halign="left"><br />
         <form action="searchResources.do" method="post">
           <table style="border-collapse: collapse;" border="0" bordercolor="#006699" width="710">
