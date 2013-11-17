@@ -69,41 +69,44 @@ function loadFriends()
 	String profileInfoname =  (String) session.getAttribute("sessionProfileInfoname");
 	String profileLink = (String) session.getAttribute("sessionProfileLink");
 %>	
-<tr>
-
-<table border="0" cellspacing="0" cellpadding="0" width="220">
 	<tr>
-		<td width="50">         		
-	  		<c:url var="imgurl" value="http://graph.facebook.com/${profileInfo.id}/picture" />
-	   		<img src="${imgurl}" alt="anotherimage" />
-	    </td>
-		<td width="170" class="smallText">
-			<p style="color:Black;font-size: medium;font-family: 'Calibri';">
-				Hi! ${profileInfoname}</p>
-			<form id="disconnect" action="../../../../../SLFPMApp/connect/facebook.do"  method="post">
-				<button type="submit" text="disconnect">Disconnect</button>	
-				<input type="hidden" name="_method" value="delete" />
-			</form>		
-			<form id="profile" action="../../../../../SLFPMApp/connect/fb/profile/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;></form>		
-			<form id="friends" action="../../../../../SLFPMApp/connect/fb/friends/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;></form>					
-		</td>
-		
-	    <tr height="15" nowrap="nowrap">&nbsp;</tr>
+	<table border="0" cellspacing="0" cellpadding="0" width="220">
+			<tr>  
+				<td width="15" nowrap="nowrap">&nbsp;</td>
+				<td>       		
+		  			<c:url var="imgurl" value="http://graph.facebook.com/${profileInfo.id}/picture" />
+		   			<img src="${imgurl}" alt="anotherimage" />
+		   		</td>
+		    </tr>
+		    <tr>
+		    	<td width="15" nowrap="nowrap">&nbsp;</td>
+				<td width="170" class="smallText">
+					<p style="color:Black;font-size: medium;font-family: 'Calibri';">
+					Hi! ${profileInfoname}</p>
+					<form id="disconnect" action="../../../../../SLFPMApp/connect/facebook.do"  method="post">
+						<button type="submit" text="disconnect">Disconnect</button>	
+						<input type="hidden" name="_method" value="delete" />
+					</form>		
+					<form id="profile" action="../../../../../SLFPMApp/connect/fb/profile/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;></form>		
+					<form id="friends" action="../../../../../SLFPMApp/connect/fb/friends/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;></form>					
+				</td>
+			</tr>		
+		    <tr height="15" nowrap="nowrap">&nbsp;</tr>
 		</table>
-	<table border="0" cellspacing="0" cellpadding="0" width="350">
-	    <td width="200">	
-		<tr><b><u>List of Friends</u></b></tr>	
-		<tr height="15" nowrap="nowrap">&nbsp;</tr>
-		<c:forEach items="${friendsList}" var="friend">
-			<tr>
-				<td><c:out value="${friend}" /></td>
-			</tr>
-		</c:forEach>
-		<td>
+		<table border="0" cellspacing="0" cellpadding="0" width="350">
+		    <td width="200">	
+				<tr><b><u>List of Friends</u></b></tr>	
+				<tr height="15" nowrap="nowrap">&nbsp;</tr>
+					<c:forEach items="${friendsList}" var="friend">
+						<tr>
+							<td><c:out value="${friend}" /></td>
+						</tr>
+					</c:forEach>
+				</tr>
+			</td>
+		</table>
 	</tr>
-	</table>
-</tr>	
-	</table> 
+</table> 
 </body>
 </html>
 
