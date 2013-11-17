@@ -13,6 +13,7 @@ public class IpmFacebookProfile {
 	@Id
 	@Column private java.lang.String id;
 	@Column private java.lang.String username;
+	@Column private String loginname;
 	@Column private java.lang.String name;
 	@Column private java.lang.String firstName;
 	@Column private java.lang.String lastName;
@@ -22,12 +23,14 @@ public class IpmFacebookProfile {
 	@Column private java.lang.String link;
 
     public IpmFacebookProfile(){
+  	
     	
     }
     
     public IpmFacebookProfile(java.lang.String id,
         java.lang.String username,
         java.lang.String name,
+        String loginname,
         java.lang.String firstName,
         java.lang.String lastName,
         java.lang.String gender,
@@ -36,6 +39,7 @@ public class IpmFacebookProfile {
         java.lang.String link){
 	
 		this.id = id;
+		this.loginname = loginname;
 		this.username = username;
 		this.name = name;
 		this.firstName = firstName;
@@ -60,6 +64,15 @@ public class IpmFacebookProfile {
 	public void setId(String id)
 	{
 		this.id = id;
+	}
+	
+	public String getLoginname()
+	{
+		return loginname;
+	}
+	public void setLoginname(String loginname)
+	{
+		this.loginname = loginname;
 	}
 	
 	public String getName()

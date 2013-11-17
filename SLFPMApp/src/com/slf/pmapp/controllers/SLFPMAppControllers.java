@@ -36,10 +36,12 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.slf.pmapp.bizrules.BusinessRuleValidator;
+import com.slf.pmapp.models.IpmFacebookProfile;
 import com.slf.pmapp.models.Resource;
 import com.slf.pmapp.models.Allocation;
 import com.slf.pmapp.models.Track;
 import com.slf.pmapp.models.Request;
+import com.slf.pmapp.persistance.IpmFacebookProfileDAO;
 import com.slf.pmapp.persistance.RequestsDAO;
 import com.slf.pmapp.persistance.ResourcesDAO;
 import com.slf.pmapp.persistance.AllocationsDAO;
@@ -90,6 +92,7 @@ public class SLFPMAppControllers
 	
 	@Autowired
 	private FbOperationsHelper fbOperationsHelper;
+	
 	
 	
 	@RequestMapping("/login")

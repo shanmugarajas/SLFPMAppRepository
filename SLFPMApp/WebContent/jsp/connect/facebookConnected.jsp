@@ -18,38 +18,25 @@
  <link rel="stylesheet" href="../../../../../SLFPMApp/css/mm_restaurant1.css" type="text/css" />
  
 <%
+String savedProviderUserId = (String) request.getAttribute("providerUserId");
+String savedProfileInfoName = (String) request.getAttribute("profileInfoName");
+session.setAttribute("sessionProfileInfoid", savedProviderUserId);
+session.setAttribute("sessionProfileInfoName", savedProfileInfoName);
+System.out.println("Request variable savedProviderUserId:" + savedProviderUserId);
 String userName = request.getUserPrincipal().getName();
 session.setAttribute("user", userName);
-
-System.out.println("profileInfoname: " + session.getAttribute("profileInfoname"));
-
-
-if (session.getAttribute("profileInfo") != null)
-	{
-	session.setAttribute("sessionProfileInfoname", request.getAttribute("profileInfoname"));
-	session.setAttribute("sessionProfileInfoid", request.getAttribute("profileInfoid"));
-	System.out.println("sessionProfileInfoname: " + session.getAttribute("sessionProfileInfoname"));
-	}
-
-if (session.getAttribute("profileLink") != null)
-	session.setAttribute("sessionProfileLink", request.getAttribute("profileLink"));
-
-
 %>
 </head>
 <body bgcolor="#FFFFFF" onload="loadProfile();">
 <script>
 function loadProfile()
 {
-   $("#profile").submit(); 
-   $("#friends").submit();
-     
-}
-function loadFriends()
-{
-   $("#friends").submit();  
+   $("#profile").submit();
+   $("#friends").submit(); 
 }
 </script>
+
+<form id="profileId" action="../../../SLFPMApp/connect/fb/getProfileIdintoSession.do"  method="get" return false;></form>
 
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr bgcolor="#99ccff">
@@ -65,9 +52,8 @@ function loadFriends()
 			    <td>&nbsp;</td>
 	</tr>
 
-			<% 	String profileInfoid =  (String) session.getAttribute("sessionProfileInfoid");
-				String profileInfoname =  (String) session.getAttribute("sessionProfileInfoname");
-				String profileLink = (String) session.getAttribute("sessionProfileLink");
+			<% 	String profileInfoid =  (String) session.getAttribute("savedProviderUserId");
+				String profileInfoname =  (String) session.getAttribute("savedProfileInfoName");
 			%>	
 	<tr>
 			<td width="15" nowrap="nowrap">&nbsp;</td>
@@ -76,7 +62,7 @@ function loadFriends()
 							<tr>  
 								<td width="15" nowrap="nowrap">&nbsp;</td>
 								<td>       		
-					  				<c:url var="imgurl" value="http://graph.facebook.com/${profileInfo.id}/picture" />
+					  				<c:url var="imgurl" value="http://graph.facebook.com/695769702/picture" />
 					   				<img src="${imgurl}" alt="anotherimage" />
 					   			</td>
 					    	</tr>
@@ -94,10 +80,12 @@ function loadFriends()
 										<u>Friends List</u><br>
 										<c:forEach items="${friendsList}" var="friend">
 										<c:out value="${friend}" />
-										</c:forEach>	
-										
-										<form id="profile" action="../../../../../SLFPMApp/connect/fb/profile/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;></form>		
-										<form id="friends" action="../../../../../SLFPMApp/connect/fb/friends/100007063864816/CAAIZBYcaG76oBAJWvv9EAxHkmG6NHqEXE0jCVZClPICdBpoZANX0ZB4kFrYft4MbzgJjebLs8PgLqOOgkmUwWGb2Ngise6LIj0rPV7wJMADY10v7yaksoK60FuZACAVEqfNjlJ20kkNLzc1Mgp4iTZCcWvSoWjEqe8Ngh1yD0JZCHGnEGwD1SYF9K7vKuo32GQZD.do"  method="get";  return false;></form>					
+										</c:forEach>
+										<%
+										System.out.println("For graph.facebook.com savedProviderUserId:" + savedProviderUserId);
+										%>	
+										<form id="profile" action="../../../../../SLFPMApp/connect/fb/profile/695769702/CAAIZBYcaG76oBALygvZBNkS2BTGnQIhb5hgtTq6BwA5lqG81JxQFpbp4ZA7qKMZB6u3Oxk1rHdnFIomODLobytZCOzmJdGXep1XLY8ZCFz1YwUd5B9rtZAFRZBUTzV6OdRNb5ZBpsemlHvxLxzYfV4jz67z4e1xDZBrpIZAJYQs1ChIPAbd3r9TqFxZADFPpB3dre4MZD.do"  method="get";  return false;></form>		
+										<form id="friends" action="../../../../../SLFPMApp/connect/fb/friends/695769702/CAAIZBYcaG76oBALygvZBNkS2BTGnQIhb5hgtTq6BwA5lqG81JxQFpbp4ZA7qKMZB6u3Oxk1rHdnFIomODLobytZCOzmJdGXep1XLY8ZCFz1YwUd5B9rtZAFRZBUTzV6OdRNb5ZBpsemlHvxLxzYfV4jz67z4e1xDZBrpIZAJYQs1ChIPAbd3r9TqFxZADFPpB3dre4MZD.do"  method="get";  return false;></form>					
 									</td>
 							</tr>			
 						</table>

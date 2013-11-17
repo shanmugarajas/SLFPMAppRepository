@@ -1,5 +1,6 @@
 package com.slf.pmapp.controllers;
 
+import java.security.Principal;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -9,6 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.connect.ConnectionData;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.NotConnectedException;
@@ -36,10 +40,8 @@ import com.slf.pmapp.social.FbOperationsHelper;
 @RequestMapping("connect/fb")
 public class FacebookController {
 	
-	@Autowired
-	private IpmFacebookProfileDAO ipmfacebookprofileDAO;
 	
-	private IpmFacebookProfile ipmfacebookprofile = new IpmFacebookProfile();
+	private String providerUserId = "None";
 	
 	private static final Logger logger = LoggerFactory.getLogger(FacebookController.class);
 	@Autowired
@@ -50,13 +52,20 @@ public class FacebookController {
 	
 	@Autowired
 	private FbOperationsHelper fbOperationsHelper;
+	
+	@Autowired
+	private IpmFacebookProfileDAO ipmfacebookprofileDAO;
+	
+	private IpmFacebookProfile ipmfacebookprofile = new IpmFacebookProfile();
 
 	@RequestMapping(value="/profile/{providerUserId}/{facebookAccessToken}" , method = RequestMethod.GET)
 	public String getProfile(@PathVariable("facebookAccessToken") String facebookAccessToken, 
                              @PathVariable("providerUserId") String providerUserId,
                              Model model) {
 		try {
-					
+			
+			
+		    
 			boolean userExistsInRepo = fbConnectionHelper.checkForUserInRepository(providerUserId,userConnectionRepository);
 			if(userExistsInRepo) {	
 				  fbConnectionHelper.updateExistingConnectionInRepository(providerUserId,facebookAccessToken, userConnectionRepository);
@@ -69,12 +78,12 @@ public class FacebookController {
 			model.addAttribute("profileInfoname", facebook.userOperations().getUserProfile().getName());
 			model.addAttribute("profileInfoid", facebook.userOperations().getUserProfile().getId());
 			
-			ipmfacebookprofile.setId(facebook.userOperations().getUserProfile().getId());
-			ipmfacebookprofile.setName(facebook.userOperations().getUserProfile().getName());
-			ipmfacebookprofile.setLink(facebook.userOperations().getUserProfile().getLink());
-			ipmfacebookprofile.setImgurl("http://graph.facebook.com/" + facebook.userOperations().getUserProfile().getId() + "/picture");
+			//ipmfacebookprofile.setId(facebook.userOperations().getUserProfile().getId());
+			//ipmfacebookprofile.setName(facebook.userOperations().getUserProfile().getName());
+			//ipmfacebookprofile.setLink(facebook.userOperations().getUserProfile().getLink());
+			//ipmfacebookprofile.setImgurl("http://graph.facebook.com/" + facebook.userOperations().getUserProfile().getId() + "/picture");
 			
-			ipmfacebookprofileDAO.save(ipmfacebookprofile);
+			//ipmfacebookprofileDAO.save(ipmfacebookprofile);
 			
 			return "connect/facebookConnected";
 		}  catch (NotConnectedException e) {
@@ -82,13 +91,33 @@ public class FacebookController {
 		}
 	}
 	
-	
+	@RequestMapping(value="/getProfileIdintoSession")
+	public String getProfileIdintoSession(Model model, HttpServletRequest request){
+		String userName = "None"; 
+		if (providerUserId != "None")
+			return "connect/facebookConnected";
+			
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDet =  (UserDetails) auth.getPrincipal();
+	    if (userDet != null) {
+	        userName = userDet.getUsername();
+	    } 
+	    
+	    userName="admin";
+	    
+	    providerUserId = ipmfacebookprofileDAO.getProfileID(userName).getId();
+	    String profileInfoName = ipmfacebookprofileDAO.getProfileID(userName).getName();
+	    request.setAttribute("providerUserId", providerUserId);
+	    request.setAttribute("profileInfoName", profileInfoName);
+	    System.out.println("Controller time providerUserId set: " + providerUserId);
+	    return "connect/facebookConnected";
+	}
 	
 	@RequestMapping(value="/friends/{providerUserId}/{facebookAccessToken}", method = RequestMethod.GET)
 	public String getFriends(@PathVariable("facebookAccessToken") String facebookAccessToken, 
 			                          @PathVariable("providerUserId") String providerUserId,
 			                          Model model){
-		
+		    
 		  logger.info("providerUserId = "+providerUserId);
 		  logger.info("facebookAccessToken = "+facebookAccessToken); 
 		  boolean userExistsInRepo = fbConnectionHelper.checkForUserInRepository(providerUserId,userConnectionRepository);

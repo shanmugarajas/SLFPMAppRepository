@@ -25,6 +25,13 @@ public class IpmFacebookProfileDAO {
 		return (IpmFacebookProfile) sessionFactory.getCurrentSession().get(IpmFacebookProfile.class, id);
 	}
 	
+	public IpmFacebookProfile getProfileID(String loginname)
+	{
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(IpmFacebookProfile.class);
+		criteria.add(Restrictions.ilike("loginname", loginname.toString().trim()+"%"));
+		return (IpmFacebookProfile) criteria.list().get(0);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<IpmFacebookProfile> getAllIpmFacebookProfiles()
 	{
