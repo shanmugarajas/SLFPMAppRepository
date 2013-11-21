@@ -85,7 +85,7 @@ public class FacebookController {
 			
 			//ipmfacebookprofileDAO.save(ipmfacebookprofile);
 			
-			return "connect/facebookConnected";
+			return "facebook/profile";
 		}  catch (NotConnectedException e) {
 			return "connect/facebookConnect";
 		}
@@ -137,7 +137,7 @@ public class FacebookController {
 		  model.addAttribute("friendsListDto",friendsListDto);//// for xml
 		  model.addAttribute("friendsList",friendsListDto.getFriendsList()); //// for jsp
 		  
-		  return "connect/facebookConnected";
+		  return "facebook/profile";
 	}
 	
 }
