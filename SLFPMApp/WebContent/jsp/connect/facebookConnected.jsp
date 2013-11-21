@@ -31,8 +31,6 @@ session.setAttribute("user", userName);
 
 </head>
 <body bgcolor="#FFFFFF">
-<div id="fb-root"></div>
-
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr bgcolor="#99ccff">
 			    <td width="15" nowrap="nowrap">&nbsp;</td>
@@ -47,7 +45,9 @@ session.setAttribute("user", userName);
       &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="${pageContext.request.contextPath}/connect/logout.do">Click here to logout</td>
 			    <td>&nbsp;</td>
 	</tr>
+</table>
 <div id="mainbody">
+<table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
 <form id="profileId" action="../../../SLFPMApp/connect/fb/getProfileIdintoSession.do"  method="get"></form>
 			<% 	String profileInfoid =  (String) session.getAttribute("savedProviderUserId");
 				String profileInfoname =  (String) session.getAttribute("savedProfileInfoName");
@@ -58,10 +58,7 @@ session.setAttribute("user", userName);
 						<table border="0" cellspacing="0" cellpadding="0" width="220">
 							<tr>  
 								<td width="15" nowrap="nowrap">&nbsp;</td>
-								<td>       		
-					  				<c:url var="imgurl" value="http://graph.facebook.com/695769702/picture" />
-					   				<img src="${imgurl}" alt="anotherimage" />
-					   			</td>
+								
 								
 					    	</tr>
 					    	<tr>
@@ -91,18 +88,28 @@ session.setAttribute("user", userName);
 							</tr>			
 						</table>
 					</td>
-	</tr>
-	</div>
+	</tr>	
 </table>
-
-<div id="modal">
-  <img src="../images/ajax-loader3.gif" />
 </div>
- <script type="text/javascript">
+
+<div id="loader">
+	<table height="300" width="600">
+		<tr width=100% align="center">
+			<td height=100% align="center">
+	  			<img src="../images/ajax-loader3.gif" />
+	  		</td>
+	  	</tr>
+	</table>
+</div>
+
+<script type="text/javascript">
  $(document).ready( function(){
 	 document.forms["profile"].submit();
 	 document.forms["friends"].submit();
+	 $( "#mainbody" ).hide();
+	 $( "#loader" ).show();
 	 });
+ 
  </script>
 </body>
 </html>

@@ -44,6 +44,9 @@ $(function() {
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="showReports.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="<c:url value='logout.do'/>">Click here to logout</a></td>
     <td>&nbsp;</td>
   </tr>
+  </table>
+ <div id="mainbody"> 
+  <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
   </tr>
 	<tr bgcolor="#ffffff">
@@ -63,10 +66,12 @@ $(function() {
 						<td width="168" class="smallText" id="padding">
 							<p style="color:Black;font-size: large;font-family: 'Calibri';">
 							<b>Connect to Facebook</b>
-							<form action="facebook.do"  method="post">
-								<input type="hidden" name="scope" value="publish_stream,offline_access" />
-								<button type="submit" text="Connect with Facebook">Connect</button>
-							</form>				
+							<div id="connectDiv">
+								<form action="facebook.do"  method="post">
+									<input type="hidden" name="scope" value="publish_stream,offline_access" />
+									<button type="submit" text="Connect with Facebook">Connect</button>
+								</form>		
+							</div>		
 						</td>
 						<td width="10">
 							&nbsp;
@@ -102,6 +107,27 @@ $(function() {
 	</tr>
 	 	
 </table>
+</div>
 
+<div id="loader">
+	<table height="300" width="600">
+		<tr width=100% align="center">
+			<td height=100% align="center">
+	  			<img src="../images/ajax-loader3.gif" />
+	  		</td>
+	  	</tr>
+	</table>
+</div>
+
+<script type="text/javascript">
+$(document).ready( function(){
+	$( "#mainbody" ).show();
+	$( "#loader" ).hide();
+});
+ $( "#connectDiv" ).click(function() {
+	 $( "#mainbody" ).hide();
+	 $( "#loader" ).show();
+	});
+ </script>
 </body>
 </html>
