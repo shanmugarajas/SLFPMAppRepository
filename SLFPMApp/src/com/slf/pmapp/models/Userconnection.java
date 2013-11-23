@@ -12,13 +12,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name="userconnection")
 public class Userconnection {
-	
 	@Id
-	@Column	private String userId;
-	@Id
-	@Column	private String providerId;
-	@Id
-	@Column	private String providerUserId;
+	@Column(name = "userId")
+	private String userid;
+	@Column(name = "providerId")
+	private String providerid;
+	@Column(name = "providerUserId")
+	private String provideruserid;
 	@Column	private int rank;
 	@Column	private String displayName;
 	@Column	private String profileUrl;
@@ -33,9 +33,9 @@ public class Userconnection {
 	}
 	
 	public Userconnection(int id,
-			String userId,
-			String providerId,
-			String providerUserId,
+			String userid,
+			String providerid,
+			String provideruserid,
 			int rank, 
 			String displayName,
 			String profileUrl,
@@ -47,10 +47,10 @@ public class Userconnection {
 			)
 	{
 		super();
-		this.userId = userId;
-		this.providerId = providerId;
+		this.userid = userid;
+		this.providerid = providerid;
 		this.rank = rank;
-		this.providerUserId = providerUserId;
+		this.provideruserid = provideruserid;
 		this.displayName = displayName;
 		this.profileUrl = profileUrl;
 		this.imageUrl = imageUrl;
@@ -66,31 +66,32 @@ public class Userconnection {
 		return "Userconnection";
 	}
 		
-	public String getUserId()
+	public String getUserid()
 	{
-		return userId;
+		System.out.println(this.getClass().toString() + " : userid");
+		return userid;
 	}
-	public void setUserId(String userId)
+	public void setUserid(String userid)
 	{
-		this.userId = userId;
-	}
-	
-	public String getProviderId()
-	{
-		return providerId;
-	}
-	public void setProviderId(String providerId)
-	{
-		this.providerId = providerId;
+		this.userid = userid;
 	}
 	
-	public String getProviderUserId()
+	public String getproviderid()
 	{
-		return providerUserId;
+		return providerid;
 	}
-	public void setProviderUserId(String providerUserId)
+	public void setProviderid(String providerid)
 	{
-		this.providerUserId = providerUserId;
+		this.providerid = providerid;
+	}
+	
+	public String getProvideruserid()
+	{
+		return provideruserid;
+	}
+	public void setProvideruserid(String provideruserid)
+	{
+		this.provideruserid = provideruserid;
 	}
 	
 	public int getRank()
