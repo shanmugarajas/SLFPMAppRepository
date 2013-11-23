@@ -24,11 +24,16 @@ public class UserconnectionDAO {
 	private SessionFactory sessionFactory;
 	
 	@SuppressWarnings("unchecked")
-	public List<Userconnection> getUserConnection(String userId, String providerId)
+	public List<Userconnection> getUserConnection(String userId, String providerId, String providerUserId)
 	{
+		System.out.println("UserCon restrict userid: " + userId.toString().trim());
+		System.out.println("UserCon restrict providerId: " + providerId.toString().trim());
+		System.out.println("UserCon restrict providerUserid: " + providerUserId.toString().trim());
+		
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Userconnection.class);
-		criteria.add(Restrictions.ilike("userId", userId.toString().trim()+"%"));
-		criteria.add(Restrictions.ilike("providerId", providerId.toString().trim()+"%"));
+		criteria.add(Restrictions.eq("userid", userId.toString().trim()));
+		//criteria.add(Restrictions.eq("providerid", providerId.toString().trim()));
+		//criteria.add(Restrictions.eq("provideruserid", providerUserId.toString().trim()));
 		return criteria.list();
 	}
 }

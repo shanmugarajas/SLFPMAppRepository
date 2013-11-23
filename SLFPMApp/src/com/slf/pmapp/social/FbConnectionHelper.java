@@ -2,6 +2,8 @@ package com.slf.pmapp.social;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +22,10 @@ import org.springframework.social.connect.ConnectionFactory;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.facebook.api.Facebook;
+import org.springframework.util.MultiValueMap;
+
+import com.slf.pmapp.models.Userconnection;
+import com.slf.pmapp.persistance.UserconnectionDAO;
 
 
 public class FbConnectionHelper {
@@ -31,6 +37,9 @@ public class FbConnectionHelper {
 	
 	@Autowired
 	private ConnectionFactoryRegistry connectionFactoryRegistry;
+	
+	@Autowired
+	private UserconnectionDAO userConDAO;
 	
 	
 	/*
@@ -45,6 +54,21 @@ public class FbConnectionHelper {
 		} catch (Exception ex){
 			System.out.println("Could not find connection info for"+providerUserId);
 			return false;
+		}
+         
+	}
+	
+	public void deleteExistingConnection(String providerUserId, ConnectionRepository userConnectionRepository)  {
+		System.out.println("getConnectionData -"+providerUserId);
+		try{
+			
+		  //Connection<Facebook> existingFacebookConnection = userConnectionRepository.getConnection(Facebook.class, providerUserId);
+		 // MultiValueMap <String, Connection<?>> conMap = userConnectionRepository.findAllConnections();
+		  userConnectionRepository.removeConnections(providerUserId);
+		 
+		} catch (Exception ex){
+			System.out.println("Could not find connection info for"+providerUserId);
+			
 		}
          
 	}
@@ -71,6 +95,16 @@ public class FbConnectionHelper {
 		  userConnectionRepository.updateConnection(newfacebookConnection);
 	}
 
+    public String getAccessToken(String userId, String providerUserId){
+    	List<Userconnection> userCon = userConDAO.getUserConnection(userId, "facebook", providerUserId);
+    	return userCon.get(0).getAccessToken();
+    }
+    
+    public String getProfileInfoName(String userId, String providerUserId){
+    	List<Userconnection> userCon = userConDAO.getUserConnection(userId, "facebook", providerUserId);
+    	return userCon.get(0).getDisplayName();
+    }
+    
     public void addNewConnectionToRepository(String providerUserId, String facebookAccessToken , ConnectionRepository userConnectionRepository){
     	logger.info("addNewConnection -"+facebookAccessToken);
 		ConnectionFactory<Facebook> facebookConnectionFactory = connectionFactoryRegistry.getConnectionFactory(Facebook.class);

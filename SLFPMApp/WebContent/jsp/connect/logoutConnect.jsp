@@ -7,6 +7,7 @@
 <title>Logout</title>
 </head>
 <body>
-<% response.sendRedirect("j_spring_security_logout"); %>
+<% 
+response.sendRedirect("j_spring_security_logout"); %>
 </body>
 </html>
