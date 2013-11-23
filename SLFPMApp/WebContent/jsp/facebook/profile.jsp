@@ -1,5 +1,6 @@
 <%@include file="taglib_includes.jsp" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!-- DW6 -->
@@ -18,12 +19,11 @@
  
 <%
 String savedProviderUserId = "";
-savedProviderUserId = (String) request.getAttribute("providerUserId");
+savedProviderUserId = (String) session.getAttribute("providerUserId");
 String savedProfileInfoName = "";
-savedProfileInfoName = (String) request.getAttribute("profileInfoName");
-session.setAttribute("sessionProfileInfoid", savedProviderUserId);
-session.setAttribute("sessionProfileInfoName", savedProfileInfoName);
-System.out.println("Request variable savedProviderUserId:" + savedProviderUserId);
+savedProfileInfoName = (String) session.getAttribute("profileInfoName");
+System.out.println("In profile page savedProviderUserId:" + savedProviderUserId);
+System.out.println("In profile page savedProfileInfoName:" + savedProfileInfoName);
 String userName = "";
 userName = request.getUserPrincipal().getName();
 session.setAttribute("user", userName);
@@ -48,10 +48,7 @@ session.setAttribute("user", userName);
 			    <td>&nbsp;</td>
 	</tr>
 <div id="mainbody">
-<form id="profileId" action="../../../SLFPMApp/connect/fb/getProfileIdintoSession.do"  method="get"></form>
-			<% 	String profileInfoid =  (String) session.getAttribute("savedProviderUserId");
-				String profileInfoname =  (String) session.getAttribute("savedProfileInfoName");
-			%>	
+
 	<tr>
 			<td width="15" nowrap="nowrap">&nbsp;</td>
 				<td>
@@ -59,16 +56,20 @@ session.setAttribute("user", userName);
 							<tr>  
 								<td width="15" nowrap="nowrap">&nbsp;</td>
 								<td>       		
-					  				<c:url var="imgurl" value="http://graph.facebook.com/695769702/picture" />
+					  				<c:url var="imgurl" value="http://graph.facebook.com/${providerUserId}/picture" />
 					   				<img src="${imgurl}" alt="anotherimage" />
 					   			</td>
 								
 					    	</tr>
+					    	<%
+					    	String showProfileInfoName = (String) request.getAttribute("profileInfoName");
+					    	System.out.println("In profile page, request show name: " + showProfileInfoName);
+					    	%>
 					    	<tr>
 							    	<td width="15" nowrap="nowrap">&nbsp;</td>
 									<td width="170" class="smallText">
 										<p style="font-size: small;font-family: 'Calibri';">
-										Hi! ${profileInfoname}</p>
+										Welcome! <%= (String) request.getAttribute("profileInfoName") %></p>
 										<form id="disconnect" action="../../../../../SLFPMApp/connect/facebook.do"  method="post">
 											<button type="submit" text="disconnect">Disconnect</button>	
 											<input type="hidden" name="_method" value="delete" />
@@ -80,13 +81,7 @@ session.setAttribute("user", userName);
 										<c:forEach items="${friendsList}" var="friend">
 										<c:out value="${friend}" />
 										</c:forEach>
-										<%
-										System.out.println("For graph.facebook.com savedProviderUserId:" + savedProviderUserId);
-										%>	
-										<form id="profile" action="../../../../../SLFPMApp/connect/fb/profile/695769702/CAAIZBYcaG76oBALygvZBNkS2BTGnQIhb5hgtTq6BwA5lqG81JxQFpbp4ZA7qKMZB6u3Oxk1rHdnFIomODLobytZCOzmJdGXep1XLY8ZCFz1YwUd5B9rtZAFRZBUTzV6OdRNb5ZBpsemlHvxLxzYfV4jz67z4e1xDZBrpIZAJYQs1ChIPAbd3r9TqFxZADFPpB3dre4MZD.do"  method="get";  return false;></form>
-												
-										<form id="friends" action="../../../../../SLFPMApp/connect/fb/friends/695769702/CAAIZBYcaG76oBALygvZBNkS2BTGnQIhb5hgtTq6BwA5lqG81JxQFpbp4ZA7qKMZB6u3Oxk1rHdnFIomODLobytZCOzmJdGXep1XLY8ZCFz1YwUd5B9rtZAFRZBUTzV6OdRNb5ZBpsemlHvxLxzYfV4jz67z4e1xDZBrpIZAJYQs1ChIPAbd3r9TqFxZADFPpB3dre4MZD.do"  method="get";  return false;></form>
-															
+											
 									</td>
 							</tr>			
 						</table>
