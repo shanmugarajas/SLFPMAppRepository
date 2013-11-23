@@ -1,5 +1,5 @@
 <%@include file="taglib_includes.jsp" %>
-
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!-- DW6 -->
@@ -23,6 +23,9 @@ String savedProfileInfoName = "";
 savedProfileInfoName = (String) session.getAttribute("profileInfoName");
 String savedAccessToken = "";
 savedAccessToken = (String) session.getAttribute("accessToken");
+System.out.println("In providerIDRetrieve page savedProviderUserId:" + savedProviderUserId);
+System.out.println("In providerIDRetrieve page savedProfileInfoName:" + savedProfileInfoName);
+System.out.println("In providerIDRetrieve page savedAccessToken:" + savedAccessToken);
 String userName = "";
 userName = request.getUserPrincipal().getName();
 session.setAttribute("user", userName);
@@ -46,14 +49,23 @@ session.setAttribute("user", userName);
 	</tr>
 </table>
 <div id="mainbody">
-<form id="profileId" action="../../../SLFPMApp/connect/fb/getProfileIdintoSession.do"  method="get"></form>
+<%
+savedProviderUserId = (String) session.getAttribute("providerUserId");
+savedProfileInfoName = (String) session.getAttribute("profileInfoName");
+savedAccessToken = (String) session.getAttribute("accessToken");
+System.out.println("In providerIDRetrieve page savedProviderUserId 2:" + savedProviderUserId);
+System.out.println("In providerIDRetrieve page savedProfileInfoName 2:" + savedProfileInfoName);
+System.out.println("In providerIDRetrieve page savedAccessToken 2:" + savedAccessToken);
+%>
+<form id="profile" action="../../../../../SLFPMApp/connect/fb/profile/<%= (String) session.getAttribute("providerUserId") %>/<%= (String) session.getAttribute("accessToken") %>.do"  method="get";  return false;></form>
+<form id="friends" action="../../../../../SLFPMApp/connect/fb/friends/<%= (String) session.getAttribute("providerUserId") %>/<%= (String) session.getAttribute("accessToken") %>.do"  method="get";  return false;></form>
 </div>
 
 <div id="loader">
 	<table height="300" width="600">
 		<tr width=100% align="center">
 			<td height=100% align="center">
-	  			<img src="../images/ajax-loader3.gif" />
+	  			<img src="../connect/images/ajax-loader3.gif" />
 	  		</td>
 	  	</tr>
 	</table>
@@ -61,7 +73,8 @@ session.setAttribute("user", userName);
 
 <script type="text/javascript">
  $(document).ready( function(){
-	 document.forms["profileId"].submit();
+	 document.forms["profile"].submit();
+	 document.forms["friends"].submit();
 	 $( "#mainbody" ).hide();
 	 $( "#loader" ).show();
 	 });
