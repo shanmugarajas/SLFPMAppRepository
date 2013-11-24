@@ -26,8 +26,8 @@ savedAccessToken = (String) session.getAttribute("accessToken");
 System.out.println("In providerIDRetrieve page savedProviderUserId:" + savedProviderUserId);
 System.out.println("In providerIDRetrieve page savedProfileInfoName:" + savedProfileInfoName);
 System.out.println("In providerIDRetrieve page savedAccessToken:" + savedAccessToken);
-String userName = "";
-userName = request.getUserPrincipal().getName();
+String userName = "facebook.do";
+//userName = request.getUserPrincipal().getName();
 session.setAttribute("user", userName);
 %>
 
@@ -44,7 +44,7 @@ session.setAttribute("user", userName);
 	<tr bgcolor="#0066cc">
 			    <td width="15" nowrap="nowrap">&nbsp;</td>
 			    <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><a href="${pageContext.request.contextPath}/connect/facebook.do">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/connect/viewAllResources.do">RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="${pageContext.request.contextPath}/connect/logout.do">Click here to logout</td>
+      &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/createReport.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/connect/logout.do">Click here to logout</td>
 			    <td>&nbsp;</td>
 	</tr>
 </table>

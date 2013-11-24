@@ -16,7 +16,7 @@
  <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.min.css" type="text/css" />
 <%
-String userName = request.getUserPrincipal().getName();
+String userName = "facebook.do"; // request.getUserPrincipal().getName();
 session.setAttribute("user", userName);
 System.out.println("User 1:" + userName);
 System.out.println("User 2:" + session.getAttribute("user"));
@@ -26,9 +26,10 @@ $(function() {
     $( "#tabs" ).tabs();
   });
 </script>
+
+
 </head>
 <body bgcolor="#FFFFFF">
-
 <table bgcolor="#FFFFFF" width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr bgcolor="#99ccff">
     <td width="15" nowrap="nowrap">&nbsp;</td>
@@ -39,7 +40,7 @@ $(function() {
   <tr bgcolor="#0066cc">
     <td width="15" nowrap="nowrap">&nbsp;</td>
     <td height="36" colspan="2" id="navigation" nowrap="nowrap" class="navText"><security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_OFFSHOREPM, ROLE_ONSITEPM"> <a href="viewAllResources.do"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="viewMyResources.do"> </security:authorize>RESOURCES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authorize ifAnyGranted="ROLE_ADMIN, ROLE_OFFSHOREPM, ROLE_ONSITEPM"> <a href="viewAllAllocations.do"> </security:authorize> <security:authorize ifAnyGranted="ROLE_USER"> <a href="viewMyAllocations.do"> </security:authorize>ALLOCATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllTracks.do">TRACKS</a>&nbsp;&nbsp;
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="showReports.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<security:authentication property="principal.username"></security:authentication>: &nbsp;<a href="<c:url value='logout.do'/>">Click here to logout</a></td>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="viewAllRequests.do">REQUESTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="showReports.do">REPORTS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<c:url value='logout.do'/>">Click here to logout</a></td>
     <td>&nbsp;</td>
   </tr>
   </table>
