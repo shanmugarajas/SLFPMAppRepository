@@ -1,5 +1,6 @@
 <%@include file="taglib_includes.jsp" %>
 <%@ page session="true" %>
+<%@ page import="org.springframework.security.core.userdetails.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!-- DW6 -->
@@ -14,13 +15,7 @@
  <script src="../js/jquery-ui-1.10.3.custom.min.js"></script>
  <link rel="stylesheet" href="../css/mm_restaurant1.css" type="text/css" />
  <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.css" type="text/css" />
-  <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.min.css" type="text/css" />
-<%
-String userName = (String) org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-session.setAttribute("user", userName);
-System.out.println("User 1:" + userName);
-System.out.println("User 2:" + session.getAttribute("user"));
-%>
+  <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.min.css" `type="text/css" />
 <script>
 $(function() {
     $( "#tabs" ).tabs();

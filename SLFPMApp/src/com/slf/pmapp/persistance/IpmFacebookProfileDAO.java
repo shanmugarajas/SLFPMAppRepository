@@ -27,6 +27,7 @@ public class IpmFacebookProfileDAO {
 	
 	public IpmFacebookProfile getProfileID(String loginname)
 	{
+		System.out.println("Loginname is: " + loginname);
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(IpmFacebookProfile.class);
 		criteria.add(Restrictions.ilike("loginname", loginname.toString().trim()+"%"));
 		return (IpmFacebookProfile) criteria.list().get(0);

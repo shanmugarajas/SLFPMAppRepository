@@ -23,9 +23,6 @@ String savedProfileInfoName = "";
 savedProfileInfoName = (String) session.getAttribute("profileInfoName");
 String savedAccessToken = "";
 savedAccessToken = (String) session.getAttribute("accessToken");
-String userName = "";
-userName = (String) org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-session.setAttribute("user", userName);
 %>
 
 </head>

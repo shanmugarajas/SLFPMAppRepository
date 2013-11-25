@@ -24,9 +24,6 @@ String savedProfileInfoName = "";
 savedProfileInfoName = (String) session.getAttribute("profileInfoName");
 System.out.println("In profile page savedProviderUserId:" + savedProviderUserId);
 System.out.println("In profile page savedProfileInfoName:" + savedProfileInfoName);
-String userName = (String) org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//userName = request.getUserPrincipal().getName();
-session.setAttribute("user", userName);
 %>
 
 </head>
