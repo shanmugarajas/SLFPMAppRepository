@@ -16,7 +16,7 @@
  <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.css" type="text/css" />
   <link rel="stylesheet" href="../css/jquery-ui-1.9.2.custom.min.css" type="text/css" />
 <%
-String userName = "facebook.do"; // request.getUserPrincipal().getName();
+String userName = (String) org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 session.setAttribute("user", userName);
 System.out.println("User 1:" + userName);
 System.out.println("User 2:" + session.getAttribute("user"));

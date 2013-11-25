@@ -24,9 +24,7 @@ savedProfileInfoName = (String) session.getAttribute("profileInfoName");
 String savedAccessToken = "";
 savedAccessToken = (String) session.getAttribute("accessToken");
 String userName = "";
-userName = "facebook.do"; //request.getUserPrincipal().getName();
-if (userName == null)
-	userName = "facebook.do";
+userName = (String) org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 session.setAttribute("user", userName);
 %>
 

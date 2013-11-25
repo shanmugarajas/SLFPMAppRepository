@@ -125,9 +125,9 @@ public class FacebookController {
 		//if (providerUserId != "None")
 		//	return "connect/facebookConnected";
 			
-		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//User userDet =  (User) auth.getPrincipal();
-		userName = "facebook.do"; //userDet.getUsername();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		userName =  (String) auth.getPrincipal();
+		//userName = "admin"; //userDet.getUsername();
 		
 		System.out.println("Username retrived is: " + userName);
 		
